@@ -129,9 +129,7 @@ Our aim is to progress every week, and have a steady workflow.
 
 ### Testing ###
 
-**Testing:** We will test our project as much as possible. We will have separate unit tests using django’s built in unittest- module. We will also test our web shop ourselves and ask our friends to review it. 
-
-
+**Testing:** We will test our project as much as possible every week. It is not marked in the weekly schedule because it belongs for all the things we will do. We will have separate unit tests using django’s built in unittest- module. We will also test our web shop ourselves and ask our friends to review it. 
 
 
 
