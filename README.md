@@ -1,4 +1,4 @@
-# Web Software Development - Project plan #
+# WebShop - Project plan #
  
 #### Participants: ###
 * Lasse Liimatta - 592929 
