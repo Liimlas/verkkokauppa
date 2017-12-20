@@ -1,23 +1,23 @@
-#Web Software Development - Project plan
+# Web Software Development - Project plan #
  
-####Participants:
-Lasse Liimatta - 592929
-Elisa Naskali - 593371
-Sofia Kimpimäki - 586883
+#### Participants: ###
+* Lasse Liimatta - 592929 *
+* Elisa Naskali - 593371 *
+* Sofia Kimpimäki - 586883 *
  
 
 
-##Main goals and vision of the project
+## Main goals and vision of the project ##
 
 **Project vision:** In this project, we will build a simple web shop for selling and playing JavaScript games. End result should be done in a way that we can be proud to present it.
 
 **Individual goals:** We are trying to make the best out of the project, but also learn along the way. And although the end result matters to us, we place more value on the learning process itself. 
 
-
-###Plans for the project
+ 
+### Plans for the project ###
  
  
-###Features we plan to implement and how
+### Features we plan to implement and how ###
  
 **Authentication:** We are going to use Django auth. We will make a database of every user, and Django auth’s job is to work in the backend and check whether the login request is valid using the database.
  
@@ -36,7 +36,7 @@ When player buys a game, we will create new instance of existing hasBought-relat
 **Mobile Friendly:** Bootstrap has its own grid system that makes it possible for us to make the website responsive.
 
 
-###Views of the project
+### Views of the project ###
  
 **Views:** Our product consist of several different views and components:
  
@@ -49,19 +49,19 @@ When player buys a game, we will create new instance of existing hasBought-relat
 *Error page. If something goes wrong or something weird happens, this page will be displayed.
  
  
-###Priorities
+### Priorities ###
  
 **Higher priorities:** Main priority for each of us to learn how to make a fully functional website. And what comes to the project itself, we aim to have a site which is actually usable and nicely working. In our vision a successful product does not rely on the amount of the features, but the quality of them instead.
  
 **Lower priorities:** We don’t find that visual design is the main focus in this project. In real case it would be done with professionals that have experience in visualization.
 
 
-###Working practices and schedule
+### Working practices and schedule ###
  
  
 **Meetings:** We aim to have predefined meetings at least once a week so we can work, and plan things forward. That way we can have steady progress every week and there shouldn’t be too much of a need for dashes that increment the workload for short periods of time.
  
-####Schedule
+#### Schedule ####
  
 *Week 1: We start our project. The plan is start to do with front page. Sql is the most important thing to get ready.
  
@@ -77,7 +77,7 @@ Communication and project management: Our direct communication happens via Teleg
 Our aim is to progress every week, and have a steady workflow.
 
 
-###Testing
+### Testing ###
 
 **Testing:** We will test our project as much as possible. We will have separate unit tests using django’s built in unittest- module. We will also test our web shop ourselves and ask our friends to review it. 
 
