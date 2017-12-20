@@ -49,6 +49,9 @@ When player buys a game, we will create new instance of existing hasBought-relat
 * Navigation bar. Lets the user to navigate through the web page or login/register
 * Error page. If something goes wrong or something weird happens, this page will be displayed.
 
+
+### Models ###
+
 ![ER-diagram of our planned models](ermodel.jpg "ER-diagram of our planned models")
  
  
