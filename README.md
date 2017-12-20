@@ -53,6 +53,40 @@ When player buys a game, we will create new instance of existing hasBought-relat
 ### Models ###
 
 ![ER-diagram of our planned models](ermodel.jpg "ER-diagram of our planned models")
+
+* **User**
+	* username STRING, Primary key
+	* email EMAIL
+	* first name STRING
+	* last name STRING
+	* password STRING
+ 
+* **Developer** inherits from User
+	* username STRING, Primary key (Inherited from User)
+
+
+* **Game**
+    * copies sold INT
+    * name STRING
+    * price DOUBLE
+    * date added DATE
+    * ur-l PRIMARY KEY
+    * discount price DOUBLE
+ 
+* **hasScore**
+    * points INT
+    * game FOREIGN KEY
+    * username FOREIGN KEY
+ 
+* **hasBought**
+    * date bought DATE
+    * game FOREIGN KEY
+    * username FOREIGN KEY
+ 
+* **hasMade**
+    * username FOREIGN
+    * game FOREIGN KEY	
+
  
  
 ### Priorities ###
