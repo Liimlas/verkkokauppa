@@ -36,6 +36,7 @@ When player buys a game, we will create new instance of existing hasBought-relat
 **Mobile Friendly:** Bootstrap has its own grid system that makes it possible for us to make the website responsive.
 
 
+
 ### Views of the project ###
  
 **Views:** Our product consist of several different views and components:
@@ -47,6 +48,8 @@ When player buys a game, we will create new instance of existing hasBought-relat
 * Login/register prompt. Opens up from the navigation bar and lets the user to sign in, or new user to register.
 * Navigation bar. Lets the user to navigate through the web page or login/register
 * Error page. If something goes wrong or something weird happens, this page will be displayed.
+
+![ER-diagram of our planned models](ermodel.jpg "ER-diagram of our planned models")
  
  
 ### Priorities ###
@@ -56,10 +59,12 @@ When player buys a game, we will create new instance of existing hasBought-relat
 **Lower priorities:** We don’t find that visual design is the main focus in this project. In real case it would be done with professionals that have experience in visualization.
 
 
+
 ### Working practices and schedule ###
  
  
 **Meetings:** We aim to have predefined meetings at least once a week so we can work, and plan things forward. That way we can have steady progress every week and there shouldn’t be too much of a need for dashes that increment the workload for short periods of time.
+ 
  
 #### Schedule ####
  
