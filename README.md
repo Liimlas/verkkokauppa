@@ -112,7 +112,7 @@ Our aim is to progress every week, and have a steady workflow.
  
 #### Schedule ####
  
-* Week 1: We start our project .Sql is the most important thing to get ready. After that the plan is start doing with front page. Style of the page is not yet so important. Working platform is our plan to week one
+* Week 1: We start our project. Models are the most important thing to get ready. After that the plan is start doing with front page. Style of the page is not yet so important. Working platform is our plan to week one
 
 * Week 2: We are working on with the front page still and when it’s done login/register prompt is the next priority and profile page.
  
@@ -120,16 +120,16 @@ Our aim is to progress every week, and have a steady workflow.
  
 * Week 4: Game view. See details of the game and the place where user can find games. Some games can be on the sale.
  
-* Week 5: How to buy game. And when the game is bought, how to play game. The user can see the games (s)he has bought. And only those games user can game. If there is game, user haven’t bought and (s)he try to play it, there will be some comment like you have to buy game to play.
+* Week 5: How to buy a game. And when the game is bought, how to play game. The user can see the games (s)he has bought. And only those games user can game. If there is game, user haven’t bought and (s)he try to play it, there will be some comment like you have to buy game to play.
  
-* Week 6: High score. All the games have high score. When you have played some game if your score is the new high score, the high score will change. At the same time we start doing our own game.
+* Week 6: High score. All the games have high scores. When you have played some game if your score is the new high score, the high score will change. At the same time we start doing our own game.
  
 * Week 7: Navigation bar and error page.
 
 
 ### Testing ###
 
-**Testing:** We will test our project as much as possible every week. It is not marked in the weekly schedule because it belongs for all the things we will do. We will have separate unit tests using django’s built in unittest- module. We will also test our web shop ourselves and ask our friends to review it. 
+**Testing:** We will test our project as much as possible every week. It is not marked in the weekly schedule because it belongs to all the things we will do. We will have separate unit tests using django’s built in unittest- module. We will also test our web shop ourselves and ask our friends to review it. 
 
 
 
