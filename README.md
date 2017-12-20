@@ -1,4 +1,4 @@
-# Web Software Development - Project plan #
+# WebShop - Project plan #
  
 #### Participants: ###
 * Lasse Liimatta - 592929 
@@ -36,6 +36,7 @@ When player buys a game, we will create new instance of existing hasBought-relat
 **Mobile Friendly:** Bootstrap has its own grid system that makes it possible for us to make the website responsive.
 
 
+
 ### Views of the project ###
  
 **Views:** Our product consist of several different views and components:
@@ -47,6 +48,45 @@ When player buys a game, we will create new instance of existing hasBought-relat
 * Login/register prompt. Opens up from the navigation bar and lets the user to sign in, or new user to register.
 * Navigation bar. Lets the user to navigate through the web page or login/register
 * Error page. If something goes wrong or something weird happens, this page will be displayed.
+
+
+### Models ###
+
+![ER-diagram of our planned models](ermodel.jpg "ER-diagram of our planned models")
+
+* **User**
+	* username STRING, Primary key
+	* email EMAIL
+	* first name STRING
+	* last name STRING
+	* password STRING
+ 
+* **Developer** inherits from User
+	* username STRING, Primary key (Inherited from User)
+
+
+* **Game**
+    * copies sold INT
+    * name STRING
+    * price DOUBLE
+    * date added DATE
+    * ur-l PRIMARY KEY
+    * discount price DOUBLE
+ 
+* **hasScore**
+    * points INT
+    * game FOREIGN KEY
+    * username FOREIGN KEY
+ 
+* **hasBought**
+    * date bought DATE
+    * game FOREIGN KEY
+    * username FOREIGN KEY
+ 
+* **hasMade**
+    * username FOREIGN
+    * game FOREIGN KEY	
+
  
  
 ### Priorities ###
@@ -56,25 +96,32 @@ When player buys a game, we will create new instance of existing hasBought-relat
 **Lower priorities:** We don’t find that visual design is the main focus in this project. In real case it would be done with professionals that have experience in visualization.
 
 
+
 ### Working practices and schedule ###
  
  
 **Meetings:** We aim to have predefined meetings at least once a week so we can work, and plan things forward. That way we can have steady progress every week and there shouldn’t be too much of a need for dashes that increment the workload for short periods of time.
  
+**Communication and project management:** Our direct communication happens via Telegram. Also, we plan to use Trello organizing and distributing tasks are easier. Gitlab is used for version control.
+Our aim is to progress every week, and have a steady workflow.
+
+ 
 #### Schedule ####
  
-*Week 1: We start our project. The plan is start to do with front page. Sql is the most important thing to get ready.
+* Week 1: We start our project. The plan is start to do with front page. Sql is the most important thing to get ready.
  
-*Week 2: We are working on the front page still and when it’s login/register prompt. 
+* Week 2: We are working on the front page still and when it’s done login/register prompt is the next priority. 
  
--2: The streams must not cross.
-Weeks 3-4: If at the hour of despair the streams cross
-no-one will mention it.
-Monday, Feb 1st: We shall meet at Stonehenge and check that
-Egon has delivered proton packs to New York.
+* Week 3: Login/register prompt will be ready and when user has logged in (s)he can add the JavaScript game and the game will have only price. The game can be on the sale.
  
-Communication and project management: Our direct communication happens via Telegram. Also, we plan to use Trello organizing and distributing tasks are easier. Gitlab is used for version control.
-Our aim is to progress every week, and have a steady workflow.
+ 
+* Week 4: Game view. See details of the game and the place where user can find games.
+ 
+* Week 5: How to buy game. And when the game is bought, how to play game. The user can see the games (s)he has bought.
+ 
+* Week 6: Sales and profile page and doing our own game.
+ 
+* Week 7: High score. All the games have high score. When you have played some game if your score is the new high score, the high score will change.
 
 
 ### Testing ###
