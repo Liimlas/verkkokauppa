@@ -1,9 +1,9 @@
 # Web Software Development - Project plan #
  
 #### Participants: ###
-* Lasse Liimatta - 592929 *
-* Elisa Naskali - 593371 *
-* Sofia Kimpimäki - 586883 *
+* Lasse Liimatta - 592929 
+* Elisa Naskali - 593371 
+* Sofia Kimpimäki - 586883 
  
 
 
