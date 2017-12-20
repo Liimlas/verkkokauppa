@@ -14,8 +14,8 @@
 **Individual goals:** We are trying to make the best out of the project, but also learn along the way. And although the end result matters to us, we place more value on the learning process itself. 
 
  
-### Plans for the project ###
- 
+## Plans for the project ##
+
  
 ### Features we plan to implement and how ###
  
@@ -40,13 +40,13 @@ When player buys a game, we will create new instance of existing hasBought-relat
  
 **Views:** Our product consist of several different views and components:
  
-*Front page. Just like every other page, we have a front page. For our project, it’s not the most necessary part. It’s just used to display some messages, info, etc.
-*Sales page. In this view we have list of all the games that are currently available for sale. Also, some features will be implemented, like a search bar for example.
-*Game view. When a game is selected in the sales page, a view should be opened, or a section expanded for the details of the game to be displayed. In this section you will also be able to purchase the game and see any statistics related to it
-*Profile page. In this view the user is able to change settings, and so on. Developers have extended view in this section so that they are able to manage their games and see the related data.
-*Login/register prompt. Opens up from the navigation bar and lets the user to sign in, or new user to register.
-*Navigation bar. Lets the user to navigate through the web page or login/register
-*Error page. If something goes wrong or something weird happens, this page will be displayed.
+* Front page. Just like every other page, we have a front page. For our project, it’s not the most necessary part. It’s just used to display some messages, info, etc.
+* Sales page. In this view we have list of all the games that are currently available for sale. Also, some features will be implemented, like a search bar for example.-->
+* Game view. When a game is selected in the sales page, a view should be opened, or a section expanded for the details of the game to be displayed. In this section you will also be able to purchase the game and see any statistics related to it
+* Profile page. In this view the user is able to change settings, and so on. Developers have extended view in this section so that they are able to manage their games and see the related data.
+* Login/register prompt. Opens up from the navigation bar and lets the user to sign in, or new user to register.
+* Navigation bar. Lets the user to navigate through the web page or login/register
+* Error page. If something goes wrong or something weird happens, this page will be displayed.
  
  
 ### Priorities ###
