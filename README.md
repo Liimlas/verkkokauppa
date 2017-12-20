@@ -112,20 +112,19 @@ Our aim is to progress every week, and have a steady workflow.
  
 #### Schedule ####
  
-* Week 1: We start our project. The plan is start to do with front page. Sql is the most important thing to get ready.
+* Week 1: We start our project .Sql is the most important thing to get ready. After that the plan is start doing with front page. Style of the page is not yet so important. Working platform is our plan to week one
+
+* Week 2: We are working on with the front page still and when it’s done login/register prompt is the next priority and profile page.
  
-* Week 2: We are working on the front page still and when it’s done login/register prompt is the next priority. 
+* Week 3:  Login/register prompt will be ready and it is possible now login. When user has logged in (s)he can add the JavaScript game and the game will have only price. The game can be on the sale.
  
-* Week 3: Login/register prompt will be ready and when user has logged in (s)he can add the JavaScript game and the game will have only price. The game can be on the sale.
+* Week 4: Game view. See details of the game and the place where user can find games. Some games can be on the sale.
  
+* Week 5: How to buy game. And when the game is bought, how to play game. The user can see the games (s)he has bought. And only those games user can game. If there is game, user haven’t bought and (s)he try to play it, there will be some comment like you have to buy game to play.
  
-* Week 4: Game view. See details of the game and the place where user can find games.
+* Week 6: High score. All the games have high score. When you have played some game if your score is the new high score, the high score will change. At the same time we start doing our own game.
  
-* Week 5: How to buy game. And when the game is bought, how to play game. The user can see the games (s)he has bought.
- 
-* Week 6: Sales and profile page and doing our own game.
- 
-* Week 7: High score. All the games have high score. When you have played some game if your score is the new high score, the high score will change.
+* Week 7: Navigation bar and error page.
 
 
 ### Testing ###
