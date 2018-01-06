@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbcdb2dd-a798-40ae-aa1a-51f9f135b5db" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Verkkokauppa/browse/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Verkkokauppa/browse/templates/__init__.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py" afterPath="$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Verkkokauppa/frontpage/templates/frontpage/index.html" afterPath="$PROJECT_DIR$/Verkkokauppa/frontpage/templates/frontpage/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Verkkokauppa/gamesales/templates/gamesales/games.html" afterPath="$PROJECT_DIR$/Verkkokauppa/gamesales/templates/gamesales/games.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            <state relative-caret-position="439">
+              <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -55,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Verkkokauppa/frontpage/static/frontpage/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="575">
@@ -147,8 +142,8 @@
         <option value="$PROJECT_DIR$/Verkkokauppa/frontpage/static/frontpage/style.css" />
         <option value="$PROJECT_DIR$/Verkkokauppa/gamesales/templates/gamesales/games.html" />
         <option value="$PROJECT_DIR$/Verkkokauppa/browse/templates/browse/brow.html" />
-        <option value="$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py" />
         <option value="$PROJECT_DIR$/Verkkokauppa/frontpage/templates/frontpage/index.html" />
+        <option value="$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py" />
       </list>
     </option>
   </component>
@@ -191,44 +186,7 @@
               <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
               <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
               <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
               <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Verkkokauppa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="Verkkokauppa" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="frontpage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -270,8 +228,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -558,14 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Verkkokauppa/frontpage/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -602,6 +553,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Verkkokauppa/Verkkokauppa/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
           <folding />
         </state>
       </provider>
