@@ -3,36 +3,47 @@
 
 <head>
     <title>Toimi plz</title>
+    <meta charset="utf-8">
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'frontpage/style.css' %}" />
-	 {% load static %}
+
+    {% load static %}
 	<link rel="stylesheet" href="{% static 'frontpage/script.js' %}" media="screen" />
 
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 </head>
 
-    <h1>Verkkokauppa</h1>
+<body>
+
+    {% if terve %}
+    <p> {{terve}} </p>
+    {% endif %}
+    <div class="page-header">
+        <h1>Verkkokauppa</h1>
+    </div>
+
+
+    <button type="button" class="btn btn-success">Olen viherä buttoni</button>
 
 <div class="Basic-button">
-	 <button style="width:15%" class="tablinks"  id="defaultOpen">Home</button>
+    <button style="width:15%" class="tablinks"  id="defaultOpen">Home</button>
 
 	<a href="games/">
-  <button style="width:15%">Games</button>
+        <button style="width:15%">Games</button>
 	</a>
-  <button style="width:15%">Browse</button>
-
-
+    <button style="width:15%">Browse</button>
 
 	<!--this do the sign up thing-->
 
-	<button id= "signup" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+	<button id="signup" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 	<button id="login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
 
 <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content animate" action="/action_page.php">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">X</span>
+    <form class="modal-content animate" action="/action_page.php">
     <div class="container">
       <label><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
@@ -63,12 +74,6 @@
 
 
 </div>
-
-
-
-</div>
-
-
 </body>
 </html>
 

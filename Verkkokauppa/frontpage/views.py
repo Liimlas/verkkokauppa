@@ -1,7 +1,9 @@
 from django.shortcuts import render
-
+from main.models import User
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'frontpage/index.html', {})
+    terve = User.terve(request)
+    context = {'terve' : terve}
+    return render(request, 'frontpage/index.html', context)
