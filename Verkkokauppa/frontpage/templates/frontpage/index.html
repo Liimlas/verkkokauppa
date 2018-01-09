@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Dank Meme</title>
-	<meta charset="utf-8">
 
-	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static 'frontpage/style.css' %}" />
+<head>
+    <title>Toimi plz</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'frontpage/style.css' %}" />
+	 {% load static %}
+	<link rel="stylesheet" href="{% static 'frontpage/script.js' %}" media="screen" />
+
 
 </head>
 
-<body>
-	<h1>Moi, mitä kuuluu?</h1>
+    <h1>Verkkokauppa</h1>
+
+<div class="Basic-button">
+	 <button style="width:15%" class="tablinks"  id="defaultOpen">Home</button>
 
 	<a href="games/">
-		<img src="http://funnyminionsmemes.com/wp-content/uploads/2016/12/30-Best-Funny-Animal-Memes-of-all-times-2-Funny-memes-Animals-500x621.jpg">
+  <button style="width:15%">Games</button>
 	</a>
-	<h2>Moi</h2>
+  <button style="width:15%">Browse</button>
+
+
+
+	<!--this do the sign up thing-->
+
+	<button id= "signup" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+	<button id="login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="container">
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <label><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      <input type="checkbox" checked="checked"> Remember me
+
+
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<!--home page texts-->
+	<div id="Home" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'"></span>
+        <h3>Etusivu</h3>
+        <p>jejj.</p>
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+
 </body>
-
-
 </html>
+
