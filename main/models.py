@@ -10,4 +10,4 @@ class User(models.Model):
     password = models.CharField(max_length=50)
 
     def terve(self):
-        return "No tervepä Terve"
+        return "No tervepä terve!"
