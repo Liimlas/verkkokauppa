@@ -1,21 +1,35 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Toimi plz</title>
-
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'gamesales/stylee.css' %}" />
-
-</head>
-<body>
-    <h1>Verkkokauppa (sivu Game)</h1>
-
-<div class="Basic-button">
-  <button style="width:20%">Home</button>
-  <button style="width:20%">Browse</button>
-  <button style="width:20%">Game</button>
-  <button style="width:20%">Game</button>
+{% extends "base_html.html" %}
+{% block content %}
+<h3>Column 1</h3>
+      <p>jotain tietoa pelistä...</p>
+        <div class="bs-example">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sijat</th>
+                <th>Name</th>
+                <th>pisteet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>nimi</td>
+                <td>pisteet</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>nimi</td>
+                <td>Pisteet</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>nimi</td>
+                <td>pisteet</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-</body>
-</html>
+{% endblock %}
+
+{% block sidebar %} moi {% endblock%}
