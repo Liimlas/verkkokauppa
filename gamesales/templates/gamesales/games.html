@@ -1,5 +1,19 @@
 {% extends "base_html.html" %}
+
 {% block content %}
+{% if in_list %}
+
+<h1>{{ game.name }}</h1>
+<h2>Price {{ game.price }}e </h2>
+<p>Developer {{ game.developer }} </p>
+
+{% else %}
+
+
+<h1>Peliä ei löytynyt!</h1>
+
+<p>Valitettavasti peliä ei tämän id:n alta löytynyt. Ole hyvä jä yritä uudelleen</p>
+<!--
 <h3>Column 1</h3>
       <p>jotain tietoa pelistä...</p>
         <div class="bs-example">
@@ -30,6 +44,7 @@
         </tbody>
     </table>
 </div>
-{% endblock %}
+-->
 
-{% block sidebar %} moi {% endblock%}
+{% endif %}
+{% endblock %}

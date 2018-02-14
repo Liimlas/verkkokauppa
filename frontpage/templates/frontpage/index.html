@@ -1,5 +1,13 @@
 {% extends "base_html.html" %}
 
 {% block content %}
-Moikkeliskoikkelis
+<h3>Pelit myytyjen kopioiden määrän mukaan:</h3>
+<br></br>
+
+{% for game in games %}
+{% with 'games/'|add:game.id as gameurl %}
+<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, myydyt kopiot {{ game.soldcopies }} ja pelin hinta {{ game.price }}€</p>
+{% endwith %}
+{% endfor %}
 {% endblock %}
+
