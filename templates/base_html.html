@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% block title %}  <title>Web Shop | JavaScript Games Online</title> {% endblock %}
+  <meta charset="utf-8">
+
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'base/script.js' %}" media="screen" />
+
+  <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
+  <!--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+-->
+</head>
+
+<body>
+  <div>
+  <div class="header">
+    {% block header %}
+    <div class="navigationdiv">
+      <a href="/"><p>WebShop</p></a>
+    </div>
+    <div class="navigationdiv">
+      <a href="/games"><p>Games</p></a>
+    </div>
+    {% endblock %}
+  </div>
+
+
+  <div class="content">
+    {% block content %} HELLOHELLOHELLOHELLOHELLOHELLO {% endblock %}
+  </div>
+</div>
+</body>
+</html>
