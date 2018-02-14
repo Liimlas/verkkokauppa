@@ -11,15 +11,15 @@ def list_of_ids(gamelist):
     return ids
 
 def games(request):
-    context = {}
-    context['gamelist'] = Game.objects.all()
+    games = Game.objects.all()
+    context = {'pageview' : True, 'games' : games}
     return render(request, 'gamesales/games.html', context)
 
 def viewgame(request, id):
     context = {}
-    context['in_list'] = False
+    context['not_found'] = True
     for game in Game.objects.all():
         if id == game.id:
-            context['in_list'] = True
+            context['gamefound'] = True
             context['game'] = game
     return render(request, 'gamesales/games.html', context)
