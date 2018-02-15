@@ -6,11 +6,11 @@ from django.contrib.auth.forms import UserCreationForm
 
 @login_required
 def profile(request):
-    return render(request, 'frontpage/profile.html')
+    return render(request, 'profile.html')
 
 @login_required
 def profiles(request):
-    return render(request, 'frontpage/profiles.html')
+    return render(request, 'profiles.html')
 
 def signup(request):
     if request.method == 'POST':
