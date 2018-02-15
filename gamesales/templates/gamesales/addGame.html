@@ -1,0 +1,63 @@
+{% extends "base_html.html" %}
+
+
+{% block content %}
+
+<form action="/action_page.php" method="post">
+
+
+    Developer:<br>
+        <input type="text" name="developer" value="">
+    <br>
+
+    Title:<br>
+        <input type="text" name="title">
+    <br>
+
+    Description of the Game:<br>
+        <input type="text" name="description">
+    <br>
+
+   Price:
+  <input type="number" name="price" min="0"><br>
+
+  <!--Quantity (between 1 and 5):
+  <input type="number" name="quantity" min="1" max="5"><br>-->
+
+  <input type="submit" value="Add Game"><br>
+
+
+</form>
+
+
+    <!--{% if validlink %}
+    <p>Please enter (and confirm) your new password.</p>
+        <form action="" method="post">
+            <div style="display:none">
+                <input type="hidden" value="{{ csrf_token }}" name="csrfmiddlewaretoken">
+            </div>
+            <table>
+                <tr>
+                    <td>{{ form.new_password1.errors }}
+                        <label for="id_new_">New password:</label></td>
+                    <td>{{ form.new_password1 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.new_password2.errors }}
+                        <label for="id_new_password2">Confirm password:</label></td>
+                    <td>{{ form.new_password2 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Change my password" /></td>
+                </tr>
+            </table>
+        </form>
+    {% else %}
+        <h1>Password reset failed</h1>
+        <p>The password reset link was invalid, possibly because it has already been used. Please request a new password reset.</p>
+    {% endif %}-->
+
+
+{% endblock %}
+

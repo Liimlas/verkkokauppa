@@ -23,3 +23,8 @@ def viewgame(request, id):
             context['gamefound'] = True
             context['game'] = game
     return render(request, 'gamesales/games.html', context)
+
+
+
+def addGame(request):
+    return render(request, 'gamesales/addGame.html')
