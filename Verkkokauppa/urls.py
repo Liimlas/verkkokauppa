@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('frontpage.urls')),
     url(r'^', include('gamesales.urls')),
+    url(r'^', include('user.urls')),
 ]

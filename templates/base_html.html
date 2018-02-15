@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'gamesales/stylee.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'gamesales/styles.css' %}" />
    <!-- {% load static %}
 	<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
@@ -39,6 +39,23 @@
     <div class="navigationdiv">
         <a href="/sales"><p>Sales</p></a>
     </div>
+
+    <div class="headerRight">
+      {% if user.is_authenticated %}
+      <div class="headerRightText">
+        <p>Hello {{ user.username }}!<br>
+        <a href="{% url 'profile' %}">Profile</a><br>
+        <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
+      </div>
+        <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
+      {% else %}
+      <div class="headerRightText">
+        <p><a href="{% url 'login' %}">Login</a><br>
+          <a href="{% url 'signup' %}">Sign up</a><br></p>
+      </div>
+      {% endif %}
+    </div>
+
     {% endblock %}
 </div>
 
@@ -113,4 +130,3 @@
 
 
 </html>
-
