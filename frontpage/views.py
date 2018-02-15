@@ -8,6 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 
+
+
 # Gives a sorted list back according to a given attribute. e.g. amount of sold copies or price, etc
 def games_by_attribute(gamelist, attribute, reversed):
     games_sorted = []
@@ -48,3 +50,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup/signup.html', {'form': form})
+
+def addGame(request):
+    return render(request, 'frontpage/addGame.html')

@@ -12,3 +12,5 @@ class Game(models.Model):
     onsale = models.BooleanField(blank=True)
     soldcopies = models.IntegerField(default=0, blank=True, validators=[MinValueValidator(0)])
 
+
+
