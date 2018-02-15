@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'frontpage',
     'gamesales',
     'main',
+    'user',
 ]
 
 MIDDLEWARE = [

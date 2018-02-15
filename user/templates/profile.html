@@ -1,4 +1,5 @@
 {% extends "base_html.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -8,10 +9,16 @@
   <h2>Cool gamer profile page </h2>
 {% endif %}
 
+<img src="{% static 'media/def_userpic.jpg' %}"
+    height="100px"
+    width="100px"
+    alt="User">
+
 <ul>
     <li>User: {{user.username}}</li>
     <li>Email: {{user.email}}</li>
     <li>Bio: {{ user.profile.bio }}</li>
+    <li>Birthday: {{user.profile.birth_date }}</li>
 </ul>
 
 {% endblock %}
