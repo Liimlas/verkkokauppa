@@ -36,13 +36,17 @@
 
     <div class="headerRight">
       {% if user.is_authenticated %}
-      <img src="frontpage/media/def_userpic.jpg" alt="User">
+      <div class="headerRightText">
         <p>Hello {{ user.username }}!<br>
         <a href="{% url 'profile' %}">Profile</a><br>
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
+      </div>
+        <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
       {% else %}
-      <p><a href="{% url 'login' %}">Login</a><br>
-        <a href="{% url 'signup' %}">Sign up</a><br></p>
+      <div class="headerRightText">
+        <p><a href="{% url 'login' %}">Login</a><br>
+          <a href="{% url 'signup' %}">Sign up</a><br></p>
+      </div>
       {% endif %}
     </div>
 
