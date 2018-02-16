@@ -26,7 +26,3 @@ def games_by_attribute(gamelist, attribute, reversed):
 
 
 
-
-def addGame(request):
-    return render(request, 'frontpage/addGame.html')
-
