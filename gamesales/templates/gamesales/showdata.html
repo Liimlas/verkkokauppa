@@ -1,0 +1,98 @@
+showdata.html
+
+
+{% extends "base_html.html" %}
+
+{% block content %}
+
+
+<h2>Successful adding</h2>
+
+<form method="post" action="/addGame/">
+<table>
+        <tr>
+            <td>developer: </td>
+            <td><strong>{{ developer }}</strong></td>
+        </tr>
+        <tr>
+            <td>title: </td>
+            <td><strong>{{ title }}</strong></td>
+        </tr>
+        <tr>
+            <td>description: </td>
+            <td><strong>{{ description }}</strong></td>
+        </tr>
+        <tr>
+            <td>price: </td>
+            <td><strong>{{ price }}</strong></td>
+        </tr>
+    </table>
+
+   <!-- Developer:<br>
+        <strong>{{ developer }}</strong>
+    <br>
+
+    Title:<br>
+        <strong>{{ title }}</strong>
+    <br>
+
+    Description of the Game:<br>
+        <strong>{{ description }}</strong>
+    <br>
+
+   Price:
+  <strong>{{ price }}</strong>
+
+-->
+
+
+
+
+</form>
+<!--<form method="post" action="/addGame/">
+    <table>
+        <tr>
+            <td>developer</td>
+            <td><strong>{{ developer }}</strong></td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td><strong>{{ title }}</strong></td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td><strong>{{ description }}</strong></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td><strong>{{ price }}</strong></td>
+        </tr>
+    </table>
+</form>-->
+{% endblock %}
+
+<!--
+<form action="/action_page.php" method="post">
+
+
+    Developer:<br>
+        <input type="text" name="developer" value="">
+    <br>
+
+    Title:<br>
+        <input type="text" name="title">
+    <br>
+
+    Description of the Game:<br>
+        <input type="text" name="description">
+    <br>
+
+   Price:
+  <input type="number" name="price" min="0"><br>
+
+
+
+  <input type="submit" value="Add Game"><br>
+
+
+</form>-->
