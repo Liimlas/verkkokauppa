@@ -3,61 +3,43 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<p>Please login to see this page.</p>
-{% else %}
 <form method="post" action="/addGame/">
-
-
-    Developer:<br>
-        <input type="text" name="developer" value="">
+    Name of the game:<br>
+        <input type="text" name="name" required>
     <br>
-
-    Title:<br>
-        <input type="text" name="title">
+    Developer:
+        Yes <input type="radio" name="developer" value="yes" required>  /
+        No <input type="radio" name="developer" value="no" required>
     <br>
-
-    Description of the Game:<br>
-        <input type="text" name="description">
+    Price:
+        <input type="number" name="price" min="0" required><br>
+    Link:<br>
+        <input type="text" name="link" required>
     <br>
+    <input type="submit" value="Add Game"><br>
+</form>
+{% else %}
+    <p>Login first!</p>
+{% endif %}
+{% if nameError %}
+<p> The name must be longer</p>
 
-   Price:
-  <input type="number" name="price" min="0"><br>
+
+{% elif developerError %}
+<p> You must be developer to add the game</p>
+
+
+{% elif linkError %}
+<p> Check that the link is right</p>
+
+
+{% endif %}
+
+
+{% endblock %}
+
+
 
   <!--Quantity (between 1 and 5):
   <input type="number" name="quantity" min="1" max="5"><br>-->
-
-  <input type="submit" value="Add Game"><br>
-
-
-    {% endif %}
-
-</form>
-
-
-<!--<h2>Django Forms Tutorial</h2>
-<form method="post" action="/getdata/">
-    <table>
-        <tr>
-            <td>Enter your name:</td>
-            <td><input type="text" name="name"/></td>
-        </tr>
-        <tr>
-            <td>Enter your email:</td>
-            <td><input type="email" name="email"/></td>
-        </tr>
-        <tr>
-            <td>Enter your phone:</td>
-            <td><input type="text" name="phone"/></td>
-        </tr>
-        <tr>
-            <td>
-
-            </td>
-            <td>
-                <button>Submit Form</button>
-            </td>
-        </tr>
-    </table>
-</form>-->
-{% endblock %}
 
