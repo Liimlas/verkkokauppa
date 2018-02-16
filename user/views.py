@@ -3,14 +3,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from main.models import Game
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    context = { 'games': Game.objects.filter(developer=request.user) }
+    return render(request, 'profile.html', context)
 
 @login_required
 def profiles(request):
-    return render(request, 'profiles.html')
+    context = { 'profiles' : User.objects.all() }
+    return render(request, 'profiles.html', context)
 
 def signup(request):
     if request.method == 'POST':

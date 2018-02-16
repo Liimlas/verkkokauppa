@@ -19,6 +19,11 @@
     <li>Email: {{user.email}}</li>
     <li>Bio: {{ user.profile.bio }}</li>
     <li>Birthday: {{user.profile.birth_date }}</li>
+    <li>Managed games:
+      {% for game in games %}
+        <p>{{game.name}}</p>
+      {% endfor %}
+    </li>
 </ul>
 
 {% endblock %}
