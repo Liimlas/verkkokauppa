@@ -109,10 +109,13 @@
         <div class="col-sm-2">
             <nav class="nav-sidebar">
                 <ul class="nav">
-                    <li><a href="/profile">profile</a></li>
-                    <li><a href="/addGame">Add game</a></li>
-                    <li><a href="/sales">sales</a></li>
-
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'profiles' %}">Users</a></li>
+                    <li><a href="{% url 'addGame' %}">Add game</a></li>
+                    <li><a href="/sales">Sales</a></li>
+                    {% if user.is_authenticated and user.profile.is_developer %}
+                    <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

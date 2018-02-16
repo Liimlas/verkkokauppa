@@ -30,5 +30,8 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup/signup.html', {'form': form})
 
+def manage_games(request):
+    return render(request, 'manage_games.html')
+
 
 # Create your views here.
