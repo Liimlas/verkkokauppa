@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Play</title>
+    <meta charset="utf-8">
+</head>
+<body>
+{% if user.is_authenticated %}
+<!--<iframe src="http://webcourse.cs.hut.fi/example_game.html" style="width: 500px; height: 500px; border: 1px solid black"></iframe>-->
+<h1>List of the games that you own:</h1>
+
+{% for game in games %}
+{% with '/play/'|add:game.id as gameurl %}
+<p><a href={{ gameurl }}>{{ game.name }}</a></p>
+{% endwith %}
+{% endfor %}
+
+{% else %}
+<h1>You are required to log in in order to play!</h1>
+{% endif %}
+
+</body>
+</html>

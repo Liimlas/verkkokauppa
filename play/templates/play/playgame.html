@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block gameframe %}
+<p>{{ game.name }}</p>
+{% with game.link as gameurl %}
+<iframe style="width: 1200px; height: 800px;" src={{ gameurl }}>
+
+</iframe>
+{% endwith %}
+
+{% endblock %}
+
+</body>
+</html>

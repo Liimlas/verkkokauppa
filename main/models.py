@@ -11,6 +11,11 @@ class Game(models.Model):
     saleprice = models.FloatField(blank=True, validators=[MinValueValidator(0), MaxValueValidator(1)])
     onsale = models.BooleanField(blank=True)
     soldcopies = models.IntegerField(default=0, blank=True, validators=[MinValueValidator(0)])
+    link = models.CharField(default='', blank=False, max_length=200)
+
+class BoughtGame(models.Model):
+    owner = models.ForeignKey(User)
+    game = models.ForeignKey(Game)
 
 
 

@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^', include('frontpage.urls')),
     url(r'^', include('gamesales.urls')),
     url(r'^', include('user.urls')),
+    url(r'^', include('play.urls')),
 ]

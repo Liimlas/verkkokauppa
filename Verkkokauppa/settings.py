@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'gamesales',
     'main',
     'user',
+    'play',
 ]
 
 MIDDLEWARE = [
