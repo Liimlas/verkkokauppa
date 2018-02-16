@@ -1,11 +1,17 @@
 from django.shortcuts import render
 from main.models import Game
+
+from django.http import HttpResponse
+from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-#from django.shortcuts import render
-#from django.http import HttpResponseRedirect
 
-#from .forms import AddGame
+from django.http import HttpResponseRedirect
+
+
+
+from .forms import AddGame
 
 
 def list_of_ids(gamelist):
@@ -30,27 +36,39 @@ def viewgame(request, id):
     return render(request, 'gamesales/games.html', context)
 
 
+
 #def addGame(request):
-
-#    if request.method == 'POST':
-
- #       form = AddGame(request.POST)
-
-  #      if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-          #  return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-   # else:
-    #    form = AddGame()
-
-    #return render(request, 'addGame.html') #, {'form': form})
-#def addGame(request):
- #   gamelist += request
-  #  return render(request, 'gamesales/addGame.html')
+ #   return render(request, 'gamesales/addGame.html')
 
 
+
+
+# disabling csrf (cross site request forgery)
+@csrf_exempt
 def addGame(request):
-    return render(request, 'gamesales/addGame.html')
+    # if post request came
+    if request.method == 'POST':
+        # getting values from post
+        developer = request.POST.get('developer')
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+
+        # adding the values in a context variable
+        context = {
+            'developer': developer,
+            'title': title,
+            'description': description,
+            'price': price
+        }
+
+        # getting our showdata template
+        template = loader.get_template('gamesales/showdata.html')
+
+        # returing the template
+        return HttpResponse(template.render(context, request))
+    else:
+        # if post request is not true
+        # returing the form template
+        template = loader.get_template('gamesales/addGame.html')
+        return HttpResponse(template.render())
