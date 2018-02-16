@@ -2,9 +2,9 @@ from main.models import Game
 from django.shortcuts import render, redirect
 
 def index(request):
-    context = { 'games' : games_by_attribute(Game.objects.all(), 3, False) }
+    game_list = reversed(games_by_attribute(Game.objects.all(), 3, False))
+    context = { 'games' : game_list }
     return render(request, 'frontpage/index.html', context)
-
 
 
 # Gives a sorted list back according to a given attribute. e.g. amount of sold copies or price, etc

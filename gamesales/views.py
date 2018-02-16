@@ -12,8 +12,20 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 
 
+def games(request):
+    games = Game.objects.all()
+    context = {'games' : games}
+    return render(request, 'gamesales/games.html', context)
 
-#from .forms import AddGame
+def viewgame(request, id):
+    viewer = request.user
+    context = {}
+    context['not_found'] = True
+    for game in Game.objects.all():
+        if id == game.id:
+            context['gamefound'] = True
+            context['game'] = game
+    return render(request, 'gamesales/singlegame.html', context)
 
 
 def list_of_ids():
@@ -22,21 +34,6 @@ def list_of_ids():
     for game in gamelist:
         ids.append(game.id)
     return ids
-
-def games(request):
-    games = Game.objects.all()
-    context = {'pageview' : True, 'games' : games}
-    return render(request, 'gamesales/games.html', context)
-
-def viewgame(request, id):
-    context = {}
-    context['not_found'] = True
-    for game in Game.objects.all():
-        if id == game.id:
-            context['gamefound'] = True
-            context['game'] = game
-    return render(request, 'gamesales/games.html', context)
-
 
 
 #def addGame(request):
