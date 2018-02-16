@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from main.models import Game
+from main.models import Game, BoughtGame
+import random
 import uuid
-
 
 from django.http import HttpResponse
 from django.template import loader
@@ -42,13 +42,18 @@ def viewgame(request, id):
 #def addGame(request):
  #   return render(request, 'gamesales/addGame.html')
 def generate():
+    letters = list("abcdefghijklmnopqrstuvwxyzABCDEFGHILJKLMNOPQRSTUVWXYZ0123456789")
+    letter_list_size = len(letters)
     existing_ids = list_of_ids()
-    newid = uuid.uuid4()
+    id = ''
     while(True):
-        if newid in existing_ids:
-            newid = uuid.uuid4()
+        while(len(id) < 20):
+            random_letter_index = random.randrange(0, letter_list_size - 1)
+            id += letters[random_letter_index]
+        if id in existing_ids:
+            id = ''
         else:
-            return newid
+            return id
 
 
 @csrf_exempt
@@ -56,33 +61,37 @@ def addGame(request):
     # if post request came
     if request.method == 'POST':
         # getting values from post
+        gamename = request.POST.get('name')
+        gamedeveloper = request.POST.get('developer')
+        gameprice = request.POST.get('price')
+        gamelink = request.POST.get('link')
 
-        name = request.POST.get('name')
-        developer = request.POST.get('developer')
-        price = request.POST.get('price')
-        link = request.POST.get('link')
 
-
-        if len(name) < 3 or len(name) > 60:
+        if len(gamename) < 3 or len(gamename) > 60:
             context = {}
             context['nameError'] = True
             return render(request, 'gamesales/addGame.html', context)
-        elif developer == 'no':
+        elif gamedeveloper == 'no':
             context = {}
             context['developerError'] = True
             return render(request, 'gamesales/addGame.html', context)
-        elif link.find('.') == -1 and link.find('www') == -1:
+        elif gamelink.find('.') == -1 and gamelink.find('www') == -1:
             context = {}
             context['linkError'] = True
             return render(request, 'gamesales/addGame.html', context)
         else:
+            gameid = generate()
             context = {
-
-                'name': name,
-                'developer': developer,
-                'price': price,
-                'link': link
+                'name': gamename,
+                'developer': gamedeveloper,
+                'price': gameprice,
+                'link': gamelink,
+                'id' : gameid
             }
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            b = BoughtGame.objects.create(owner=request.user, game=a)
+            a.save()
+            b.save()
 
         # getting our showdata template
         return render(request, 'gamesales/showdata.html', context)
