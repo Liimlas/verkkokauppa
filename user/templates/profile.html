@@ -12,13 +12,14 @@
 <img src="{% static 'media/def_userpic.jpg' %}"
     height="100px"
     width="100px"
-    alt="User">
+    alt="User"/>
 
 <ul>
     <li>User: {{user.username}}</li>
     <li>Email: {{user.email}}</li>
     <li>Bio: {{ user.profile.bio }}</li>
     <li>Birthday: {{user.profile.birth_date }}</li>
+    <li>Developer: {{user.profile.is_developer}}</li>
 
 {% if user.profile.is_developer %}
     <li>Managed games:
@@ -28,5 +29,7 @@
     </li>
 {% endif %}
 </ul>
+
+<a href="{% url 'update_profile' %}">Update profile</a>
 
 {% endblock %}
