@@ -3,7 +3,7 @@
 
 {% block content %}
 
-{% if user.is_developer %}
+{% if user.profile.is_developer %}
   <h2> Cool developer profile page</h2>
 {% else %}
   <h2>Cool gamer profile page </h2>
@@ -12,13 +12,24 @@
 <img src="{% static 'media/def_userpic.jpg' %}"
     height="100px"
     width="100px"
-    alt="User">
+    alt="User"/>
 
 <ul>
     <li>User: {{user.username}}</li>
     <li>Email: {{user.email}}</li>
     <li>Bio: {{ user.profile.bio }}</li>
     <li>Birthday: {{user.profile.birth_date }}</li>
+    <li>Developer: {{user.profile.is_developer}}</li>
+
+{% if user.profile.is_developer %}
+    <li>Managed games:
+      {% for game in games %}
+        <p>{{game.name}}</p>
+      {% endfor %}
+    </li>
+{% endif %}
 </ul>
+
+<a href="{% url 'update_profile' %}">Update profile</a>
 
 {% endblock %}

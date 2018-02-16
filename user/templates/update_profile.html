@@ -1,0 +1,11 @@
+{% extends "base_html.html" %}
+
+{% block content %}
+<h2>Edit profile</h2>
+<form method="post" action="/update_profile/">
+  Email: <input type="email" name="email"><br><br>
+  Birthday: <input type="date" value="birth_date"><br><br>
+  Bio: <input type="text" name="bio"><br>
+  <input type="submit" value="Confirm"><br>
+</form>
+{% endblock %}
