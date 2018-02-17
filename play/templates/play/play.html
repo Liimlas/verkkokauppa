@@ -1,3 +1,9 @@
+<!--
+
+I changed this to base layout because this bugged me xd Feel free to change it
+back when better layout-thingie is ready
+-Elisa
+
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +11,9 @@
     <title>Play</title>
     <meta charset="utf-8">
 </head>
-<body>
+<body>-->
+{% extends "base_html.html" %}
+{% block content %}
 {% if user.is_authenticated %}
 <!--<iframe src="http://webcourse.cs.hut.fi/example_game.html" style="width: 500px; height: 500px; border: 1px solid black"></iframe>-->
 <h1>List of the games that you own:</h1>
@@ -19,6 +27,6 @@
 {% else %}
 <h1>You are required to log in in order to play!</h1>
 {% endif %}
-
-</body>
-</html>
+{% endblock %}
+<!--</body>
+</html>-->

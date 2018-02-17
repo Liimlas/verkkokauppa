@@ -1,10 +1,17 @@
+<!--
+
+This I alo changed for time being
+-Elisa
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body>-->
+{% extends "base_html.html" %}
+{% block content %}
 {% block gameframe %}
 <p>{{ game.name }}</p>
 {% with game.link as gameurl %}
@@ -14,6 +21,9 @@
 {% endwith %}
 
 {% endblock %}
+{% endblock %}
+
+<!--
 
 </body>
-</html>
+</html>-->
