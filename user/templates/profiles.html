@@ -7,7 +7,10 @@
 <table width="100%">
 {% for profile in profiles %}
 <tr class="userList">
-  <td class="userList">{{profile.username}}</td>
+  <td class="userList">
+    {% with '/profile/'|add:profile.username as userUrl %}
+    <a href={{ userUrl }}>{{profile.username}}</a></td>
+    {% endwith %}
 </tr>
 {% endfor %}
 </table>

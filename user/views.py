@@ -41,6 +41,18 @@ def update_profile(request):
     else:
         return render(request, 'update_profile.html')
 
+@login_required
+def viewUser(request, username):
+    viewer = request.user
+    context = {}
+    context['not_found'] = True
+    for user in User.objects.all():
+        if username == user.username:
+            context['userfound'] = True
+            context['viewUser'] = user
+            context['games'] = Game.objects.filter(developer=user)
+    return render(request, 'view_user.html', context)
+
 
 
 def signup(request):
