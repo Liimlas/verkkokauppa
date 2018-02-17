@@ -52,6 +52,14 @@ def generate():
         else:
             return id
 
+def usePhoto():
+    photoList = Game.objects.all()
+    photos = []
+    for photo in photoList:
+        photos.append(photo.photoLink)
+    return photos
+     # do it the way that photo is in the home page
+
 
 @csrf_exempt
 def addGame(request):
@@ -62,6 +70,8 @@ def addGame(request):
         gamedeveloper = request.POST.get('developer')
         gameprice = request.POST.get('price')
         gamelink = request.POST.get('link')
+        gamePhotoLink = request.POST.get('photoLink')
+        gameUsePhoto = request.POST.get('usePhoto')
 
 
         if len(gamename) < 3 or len(gamename) > 60:
@@ -76,6 +86,17 @@ def addGame(request):
             context = {}
             context['linkError'] = True
             return render(request, 'gamesales/addGame.html', context)
+        elif gamePhotoLink is not () and gameUsePhoto == 'yes':
+            usePhoto()
+            gameid = generate()
+            context = {
+                'name': gamename,
+                'developer': gamedeveloper,
+                'price': gameprice,
+                'link': gamelink,
+                'id': gameid,
+                'photoLink': gamePhotoLink
+            }
         else:
             gameid = generate()
             context = {
@@ -83,12 +104,14 @@ def addGame(request):
                 'developer': gamedeveloper,
                 'price': gameprice,
                 'link': gamelink,
-                'id' : gameid
+                'id' : gameid,
+                'photoLink': gamePhotoLink
             }
-            a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
-            b = BoughtGame.objects.create(owner=request.user, game=a)
-            a.save()
-            b.save()
+
+           # a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            #b = BoughtGame.objects.create(owner=request.user, game=a)
+            #a.save()
+            #b.save()
 
         # getting our showdata template
         return render(request, 'gamesales/showdata.html', context)

@@ -3,6 +3,14 @@
 
 {% block content %}
 
+<form action="/action_page.php">
+  <select name="Games">
+    <option href= "{% url 'games' %}" value="all">All</option>
+    <option  value="onSale">On sale</option>
+    <option  value="new">New</option>
+  </select>
+</form>
+
 <h1>Games for sale!</h1>
 {% for game in games %}
 {% with '/games/'|add:game.id as gameurl %}

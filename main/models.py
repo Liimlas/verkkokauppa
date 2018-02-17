@@ -21,6 +21,7 @@ class Game(models.Model):
         self.save()
 
 
+
 class BoughtGame(models.Model):
     owner = models.ForeignKey(User)
     game = models.ForeignKey(Game)

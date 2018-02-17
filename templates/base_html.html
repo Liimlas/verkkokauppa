@@ -35,9 +35,6 @@
         <a href="{% url 'games' %}"><p>Games</p></a>
     </div>
     <div class='navigationdiv'>
-        <a href='/sales'><p>Sales</p></a>
-    </div>
-    <div class='navigationdiv'>
         <a href="{% url 'play' %}"><p>Play</p></a>
     </div>
 
@@ -59,9 +56,10 @@
 
     {% endblock %}
 </div>
-
+    
 <!-- Cool carousel-picture thingie -->
 <div class="jumbotron text-center">
+
     <h2>Newest games!</h2>
     {% block pelimainos %}
     {% endblock %}
@@ -71,10 +69,9 @@
                 <ul class="nav">
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'profiles' %}">Users</a></li>
-                    <li><a href="{% url 'addGame' %}">Add game</a></li>
-                    <li><a href="/sales">Sales</a></li>
                     {% if user.is_authenticated and user.profile.is_developer %}
                     <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+                    <li><a href="{% url 'addGame' %}">Add game</a></li>
                     {% endif %}
                 </ul>
             </nav>
