@@ -27,32 +27,10 @@
   <!-- Bootstrap stuff ends -->
 
 </head>
-<<<<<<< HEAD
-</head> 
-<div>
-=======
->>>>>>> CSScleanup
 
 <!--Header containing main navigation and cool user-info-login-thing -->
 <div id="header">
-<<<<<<< HEAD
-    {% block header %}
-    <div class='navigationdiv'>
-        <a href="{% url 'index' %}"><p>Home</p></a>
-    </div>
-    <div class='navigationdiv'>
-        <a href="{% url 'games' %}"><p>Games</p></a>
-    </div>
-    <div class='navigationdiv'>
-        <a href="{% url 'play' %}"><p>Play</p></a>
-    </div>
-
-    <div class="headerRight">
-      {% if user.is_authenticated %}
-      <div class="headerRightText">
-        <p>Hello {{ user.username }}!<br>
-=======
-  {% block header %}
+  {% block head %}
   <div class='navigationdiv'>
     <a href="{% url 'index' %}"><p>Home</p></a>
   </div>
@@ -71,7 +49,6 @@
     {% if user.is_authenticated %}
     <div class="headerRightText">
       <p>Hello {{ user.username }}!<br>
->>>>>>> CSScleanup
         <a href="{% url 'profile' %}">Profile</a><br>
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
     </div>
@@ -88,26 +65,6 @@
 </div>
     <!-- Header ends -->
 
-<<<<<<< HEAD
-<!-- Cool carousel-picture thingie -->
-<div class="jumbotron text-center">
-
-    <h2>Newest games!</h2>
-    {% block pelimainos %}
-    {% endblock %}
-</div>
-
-            <nav class="nav-sidebar">
-                <ul class="nav">
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'profiles' %}">Users</a></li>
-                    {% if user.is_authenticated and user.profile.is_developer %}
-                    <li><a href="{% url 'manage_games' %}">Manage games</a></li>
-                    <li><a href="{% url 'addGame' %}">Add game</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-=======
 
 <!-- Cool carousel-picture thingie -->
     <div class="jumbotron text-center">
@@ -115,7 +72,6 @@
       {% block pelimainos %}
       {% endblock %}
     </div>
->>>>>>> CSScleanup
 
 
 <!-- Side navigation -->

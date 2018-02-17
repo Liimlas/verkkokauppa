@@ -13,6 +13,10 @@
 	text-align: center;
 }
 
+.navigationdiv a:hover {
+	text-decoration: none;
+}
+
 /*User-info-login-thing*/
 .headerRight {
   float: right;
@@ -52,6 +56,8 @@
   list-style-type: none;
   vertical-align: middle;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
 }
 
 /* Main content */
@@ -61,6 +67,30 @@
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
+	font-family: Verdana;
+}
+
+.content h1 {
+  font-family: Quattrocento;
+  font-size: 30px;
+  width: 100%;
+  border-bottom: 1px dashed #676767;
+  display: block;
+}
+
+.content h2 {
+	font-family: Quattrocento;
+	font-size: 26px;
+}
+
+.content p {
+  background-color: #EEEEEE;
+  padding: 10px;
+}
+
+.content li {
+	list-style-type: none;
+	padding:5
 }
 
 /*Form stylings*/
@@ -70,4 +100,30 @@ input[type=text], input[type=password] {
     margin: 8px 0;
     display: inline-block;
     box-sizing: border-box;
+}
+
+/*User image*/
+.profilePicture {
+	width: 150px;
+	height: 150px;
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.profileTitle {
+	width: 20%;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+.userList {
+	padding: 5px;
+}
+
+/*Changes odd table rows to grey, mostly for profile*/
+tr:nth-child(odd) {
+	background-color: #EEEEEE;
 }
