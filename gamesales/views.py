@@ -108,10 +108,10 @@ def addGame(request):
                 'photoLink': gamePhotoLink
             }
 
-           # a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
-            #b = BoughtGame.objects.create(owner=request.user, game=a)
-            #a.save()
-            #b.save()
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            b = BoughtGame.objects.create(owner=request.user, game=a)
+            a.save()
+            b.save()
 
         # getting our showdata template
         return render(request, 'gamesales/showdata.html', context)
