@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 # Create your models here.
 class Game(models.Model):
@@ -12,6 +14,12 @@ class Game(models.Model):
     onsale = models.BooleanField(blank=True)
     soldcopies = models.IntegerField(default=0, blank=True, validators=[MinValueValidator(0)])
     link = models.CharField(default='', blank=False, max_length=200)
+    publish_date = models.DateTimeField(blank=True, null=True)
+
+    def publish(self):
+        self.publish_date = timezone.now()
+        self.save()
+
 
 
 class BoughtGame(models.Model):
