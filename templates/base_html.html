@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
    <!-- {% load static %}
 	<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
@@ -90,12 +90,6 @@
 </div>
 </div>
 
-
-
-
-
-<div class="container">
-
         <nav class="nav-sidebar">
             <ul class="nav">
                 <li><a href="{% url 'profile' %}">Profile</a></li>
@@ -108,12 +102,11 @@
             </ul>
         </nav>
 
-
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
-</div>
+
 
 
 </body>
