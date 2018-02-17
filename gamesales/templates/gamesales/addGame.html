@@ -12,9 +12,26 @@
         No <input type="radio" name="developer" value="no" required>
     <br>
     Price:
-        <input type="number" name="price" min="0" required><br>
+        <input type="float" name="price" min="0.0" required><br>
     Link:<br>
         <input type="text" name="link" required>
+    <br>
+    Game image: <input type="file" name="pic" id="pic"><br>
+    <!--<div class="box">
+        <div class="js--image-preview"></div>
+            <div class="upload-options">
+                <label>
+                    <input type="file" class="image-upload" accept="image/*" />
+                </label>
+            </div>
+    </div>-->
+
+    Photo link (optional):<br>
+        <input type="text" name="photoLink">
+    <br>
+    Permission to use photo:
+        Yes <input type="radio" name="usePhoto" value="yes">  /
+        No <input type="radio" name="usePhoto" value="no">
     <br>
     <input type="submit" value="Add Game"><br>
 </form>
