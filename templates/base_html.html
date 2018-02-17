@@ -42,19 +42,19 @@
     </div>
 
     <div class="headerRight">
-      {% if user.is_authenticated %}
-      <div class="headerRightText">
-        <p>Hello {{ user.username }}!<br>
-        <a href="{% url 'profile' %}">Profile</a><br>
-        <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
-      </div>
+        {% if user.is_authenticated %}
+        <div class="headerRightText">
+            <p>Hello {{ user.username }}!<br>
+                <a href="{% url 'profile' %}">Profile</a><br>
+                <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
+        </div>
         <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
-      {% else %}
-      <div class="headerRightText">
-        <p><a href="{% url 'login' %}">Login</a><br>
-          <a href="{% url 'signup' %}">Sign up</a><br></p>
-      </div>
-      {% endif %}
+        {% else %}
+        <div class="headerRightText">
+            <p><a href="{% url 'login' %}">Login</a><br>
+            <a href="{% url 'signup' %}">Sign up</a><br></p>
+        </div>
+        {% endif %}
     </div>
 
     {% endblock %}
@@ -67,17 +67,17 @@
     {% endblock %}
 </div>
 
-            <nav class="nav-sidebar">
-                <ul class="nav">
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'profiles' %}">Users</a></li>
-                    <li><a href="{% url 'addGame' %}">Add game</a></li>
-                    <li><a href="/sales">Sales</a></li>
-                    {% if user.is_authenticated and user.profile.is_developer %}
-                    <li><a href="{% url 'manage_games' %}">Manage games</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
+    <nav class="nav-sidebar">
+        <ul class="nav">
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'profiles' %}">Users</a></li>
+            <li><a href="{% url 'addGame' %}">Add game</a></li>
+            <li><a href="/sales">Sales</a></li>
+            {% if user.is_authenticated and user.profile.is_developer %}
+            <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
 
 
