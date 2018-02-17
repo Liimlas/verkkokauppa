@@ -1,25 +1,14 @@
-html {
-	height:100%;
+.Basic-button {
+    background-color: pink; /* Green background */
 }
 
-body {
-	margin: 0;
-	background-color: rgba(200, 190, 220, 0.7);
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
 }
 
-.header {
-  width: 100%;
-  height: auto;
-	float: top;
- 	background-color: rgba(230, 230, 255, 0.78);
- 	border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-}
-
-.content {
-	padding: 10px;
-	color: rgba(30, 50, 110, 0.9);
-	font-size: 14px;
-	font-family: Arial;
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
 }
 
 .navigationdiv {
@@ -28,6 +17,7 @@ body {
 	margin: auto;
 }
 
+
 .navigationdiv a p {
 	margin: 10px 15px 15px 15px;
 	font-family: Quattrocento;
@@ -35,11 +25,95 @@ body {
 	text-align: center;
 }
 
-a:hover {
-	text-shadow: 3px 2px rgba(70, 70, 70, 0.3);
+/* Add padding to container elements */
+.container {
+    width: auto;
+    box-sizing: border-box;
 }
 
-a {
-	color: rgba(30, 50, 110, 0.9);
-	text-decoration: none;
+.nav-sidebar {
+  box-sizing: border-box;
+  float: left;
+  width:20%;
+  text-align: center;
 }
+
+.nav-sidebar ul {
+  display: table-row;
+  width:100%;
+  display: inline-block;
+}
+
+.nav-sidebar ul li {
+  list-style-type: none;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.navBar {
+  float:left;
+  width: 15;
+}
+
+.content {
+  float:right;
+  width: 80%;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.headerRight {
+  float: right;
+  clear:right;
+  padding-right: 20px;
+  padding-top: 20px;
+  color: #000000;
+  text-align: right;
+}
+
+.headerRightText {
+  float:left;
+  padding-right: 10px;
+}
+
+.headerRight img{
+  float:right;
+  height: 70px;
+  width: 70px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.cancelbtn,.signupbtn,.loginbtn {float:left;width:10%}
+
+
+.container2 {
+    padding: 16px;
+}
+
+/* The Close Button  */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Change styles for cancel button and signup button on extra small screens */

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'gamesales/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
    <!-- {% load static %}
 	<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
@@ -38,7 +38,7 @@
         <a href='/sales'><p>Sales</p></a>
     </div>
     <div class='navigationdiv'>
-        <a href="{% url 'play' %}""><p>Play</p></a>
+        <a href="{% url 'play' %}"><p>Play</p></a>
     </div>
 
     <div class="headerRight">
@@ -60,9 +60,9 @@
     {% endblock %}
 </div>
 
-
+<!-- Cool carousel-picture thingie -->
 <div class="jumbotron text-center">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" height="150px">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -70,17 +70,13 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-
-
-        <img src="{% static 'images/Cute.jpg' %}" alt="Photo de montagne" />
-
-
+        <img src="{% static 'images/Cute.jpg' %}" height="100px" width="100px" alt="Photo de montagne" />
     </div>
     <div class="carousel-item">
-      <img src="{% static 'images/Cute.jpg' %}" alt="Photo de montagne" />
+      <img src="{% static 'media/def_userpic.jpg' %}" width="100px" height="100px" alt="Default userpic" />
     </div>
     <div class="carousel-item">
-      <img src="{% static 'images/Cute.jpg' %}" alt="Photo de montagne"/>
+            <img src="{% static 'images/Cute.jpg' %}" height="100px" width="100px" alt="Photo de montagne" />
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -94,40 +90,23 @@
 </div>
 </div>
 
+        <nav class="nav-sidebar">
+            <ul class="nav">
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'profiles' %}">Users</a></li>
+                <li><a href="{% url 'addGame' %}">Add game</a></li>
+                <li><a href="/sales">Sales</a></li>
+                {% if user.is_authenticated and user.profile.is_developer %}
+                <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+                {% endif %}
+            </ul>
+        </nav>
 
-
-
-
-<div class="container">
-    <div class="row"></div>
-    <div class="col-sm-4">
-
-
-<div class="container">
-        <div class="col-sm-2">
-            <nav class="nav-sidebar">
-                <ul class="nav">
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'profiles' %}">Users</a></li>
-                    <li><a href="{% url 'addGame' %}">Add game</a></li>
-                    <li><a href="/sales">Sales</a></li>
-                    {% if user.is_authenticated and user.profile.is_developer %}
-                    <li><a href="{% url 'manage_games' %}">Manage games</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-
-
-
-
-</div>
-    </div>
-    <div class="col-sm-4">
+    <div class="content">
         {% block content %}
         {% endblock %}
     </div>
-</div>
+
 
 
 </body>
