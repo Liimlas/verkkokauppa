@@ -31,13 +31,27 @@
     <div class='navigationdiv'>
         <a href="{% url 'index' %}"><p>Home</p></a>
     </div>
+
     <div class='navigationdiv'>
-        <a href="{% url 'games' %}"><p>Games</p></a>
+        <ul >
+
+        <li>
+            <a  data-toggle="dropdown" href="{% url 'games' %}"><p>Games</p></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'games' %}">All</a>
+                    <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
+                    <a class="dropdown-item" href="#">New</a></div>
+        </li>
+
+        </ul>
     </div>
+
+
+
+
     <div class='navigationdiv'>
         <a href="{% url 'play' %}"><p>Play</p></a>
     </div>
-
     <div class="headerRight">
       {% if user.is_authenticated %}
       <div class="headerRightText">

@@ -108,7 +108,7 @@ def addGame(request):
                 'photoLink': gamePhotoLink
             }
 
-            a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
             b = BoughtGame.objects.create(owner=request.user, game=a)
             a.save()
             b.save()
@@ -119,3 +119,14 @@ def addGame(request):
         # if post request is not true
         # returing the form template
         return render(request, 'gamesales/addGame.html')
+
+
+def onSales(request):
+    viewer = request.user
+    context = {}
+    context['not_found'] = True
+    for sales in Game.objects.all():
+        if sales.onsale == True:
+            context['sales'] = sales
+            context['not_found'] = False
+    return render(request, 'gamesales/gameonsale.html', context)

@@ -1,0 +1,24 @@
+{% extends "base_html.html" %}
+
+{% block content %}
+
+{% if not_found %}
+<p> We don't have sale games at the moment</p>
+
+{% else %}
+
+<p> See the best sale here </p>
+
+<!-- get also all the sale games-->
+
+
+<h1>{{ sales.name }}</h1>
+<h2>Price {{ sales.price }}e </h2>
+<p>Developer {{ sales.developer }} </p>
+
+
+{% endif %}
+
+
+
+{% endblock %}
