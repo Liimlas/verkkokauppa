@@ -45,7 +45,7 @@ def update_profile(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST, instance=request.Profile)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
