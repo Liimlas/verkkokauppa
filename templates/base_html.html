@@ -2,31 +2,40 @@
 <html>
 
 <head>
-    {% block title %}<title>Web Shop | JavaScript Games Online</title>{% endblock %}
-    <meta charset="utf-8">
+  {% block title %}
+  <title>Web Shop | JavaScript Games Online</title>
+  {% endblock %}
+  <meta charset="utf-8">
 
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
-   <!-- {% load static %}
-	<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" />
+  <!--<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
-    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
+  <!--Quattrocento- font -->
+  <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+  <!--Bootstrap stuff -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Bootstrap stuff ends -->
+
 </head>
+<<<<<<< HEAD
 </head> 
 <div>
+=======
+>>>>>>> CSScleanup
 
+<!--Header containing main navigation and cool user-info-login-thing -->
 <div id="header">
+<<<<<<< HEAD
     {% block header %}
     <div class='navigationdiv'>
         <a href="{% url 'index' %}"><p>Home</p></a>
@@ -42,21 +51,44 @@
       {% if user.is_authenticated %}
       <div class="headerRightText">
         <p>Hello {{ user.username }}!<br>
+=======
+  {% block header %}
+  <div class='navigationdiv'>
+    <a href="{% url 'index' %}"><p>Home</p></a>
+  </div>
+  <div class='navigationdiv'>
+    <a href="{% url 'games' %}"><p>Games</p></a>
+  </div>
+  <div class='navigationdiv'>
+    <a href='/sales'><p>Sales</p></a>
+  </div>
+  <div class='navigationdiv'>
+    <a href="{% url 'play' %}"><p>Play</p></a>
+  </div>
+
+  <!-- Cool user-info-login-thing -->
+  <div class="headerRight">
+    {% if user.is_authenticated %}
+    <div class="headerRightText">
+      <p>Hello {{ user.username }}!<br>
+>>>>>>> CSScleanup
         <a href="{% url 'profile' %}">Profile</a><br>
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
-      </div>
+    </div>
         <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
       {% else %}
-      <div class="headerRightText">
+    <div class="headerRightText">
         <p><a href="{% url 'login' %}">Login</a><br>
-          <a href="{% url 'signup' %}">Sign up</a><br></p>
-      </div>
-      {% endif %}
+           <a href="{% url 'signup' %}">Sign up</a><br></p>
     </div>
-
-    {% endblock %}
+        {% endif %}
+  </div>
+      <!-- User info ends-->
+  {% endblock %}
 </div>
+    <!-- Header ends -->
 
+<<<<<<< HEAD
 <!-- Cool carousel-picture thingie -->
 <div class="jumbotron text-center">
 
@@ -75,18 +107,36 @@
                     {% endif %}
                 </ul>
             </nav>
+=======
+
+<!-- Cool carousel-picture thingie -->
+    <div class="jumbotron text-center">
+      <h2>Newest games!</h2>
+      {% block pelimainos %}
+      {% endblock %}
+    </div>
+>>>>>>> CSScleanup
 
 
+<!-- Side navigation -->
+    <nav class="nav-sidebar">
+      <ul class="nav">
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'profiles' %}">Users</a></li>
+        <li><a href="{% url 'addGame' %}">Add game</a></li>
+        <li><a href="/sales">Sales</a></li>
+        {% if user.is_authenticated and user.profile.is_developer %}
+        <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+        {% endif %}
+      </ul>
+    </nav>
 
 
+<!-- Main content -->
     <div class="content">
-        {% block content %}
-        {% endblock %}
+      {% block content %}{% endblock %}
     </div>
 
 
-
-</body>
-
-
-</html>
+  </body>
+  </html>
