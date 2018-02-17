@@ -3,6 +3,7 @@ from django.core.validators import *
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 # Create your models here.
 class Game(models.Model):
     name = models.CharField(blank=False, max_length=60, validators=[RegexValidator(regex='^.{3}$', message='The name has to be atleast 3 characters long!', code='nomatch')])
@@ -19,7 +20,7 @@ class Game(models.Model):
         self.publish_date = timezone.now()
         self.save()
 
-    
+
 class BoughtGame(models.Model):
     owner = models.ForeignKey(User)
     game = models.ForeignKey(Game)
