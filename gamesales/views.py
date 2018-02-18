@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from main.models import Game, BoughtGame
 import random
-import uuid
+
 
 from django.http import HttpResponse
 from django.template import loader
@@ -120,13 +120,9 @@ def addGame(request):
         # returing the form template
         return render(request, 'gamesales/addGame.html')
 
-
-def onSales(request):
-    viewer = request.user
-    context = {}
-    context['not_found'] = True
-    for sales in Game.objects.all():
-        if sales.onsale == True:
-            context['sales'] = sales
-            context['not_found'] = False
+def onSale(request):
+    games = Game.objects.all()
+    context = {'games': games}
     return render(request, 'gamesales/gameonsale.html', context)
+
+
