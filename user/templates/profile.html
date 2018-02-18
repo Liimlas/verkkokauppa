@@ -9,10 +9,17 @@
   <h2>Cool gamer profile page </h2>
 {% endif %}
 
-<img src="{% static 'media/def_userpic.jpg' %}"
+{% if user.profile.photo != "" %}
+<img src="{{user.profile.photo.url}}"
     height="100px"
     width="100px"
     alt="User"/>
+{% else %}
+<img src="{% static 'media/def_userpic.jpg' %}"
+     height="150px"
+     width="150px"
+     alt="User">
+{% endif %}
 
 <ul>
     <li>User: {{user.username}}</li>
@@ -30,6 +37,6 @@
 {% endif %}
 </ul>
 
-<a href="{% url 'update_profile' %}">Update profile</a>
+<a href="update_profile/{{user.pk}}">Update profile</a>
 
 {% endblock %}

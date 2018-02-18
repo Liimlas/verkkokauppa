@@ -52,7 +52,11 @@
         <a href="{% url 'profile' %}">Profile</a><br>
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
     </div>
+    {% if user.profile.photo != "" %}
+        <img src="{{user.profile.photo.url}}" />
+    {% else %}
         <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
+    {% endif %}
       {% else %}
     <div class="headerRightText">
         <p><a href="{% url 'login' %}">Login</a><br>

@@ -2,12 +2,11 @@
 
 {% block content %}
 <h2>Edit profile</h2>
-<form method="post" action="/update_profile/">
-  Email: <input type="email" name="email"><br><br>
-  Birthday: <input type="date" value="birth_date"><br><br>
-  Bio: <input type="text" name="bio"><br>
-  Chage profile picture: <input type="file" name="photo"
-                          accept=".jpg, .jpeg, .png, .gif"><br>
-  <input type="submit" value="Confirm"><br>
+<form method="post" action="." enctype="multipart/form-data">
+{% csrf_token %}{{ noodle_form.as_p }}
+<br>
+{{ formset.management_form }}
+{{ formset.as_p }}
+<button type="submit">Confirm</button>
 </form>
 {% endblock %}
