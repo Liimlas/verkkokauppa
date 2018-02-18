@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from main.models import Game, BoughtGame
 import random
-import uuid
+
 
 from django.http import HttpResponse
 from django.template import loader
@@ -108,7 +108,7 @@ def addGame(request):
                 'photoLink': gamePhotoLink
             }
 
-            a = Game.objects.create(developer=request.user, name=gamename, id=gameid    , price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
             b = BoughtGame.objects.create(owner=request.user, game=a)
             a.save()
             b.save()
@@ -119,3 +119,10 @@ def addGame(request):
         # if post request is not true
         # returing the form template
         return render(request, 'gamesales/addGame.html')
+
+def onSale(request):
+    games = Game.objects.all()
+    context = {'games': games}
+    return render(request, 'gamesales/gameonsale.html', context)
+
+

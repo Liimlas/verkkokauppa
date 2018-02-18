@@ -3,17 +3,27 @@
 
 {% block content %}
 
+<div class="gamesalee">
+<h1> See the best sale here! </h1>
+</div>
 
-<h1>Games!</h1>
+<!-- get also all the sale games-->
+
 {% for game in games %}
+{% if game.onsale %}
 {% with '/games/'|add:game.id as gameurl %}
 
 <h3><a href={{ gameurl }}>{{ game.name }}</a></h3>
-
-{% endwith %}
-
 <p>Price {{game.price}} </p>
 
+
+{% endwith %}
+{% endif %}
 {% endfor %}
 
+
+
 {% endblock %}
+
+
+
