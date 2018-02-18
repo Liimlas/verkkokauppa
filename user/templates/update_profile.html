@@ -1,14 +1,12 @@
 {% extends "base_html.html" %}
 
 {% block content %}
-<h1>Edit profile</h1>
-<form method="post" action="/update_profile/">
-  Email: <input type="email" name="email"><br><br>
-  Birthday: <input type="date" value="birth_date"><br><br>
-  I am a developer:
-    Yes <input type="radio" name="is_developer" value="yes">
-    No<input type="radio" name="is_developer" value="no" CHECKED><br><br>
-  Bio: <input type="text" name="bio"><br>
-  <input type="submit" value="Confirm"><br>
+<h2>Edit profile</h2>
+<form method="post" action="." enctype="multipart/form-data">
+{% csrf_token %}{{ noodle_form.as_p }}
+<br>
+{{ formset.management_form }}
+{{ formset.as_p }}
+<button type="submit">Confirm</button>
 </form>
 {% endblock %}

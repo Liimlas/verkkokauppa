@@ -60,16 +60,6 @@
         {% with '/profile/'|add:user.username as userUrl %}
         <a href={{userUrl}}>Profile</a><br>
         {% endwith %}
-
-
-
-
-
-
-
-
-
-
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a></p>
     </div>
         <img src="{% static 'media/def_userpic.jpg' %}" alt="User">
@@ -103,16 +93,36 @@
         <li><a href="{% url 'addGame' %}">Add game</a></li>
         {% if user.is_authenticated and user.profile.is_developer %}
         <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+
         {% endif %}
-      </ul>
-    </nav>
+        {% else %}
+        <div class="headerRightText">
+          <p><a href="{% url 'login' %}">Login</a><br>
+            <a href="{% url 'signup' %}">Sign up</a><br></p>
+        </div>
+          {% endif %}
+        </div>
+        <!-- User info ends-->
+        {% endblock %}
+      </div>
+      <!-- Header ends -->
+
+      <!-- Cool carousel-picture thingie -->
+      <div class="jumbotron text-center">
+        <h2>Newest games!</h2>
+        {% block pelimainos %}
+        {% endblock %}
+      </div>
 
 
-<!-- Main content -->
-    <div class="content">
-      {% block content %}{% endblock %}
-    </div>
 
 
-  </body>
-  </html>
+
+      <!-- Main content -->
+      <div class="content">
+        {% block content %}{% endblock %}
+      </div>
+
+
+    </body>
+    </html>
