@@ -93,6 +93,10 @@
 	padding:5
 }
 
+.gamesalee{
+    font: italic bold 12px/30px serif;
+}
+
 /*Form stylings*/
 input[type=text], input[type=password] {
     width: 50%;
@@ -127,3 +131,5 @@ input[type=text], input[type=password] {
 tr:nth-child(odd) {
 	background-color: #EEEEEE;
 }
+
+

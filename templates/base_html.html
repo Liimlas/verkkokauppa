@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{% static 'base/style.css' %}" />
   <!--<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
+  <script type="text/javascript" src="gamesales/script.js"></script>
   <!--Quattrocento- font -->
   <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
 
@@ -36,21 +37,19 @@
     <a href="{% url 'index' %}"><p>Home</p></a>
   </div>
   <div class='navigationdiv'>
-        <ul >
-
-        <li>
-            <a  data-toggle="dropdown" href="{% url 'games' %}"><p>Games</p></a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'games' %}">All</a>
-                    <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
-                    <a class="dropdown-item" href="#">New</a></div>
-        </li>
-
+      <ul>
+            <a data-toggle="dropdown" href="{% url 'games' %}"><p>Games</p></a>
+            <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'games' %}">All</a>
+          <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
+          <a class="dropdown-item" href="#">New</a></div>
         </ul>
     </div>
 
   <div class='navigationdiv'>
+      <ul>
     <a href="{% url 'play' %}"><p>Play</p></a>
+      </ul>
   </div>
 
   <!-- Cool user-info-login-thing -->
@@ -102,7 +101,6 @@
         {% endwith %}
         <li><a href="{% url 'profiles' %}">Users</a></li>
         <li><a href="{% url 'addGame' %}">Add game</a></li>
-        <li><a href="/sales">Sales</a></li>
         {% if user.is_authenticated and user.profile.is_developer %}
         <li><a href="{% url 'manage_games' %}">Manage games</a></li>
         {% endif %}

@@ -4,7 +4,9 @@
 {% block content %}
 
 <div class="gamesalee">
+
 <h1> See the best sale here! </h1>
+
 </div>
 
 <!-- get also all the sale games-->
@@ -12,10 +14,11 @@
 {% for game in games %}
 {% if game.onsale %}
 {% with '/games/'|add:game.id as gameurl %}
-
 <h3><a href={{ gameurl }}>{{ game.name }}</a></h3>
-<p>Price {{game.price}} </p>
 
+<div class="gamesalee">
+<p>Price {{game.price}} </p>
+</div>
 
 {% endwith %}
 {% endif %}

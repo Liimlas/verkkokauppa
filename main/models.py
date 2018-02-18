@@ -18,7 +18,7 @@ class Game(models.Model):
 
     def publish(self):
         self.publish_date = timezone.now()
-        self.save()
+       # self.save()
 
 
 

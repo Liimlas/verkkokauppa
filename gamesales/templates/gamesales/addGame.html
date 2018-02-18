@@ -7,11 +7,7 @@
     Name of the game:<br>
         <input type="text" name="name" required>
     <br>
-    Developer:
-        Yes <input type="radio" name="developer" value="yes" required>  /
-        No <input type="radio" name="developer" value="no" required>
-    <br>
-    Price:
+    Price:<br>
         <input type="float" name="price" min="0.0" required><br>
     Link:<br>
         <input type="text" name="link" required>
@@ -25,15 +21,11 @@
                 </label>
             </div>
     </div>-->
-
-    Photo link (optional):<br>
-        <input type="text" name="photoLink">
-    <br>
     Permission to use photo:
         Yes <input type="radio" name="usePhoto" value="yes">  /
         No <input type="radio" name="usePhoto" value="no">
     <br>
-    <input type="submit" value="Add Game"><br>
+    <input type="submit" value="Add"><br>
 </form>
 {% else %}
     <p>Login first!</p>

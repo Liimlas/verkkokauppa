@@ -78,40 +78,26 @@ def addGame(request):
             context = {}
             context['nameError'] = True
             return render(request, 'gamesales/addGame.html', context)
-        elif gamedeveloper == 'no':
-            context = {}
-            context['developerError'] = True
             return render(request, 'gamesales/addGame.html', context)
         elif gamelink.find('.') == -1 and gamelink.find('www') == -1:
             context = {}
             context['linkError'] = True
             return render(request, 'gamesales/addGame.html', context)
-        elif gamePhotoLink is not () and gameUsePhoto == 'yes':
-            usePhoto()
-            gameid = generate()
-            context = {
-                'name': gamename,
-                'developer': gamedeveloper,
-                'price': gameprice,
-                'link': gamelink,
-                'id': gameid,
-                'photoLink': gamePhotoLink
-            }
         else:
             gameid = generate()
             context = {
                 'name': gamename,
-                'developer': gamedeveloper,
                 'price': gameprice,
                 'link': gamelink,
                 'id' : gameid,
                 'photoLink': gamePhotoLink
             }
 
-            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink)
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink, publish_date=Game.publish(Game))
             b = BoughtGame.objects.create(owner=request.user, game=a)
             a.save()
             b.save()
+
 
         # getting our showdata template
         return render(request, 'gamesales/showdata.html', context)
