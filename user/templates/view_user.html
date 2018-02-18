@@ -6,9 +6,17 @@
 {% if userfound %}
 <h1>{{viewUser.username}}'s profile</h1>
 
-<img src="{% static 'media/def_userpic.jpg' %}"
-    class="profilePicture"
+{% if viewUser.profile.photo != "" %}
+<img src="{{viewUser.profile.photo.url}}"
+    height="100px"
+    width="100px"
     alt="User"/>
+{% else %}
+<img src="{% static 'media/def_userpic.jpg' %}"
+     height="150px"
+     width="150px"
+     alt="User">
+{% endif %}
 
 <table style="width:100%" padding-top="20px">
   <tr>
