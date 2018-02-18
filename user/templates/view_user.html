@@ -27,7 +27,9 @@
   <tr>
     <th class="profileTitle">Managed games</th>
     <td>  {% for game in games %}
-          <li>{{game.name}}</li>
+          {% with '/games/'|add:game.id as gameurl %}
+          <li><a href={{ gameurl }}>{{ game.name }}</li>
+          {% endwith %}
           {% endfor %}</td>
   </tr>
 

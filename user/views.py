@@ -12,7 +12,7 @@ from .models import Profile
 @login_required
 def profile(request):
     context = { 'games': Game.objects.filter(developer=request.user) }
-    return render(request, 'profile.html', context)
+    return render(request, 'view_user.html', context)
 
 @login_required
 def profiles(request):
@@ -28,15 +28,20 @@ def update_profile(request):
         email = request.POST.get('email')
         bio = request.POST.get('bio')
         birth_date = request.POST.get('birth_date')
+        is_developer = request.POST.get('is_developer')
 
         profile = request.user
 
         profile.email = email or profile.email
-        profile.profile.bio = bio or profile.bio
+        profile.profile.bio = bio or profile.profile.bio
         profile.profile.birth_date = birth_date or profile.profile.birth_date
+
+        if (is_developer == "yes"):
+            profile.profile.is_developer = True
+        else:
+            profile.profile.is_developer = False
+
         profile.save()
-
-
         return render(request, 'profile.html', context)
     else:
         return render(request, 'update_profile.html')
