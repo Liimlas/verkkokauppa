@@ -1,13 +1,13 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
+from django.forms.models import inlineformset_factory
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
-
+from .forms import ProfileForm
 
 @login_required
 def profile(request):
@@ -20,31 +20,35 @@ def profiles(request):
     return render(request, 'profiles.html', context)
 
 @login_required
-@csrf_exempt
-def update_profile(request):
-    if request.method == 'POST':
-        context = { 'games': Game.objects.filter(developer=request.user) }
+def update_profile(request, pk):
+    user = User.objects.get(pk=pk)
+    user_form = ProfileForm(instance=user)
+    context = { 'games': Game.objects.filter(developer=request.user) }
 
-        email = request.POST.get('email')
-        bio = request.POST.get('bio')
-        birth_date = request.POST.get('birth_date')
-        is_developer = request.POST.get('is_developer')
+    ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'is_developer', 'photo'))
+    formset = ProfileInlineFormset(instance=user)
 
-        profile = request.user
+    if request.user.is_authenticated() and request.user.pk == user.pk:
+        if request.method == 'POST':
+            user_form = ProfileForm(request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormset(instance=user)
 
-        profile.email = email or profile.email
-        profile.profile.bio = bio or profile.profile.bio
-        profile.profile.birth_date = birth_date or profile.profile.birth_date
+            if user_form.is_valid():
+                created_user = user_form.save(commit=False)
+                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
 
-        if (is_developer == "yes"):
-            profile.profile.is_developer = True
-        else:
-            profile.profile.is_developer = False
+                if formset.is_valid():
+                    created_user.save()
+                    formset.save()
+                    return HttpResponseRedirect('/profile/')
 
-        profile.save()
-        return render(request, 'profile.html', context)
+        return render(request, "update_profile.html", {
+            'noodle': pk,
+            'noodle_form': user_form,
+            'formset': formset,
+        })
     else:
-        return render(request, 'update_profile.html')
+        raise PermissionDenied
 
 @login_required
 def viewUser(request, username):
@@ -57,8 +61,6 @@ def viewUser(request, username):
             context['viewUser'] = user
             context['games'] = Game.objects.filter(developer=user)
     return render(request, 'view_user.html', context)
-
-
 
 def signup(request):
     if request.method == 'POST':
@@ -77,5 +79,17 @@ def signup(request):
 def manage_games(request):
     return render(request, 'manage_games.html')
 
+
+def model_form_upload(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ImageForm()
+    return render(request, 'model_form_upload.html', {
+        'form': form
+    })
 
 # Create your views here.

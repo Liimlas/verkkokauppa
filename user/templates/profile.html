@@ -5,9 +5,17 @@
 
 <h1>{{user.username}}'s profile</h1>
 
-<img src="{% static 'media/def_userpic.jpg' %}"
-    class="profilePicture"
+{% if user.profile.photo != "" %}
+<img src="{{user.profile.photo.url}}"
+    height="100px"
+    width="100px"
     alt="User"/>
+{% else %}
+<img src="{% static 'media/def_userpic.jpg' %}"
+     height="150px"
+     width="150px"
+     alt="User">
+{% endif %}
 
 <table style="width:100%" padding-top="20px">
   <tr>
@@ -39,6 +47,6 @@
 <p>{{user.username}} hasn't written a bio yet</p>
 {% endif %}
 
-<a href="{% url 'update_profile' %}">Update profile</a>
+<a href="update_profile/{{user.pk}}">Update profile</a>
 
 {% endblock %}
