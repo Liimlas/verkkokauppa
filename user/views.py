@@ -32,7 +32,7 @@ def update_profile(request):
         profile = request.user
 
         profile.email = email or profile.email
-        profile.profile.bio = bio or profile.bio
+        profile.profile.bio = bio or profile.profile.bio
         profile.profile.birth_date = birth_date or profile.profile.birth_date
         profile.save()
 
