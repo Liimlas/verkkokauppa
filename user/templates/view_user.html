@@ -1,0 +1,52 @@
+{% extends "base_html.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if userfound %}
+<h1>{{viewUser.username}}'s profile</h1>
+
+<img src="{% static 'media/def_userpic.jpg' %}"
+    class="profilePicture"
+    alt="User"/>
+
+<table style="width:100%" padding-top="20px">
+  <tr>
+    <th class="profileTitle">User</th>
+    <td>{{viewUser.username}}</td>
+  </tr>
+  <tr>
+    <th class="profileTitle">Birthday</th>
+    <td>{{viewUser.profile.birth_date}}</td>
+  </tr>
+  <tr>
+    <th class="profileTitle">Developer</th>
+    <td>{{viewUser.profile.is_developer}}</td>
+  </tr>
+
+  <tr>
+    <th class="profileTitle">Managed games</th>
+    <td>  {% for game in games %}
+          {% with '/games/'|add:game.id as gameurl %}
+          <li><a href={{ gameurl }}>{{ game.name }}</li>
+          {% endwith %}
+          {% endfor %}</td>
+  </tr>
+
+</table>
+
+<h2>Bio</h2>
+{% if viewUser.profile.bio != "" %}
+<p>{{viewUser.profile.bio}}</p>
+{% else %}
+<p>{{viewUser.username}} hasn't written a bio yet</p>
+{% endif %}
+
+{% else %}
+Unfortunately we couldn't find the user you were looking for :(
+{% endif %}
+
+{% if viewUser == user %}
+<a href="{% url 'update_profile'}">Update profile</a>
+{% endif %}
+{% endblock %}

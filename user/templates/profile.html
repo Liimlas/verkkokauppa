@@ -3,32 +3,41 @@
 
 {% block content %}
 
-{% if user.profile.is_developer %}
-  <h2> Cool developer profile page</h2>
-{% else %}
-  <h2>Cool gamer profile page </h2>
-{% endif %}
+<h1>{{user.username}}'s profile</h1>
 
 <img src="{% static 'media/def_userpic.jpg' %}"
-    height="100px"
-    width="100px"
+    class="profilePicture"
     alt="User"/>
 
-<ul>
-    <li>User: {{user.username}}</li>
-    <li>Email: {{user.email}}</li>
-    <li>Bio: {{ user.profile.bio }}</li>
-    <li>Birthday: {{user.profile.birth_date }}</li>
-    <li>Developer: {{user.profile.is_developer}}</li>
+<table style="width:100%" padding-top="20px">
+  <tr>
+    <th class="profileTitle">User</th>
+    <td>{{user.username}}</td>
+  </tr>
+  <tr>
+    <th class="profileTitle">Birthday</th>
+    <td>{{user.profile.birth_date}}</td>
+  </tr>
+  <tr>
+    <th class="profileTitle">Developer</th>
+    <td>{{user.profile.is_developer}}</td>
+  </tr>
+  {% if user.profile.is_developer %}
+  <tr>
+    <th class="profileTitle">Managed games</th>
+    <td>  {% for game in games %}
+          <li>{{game.name}}</li>
+          {% endfor %}</td>
+  </tr>
+  {% endif %}
+</table>
 
-{% if user.profile.is_developer %}
-    <li>Managed games:
-      {% for game in games %}
-        <p>{{game.name}}</p>
-      {% endfor %}
-    </li>
+<h2>Bio</h2>
+{% if user.profile.bio != "" %}
+<p>{{user.profile.bio}}</p>
+{% else %}
+<p>{{user.username}} hasn't written a bio yet</p>
 {% endif %}
-</ul>
 
 <a href="{% url 'update_profile' %}">Update profile</a>
 

@@ -39,7 +39,7 @@
 
 
 {% block content %}
-<h3>Uusimmat pelit:</h3>
+<h1>Uusimmat pelit:</h1>
 <br>
 {% for game in games %}
 {% with 'games/'|add:game.id as gameurl %}
@@ -47,4 +47,3 @@
 {% endwith %}
 {% endfor %}
 {% endblock %}
-
