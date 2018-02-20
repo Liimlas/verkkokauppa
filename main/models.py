@@ -14,7 +14,7 @@ class Game(models.Model):
     soldcopies = models.IntegerField(default=0, blank=True, validators=[MinValueValidator(0)])
     link = models.CharField(default='', blank=False, max_length=200)
     publish_date = models.DateTimeField(blank=True, null=True)
-    image = models.FileField(upload_to='game_pictures', default="")
+    image = models.ImageField(upload_to='game_pictures', default="")
 
     # def publish(self):
     #     self.publish_date = timezone.now()

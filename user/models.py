@@ -7,7 +7,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     is_developer = models.BooleanField(default=False)
     birth_date = models.DateField(null=True, blank=True)
-    photo = models.FileField(upload_to='user_pictures', default="", null=True, blank=True)
+    photo = models.ImageField(upload_to='user_pictures', default="", null=True, blank=True)
 
 def create_profile(sender, **kwargs):
     user = kwargs["instance"]
