@@ -7,6 +7,8 @@
 <h1>{{ game.name }}</h1>
 <h2>Price {{ game.price }}e </h2>
 <p>Developer {{ game.developer }} </p>
+<img class=profilePicture src="{{game.image.url}}" alt="Cover" />
+
 
 {% with '/play/'|add:game.id as playurl %}
 <a href={{ playurl }}><button class='btn btn-success' value='Click to play the game' onclick='window.location={{ playurl }}'>Play!</button></a>
