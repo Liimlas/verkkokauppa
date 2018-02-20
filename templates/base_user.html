@@ -1,0 +1,21 @@
+{% extends "base_html.html" %}
+{% block sidenav %}
+<nav class="nav-sidebar">
+    <ul class="nav">
+        {% with '/profile/'|add:user.username as userUrl %}
+        <li>
+            <a href={{userUrl}}>Profile</a>
+        </li>
+        {% endwith %}
+        <li>
+            <a href="{% url 'profiles' %}">Users</a>
+        </li>
+        <li>
+            <a href="{% url 'manage_games' %}">Manage games</a>
+        </li>
+        {% if user.is_authenticated and user.profile.is_developer %} {% endif %}
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}{% endblock %}

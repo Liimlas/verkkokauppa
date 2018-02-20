@@ -1,0 +1,21 @@
+{% extends "base_html.html" %}
+{% block sidenav %}
+<nav class="nav-sidebar">
+    <ul class="nav">
+        <li>
+            <a href="{% url 'games' %}">All games</a>
+        </li>
+        <li>
+            <a href="{% url 'onSale' %}">On sale</a>
+        </li>
+        {% if user.profile.is_developer %}
+        <li>
+            <a href="{% url 'addGame' %}">Add game</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
+
+{%block content %}
+{% endblock %}
