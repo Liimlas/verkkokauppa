@@ -2,7 +2,6 @@ body {
   padding:20px;
   margin: 20px;
 }
-
 /*Header stuff */
 /*Main navigation*/
 .navigationdiv {
@@ -135,4 +134,8 @@ input[type=text], input[type=password] {
 /*Changes odd table rows to grey, mostly for profile*/
 tr:nth-child(odd) {
 	background-color: #EEEEEE;
+}
+
+th {
+  vertical-align: top;
 }
