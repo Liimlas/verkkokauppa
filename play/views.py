@@ -9,8 +9,11 @@ def play(request):
 
     if request.user.is_authenticated:
         bought_games = BoughtGame.objects.filter(owner=request.user)
+        developed_games = Game.objects.filter(developer=request.user)
         for game in bought_games:
             owned_games.append(game.game)
+        for game in developed_games:
+            owned_games.append(game)
 
     return render(request, 'play/play.html', { 'games' : owned_games })
 
@@ -25,10 +28,16 @@ def playgame(request, gameid):
         return render(request, 'play/playgame.html', {'game' : None})
 
     owned_game = None
-    owned_games = BoughtGame.objects.filter(owner=request.user)
+    bought_games = BoughtGame.objects.filter(owner=request.user)
+    developed_games = Game.objects.filter(developer=request.user)
 
-    for game in owned_games:
+    for game in bought_games:
         if game.game.id == gameid:
             owned_game = game.game
+
+    if owned_game == None:
+        for game in developed_games:
+            if game.id == gameid:
+                owned_game = game
 
     return render(request, 'play/playgame.html', { 'game' : owned_game })
