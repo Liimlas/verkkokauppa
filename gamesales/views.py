@@ -2,8 +2,6 @@ from django.shortcuts import render
 from main.models import Game, BoughtGame
 import random
 from django.utils import timezone
-
-
 from django.http import HttpResponse
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
@@ -59,7 +57,7 @@ def usePhoto():
     for photo in photoList:
         photos.append(photo.photoLink)
     return photos
-     # do it the way that photo is in the home page
+    # do it the way that photo is in the home page
 
 
 @csrf_exempt
@@ -95,6 +93,7 @@ def addGame(request):
             }
 
             a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink, publish_date=timezone.now())
+
             b = BoughtGame.objects.create(owner=request.user, game=a)
             a.save()
             b.save()

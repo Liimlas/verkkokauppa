@@ -1,29 +1,21 @@
-<!--
-
-This I alo changed for time being
--Elisa
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>-->
 {% extends "base_html.html" %}
 {% block content %}
+
 {% block gameframe %}
+{% if not game %}
+
+<h1>The game does not either exists, or you have not bought it!</h1>
+
+{% else %}
+
 <p>{{ game.name }}</p>
 {% with game.link as gameurl %}
+
 <iframe style="width: 1200px; height: 800px;" src={{ gameurl }}>
 
 </iframe>
+
 {% endwith %}
-
+{% endif %}
 {% endblock %}
 {% endblock %}
-
-<!--
-
-</body>
-</html>-->
