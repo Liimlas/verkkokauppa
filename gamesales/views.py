@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -50,7 +49,9 @@ def generate():
         else:
             return id
 
+
 def addGame(request):
+
     if request.method == 'POST':
         form = AddGameForm(request.POST, request.FILES)
         context= {}

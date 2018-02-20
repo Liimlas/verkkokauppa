@@ -5,4 +5,11 @@ from django.forms import ModelForm
 class AddGameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('name', 'price', 'link', 'image', )
+        fields = ('name', 'price', 'link', 'image')
+
+
+class ChangeGameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ('name', 'price', 'saleprice', 'link', 'image')
+
