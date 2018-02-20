@@ -49,14 +49,6 @@ def generate():
         else:
             return id
 
-def usePhoto():
-    photoList = Game.objects.all()
-    photos = []
-    for photo in photoList:
-        photos.append(photo.photoLink)
-    return photos
-    # do it the way that photo is in the home page
-
 
 def addGame(request):
 

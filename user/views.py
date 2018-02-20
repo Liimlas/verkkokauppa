@@ -15,11 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @login_required
 def profile(request):
-    context = {
-        'games': Game.objects.filter(developer=request.user),
-        'viewUser': request.user,
-        'userfound': True,
-    }
+    context = { 'games': Game.objects.filter(developer=request.user) }
     return render(request, 'view_user.html', context)
 
 @login_required
@@ -48,7 +44,7 @@ def update_profile(request, pk):
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
-                    return HttpResponseRedirect('/profile_updated/')
+                    return HttpResponseRedirect('/profile/')
 
         return render(request, "update_profile.html", {
             'noodle': pk,
@@ -57,11 +53,6 @@ def update_profile(request, pk):
         })
     else:
         raise PermissionDenied
-
-
-@login_required
-def profile_updated(request):
-    return render(request, 'profile_updated.html')
 
 @login_required
 def viewUser(request, username):
@@ -100,26 +91,28 @@ def edit(request, id):
     return render(request, 'edit_game.html', context)
 
 @csrf_exempt
-def edit_game(request):
-        if request.method == 'POST':
-            form = ChangeGameForm(request.POST, request.FILES)
-            context = {}
+def edit_game(request, id):
+    if request.method == 'POST':
+        form = ChangeGameForm(request.POST, request.FILES)
+        context = {}
 
-            if form.is_valid():
-                changeGame = form.save(commit=False)
-                changeGame.developer = request.user
-                changeGame.saleprice = request.saleprice
-                changeGame.onsale = False
-                changeGame.soldcopies = 0
-                changeGame.publish_date = Game.publish_date
+        if form.is_valid():
+            newGame = form.save(commit=False)
+            newGame.developer = request.user
+            newGame.saleprice = request.saleprice
+            newGame.onsale = False
+            newGame.soldcopies = 0
+            newGame.publish_date = Game.publish_date
 
-                changeGame.save()
 
-                return redirect('index')
-        else:
-            form = ChangeGameForm()
+            newGame.id = id
+            newGame.save()
 
-        return render(request, 'gamesales/managed_game.html', {'form': form})
+            return redirect('index')
+    else:
+        form = ChangeGameForm()
+
+    return render(request, 'gamesales/addGame.html', {'form': form})
 
 def model_form_upload(request):
     if request.method == 'POST':
