@@ -8,7 +8,7 @@
         {% for new in three_newest %}
         {% with '/games/'|add:new.id as gameurl %}
         <div class="{% cycle 'carousel-item active' 'carousel-item' 'carousel-item' %}">
-            <a href={{ gameurl }}><img src="{% static 'images/Cute.jpg' %}" alt="Photo de montagne" height="100px" width="100px" /></a>
+            <a href={{ gameurl }}><img src="{{new.image.url}}" alt="Cover Image" height="100px" width="100px" /></a>
             <p>{{ new.name }}</p>
             <p>Price: {{ new.price }}€</p>
         </div>

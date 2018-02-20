@@ -7,7 +7,6 @@
 <h1>{{ game.name }}</h1>
 <h2>Price {{ game.price }}e </h2>
 <p>Developer {{ game.developer }} </p>
-<img class=profilePicture src="{{game.image.url}}" alt="Cover" />
 
 
 {% with '/play/'|add:game.id as playurl %}
