@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 def index(request):
     game_list = games_by_attribute(Game.objects.all(), 4, True)
-    three_newest = games_by_attribute(Game.objects.all(), 4, False)
+    three_newest = games_by_attribute(Game.objects.all(), 4, True)
     three_newest = three_newest[:3]
     context = {'games':game_list}
     context['three_newest'] = three_newest
