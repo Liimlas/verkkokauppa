@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from main.models import Game, BoughtGame
 import random
+from django.utils import timezone
 
 
 from django.http import HttpResponse
@@ -93,7 +94,7 @@ def addGame(request):
                 'photoLink': gamePhotoLink
             }
 
-            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink, publish_date=Game.publish(Game))
+            a = Game.objects.create(developer=request.user, name=gamename, id=gameid, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink, publish_date=timezone.now())
             b = BoughtGame.objects.create(owner=request.user, game=a)
             a.save()
             b.save()
