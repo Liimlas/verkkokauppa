@@ -20,8 +20,6 @@ class Game(models.Model):
         self.publish_date = timezone.now()
         self.save()
 
-
-
 class BoughtGame(models.Model):
     owner = models.ForeignKey(User)
     game = models.ForeignKey(Game)
