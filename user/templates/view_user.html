@@ -8,14 +8,12 @@
 
 {% if viewUser.profile.photo != "" %}
 <img src="{{viewUser.profile.photo.url}}"
-    height="100px"
-    width="100px"
+    class=profilePicture
     alt="User"/>
 {% else %}
 <img src="{% static 'media/def_userpic.jpg' %}"
-     height="150px"
-     width="150px"
-     alt="User">
+  class=profilePicture
+  alt="User">
 {% endif %}
 
 <table style="width:100%" padding-top="20px">
@@ -32,6 +30,7 @@
     <td>{{viewUser.profile.is_developer}}</td>
   </tr>
 
+  {% if viewUser.profile.is_developer %}
   <tr>
     <th class="profileTitle">Managed games</th>
     <td>  {% for game in games %}
@@ -40,7 +39,7 @@
           {% endwith %}
           {% endfor %}</td>
   </tr>
-
+{% endif %}
 </table>
 
 <h2>Bio</h2>
@@ -55,6 +54,6 @@ Unfortunately we couldn't find the user you were looking for :(
 {% endif %}
 
 {% if viewUser == user %}
-<a href="{% url 'update_profile' %}">Update profile</a>
+<a href="update_profile/{{user.pk}}">Update profile</a>
 {% endif %}
 {% endblock %}

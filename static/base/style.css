@@ -1,3 +1,8 @@
+body {
+  padding:20px;
+  margin: 20px;
+}
+
 /*Header stuff */
 /*Main navigation*/
 .navigationdiv {
@@ -131,5 +136,3 @@ input[type=text], input[type=password] {
 tr:nth-child(odd) {
 	background-color: #EEEEEE;
 }
-
-

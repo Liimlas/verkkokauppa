@@ -11,7 +11,11 @@ from .forms import ProfileForm
 
 @login_required
 def profile(request):
-    context = { 'games': Game.objects.filter(developer=request.user) }
+    context = {
+        'games': Game.objects.filter(developer=request.user),
+        'viewUser': request.user,
+        'userfound': True,
+    }
     return render(request, 'view_user.html', context)
 
 @login_required
@@ -78,7 +82,7 @@ def signup(request):
 
 def manage_games(request, deceloper):
     context = {'own_games': Game.objects.filter(developer = request.user)}
-    
+
     return render(request, 'manage_games.html')
 
 

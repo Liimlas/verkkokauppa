@@ -6,6 +6,5 @@ urlpatterns = [
     url(r'^games/([a-zA-Z0-9]+)/$', views.viewgame, name='games'),
     url(r'^addGame/$', views.addGame, name='addGame'),
     url(r'^onSale/$', views.onSale, name='onSale'),
-
-
 ]
+

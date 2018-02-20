@@ -1,21 +1,12 @@
-{% extends "base_html.html" %}
-{% load static %}
+<!-- {% extends "base_html.html" %} {% load static %} {% block content %}
 
-{% block content %}
+This shouldn't be in use :D
 
 <h1>{{user.username}}'s profile</h1>
 
 {% if user.profile.photo != "" %}
-<img src="{{user.profile.photo.url}}"
-    height="100px"
-    width="100px"
-    alt="User"/>
-{% else %}
-<img src="{% static 'media/def_userpic.jpg' %}"
-     height="150px"
-     width="150px"
-     alt="User">
-{% endif %}
+<img class=profilePicture src="{{user.profile.photo.url}}" alt="User" /> {% else %}
+<img src="{% static 'media/def_userpic.jpg' %}" class=profilePicture alt="User"> {% endif %}
 
 <table style="width:100%" padding-top="20px">
   <tr>
@@ -33,9 +24,9 @@
   {% if user.profile.is_developer %}
   <tr>
     <th class="profileTitle">Managed games</th>
-    <td>  {% for game in games %}
-          <li>{{game.name}}</li>
-          {% endfor %}</td>
+    <td> {% for game in games %}
+      <li>{{game.name}}</li>
+      {% endfor %}</td>
   </tr>
   {% endif %}
 </table>
@@ -49,4 +40,4 @@
 
 <a href="update_profile/{{user.pk}}">Update profile</a>
 
-{% endblock %}
+{% endblock %} -->
