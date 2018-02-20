@@ -8,6 +8,7 @@
 <h2>Price {{ game.price }}e </h2>
 <p>Developer {{ game.developer }} </p>
 
+
 {% with '/play/'|add:game.id as playurl %}
 <a href={{ playurl }}><button class='btn btn-success' value='Click to play the game' onclick='window.location={{ playurl }}'>Play!</button></a>
 {% endwith %}
