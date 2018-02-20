@@ -97,11 +97,11 @@
           <li><a href="{% url 'profile' %}">Profile</a></li>
         <li><a href="{% url 'profiles' %}">Users</a></li>
         <li><a href="{% url 'addGame' %}">Add game</a></li>
-        {% if user.is_authenticated and user.profile.is_developer %}
         <li><a href="{% url 'manage_games' %}">Manage games</a></li>
+        {% if user.is_authenticated and user.profile.is_developer %}
 
 
-       
+
           {% endif %}
       </ul>
         </nav>

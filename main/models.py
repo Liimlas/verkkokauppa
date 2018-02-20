@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 # Create your models here.
@@ -15,9 +16,9 @@ class Game(models.Model):
     link = models.CharField(default='', blank=False, max_length=200)
     publish_date = models.DateTimeField(blank=True, null=True)
 
-    # def publish(self):
-    #     self.publish_date = timezone.now()
-    #     self.save()
+    def publish(self):
+        self.publish_date = timezone.now()
+        self.save()
 
 
 

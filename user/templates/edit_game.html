@@ -1,0 +1,42 @@
+{% extends "base_html.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if error %}
+    <p>error message</p>
+{% else %}
+<form method="post" action="/addGame/">
+    Delete game:
+        Yes <input type="radio" name="dalete" value="yes">
+    Change name:<br>
+        <input type="text" name="name" required>
+    <br>
+    Sale price:<br>
+        <input type="float" name="saleprice" min="0.0" required><br>
+    Price:<br>
+        <input type="float" name="price" min="0.0" required><br>
+    Link:<br>
+        <input type="text" name="link" required>
+    <br>
+    Game image: <input type="file" name="pic" id="pic"><br>
+    Permission to use photo:
+        Yes <input type="radio" name="usePhoto" value="yes">  /
+        No <input type="radio" name="usePhoto" value="no">
+    <br>
+    <input type="submit" value="Add"><br>
+</form>
+{% endif %}
+{% else %}
+    <p>Login first!</p>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}
+
+
+

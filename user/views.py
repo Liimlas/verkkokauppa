@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm
+#from gamesales.views import generate
 
 @login_required
 def profile(request):
@@ -76,11 +77,66 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup/signup.html', {'form': form})
 
-def manage_games(request, deceloper):
+def manage_games(request, id):
     context = {'own_games': Game.objects.filter(developer = request.user)}
+    context['id']= id
     
-    return render(request, 'manage_games.html')
+    return render(request, 'manage_games.html', context)
 
+
+def edit(request, id):
+    context = {'own_games': Game.objects.filter(developer=request.user)}
+    context['id'] = id
+
+    return render(request, 'manage_games.html', context)
+
+def edit_game(request, id):
+    if request.method == 'POST':
+        # getting values from post
+        gamedelete = request.POST.get('delete')
+        gamename = request.POST.get('name')
+        gamesaleprice = request.POST.get('saleprice')
+        gameprice = request.POST.get('price')
+        gamelink = request.POST.get('link')
+        gamePhotoLink = request.POST.get('photoLink')
+        gameUsePhoto = request.POST.get('usePhoto')
+
+
+
+        if len(gamename) < 3 or len(gamename) > 60:
+            context = {}
+            context['nameError'] = True
+            return render(request, 'user/edit_game.html', context)
+            return render(request, 'user/edit_game.html', context)
+        elif gamelink.find('.') == -1 and gamelink.find('www') == -1:
+            context = {}
+            context['linkError'] = True
+            return render(request, 'user/edit_game.html', context)
+        elif gamedelete:
+            Game.id = ()
+        else:
+
+            context = {
+                'name': gamename,
+                'price': gameprice,
+                'link': gamelink,
+                'id' : id,
+                'photoLink': gamePhotoLink
+            }
+
+            a = Game.objects.create(developer=request.user, name=gamename, id=id, price=gameprice, saleprice=1, onsale=False, soldcopies=0, link=gamelink, publish_date=Game.publish_date)
+
+            a.save()
+
+
+        # getting our showdata template
+        return render(request, 'user/managed_game.html', context)
+    else:
+        # if post request is not true
+        # returing the form template
+        context={}
+        context['error']=True
+        return render(request, 'edit_game.html', context)
 
 def model_form_upload(request):
     if request.method == 'POST':
