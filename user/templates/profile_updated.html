@@ -1,0 +1,9 @@
+{% extends "base_html.html" %}
+{% block content %}
+
+Succesfully updated profile!<br>
+{% with '/profile/'|add:user.username as userUrl %}
+<a href={{userUrl}}>Go to profile</a>
+{% endwith %}
+
+{% endblock %}

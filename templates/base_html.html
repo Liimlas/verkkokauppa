@@ -63,10 +63,9 @@
     <div class="headerRightText">
       <p>Hello {{ user.username }}!
         <br>
-        <!--Toimispa  {% with '/view_user/'|add:user.username as userUrl %}
-          <a href={{userUrl}}>Profile</a><br>
-          {% endwith %}-->
-        <a href="{% url 'profile' %}">Profile</a>
+        {% with '/profile/'|add:user.username as userUrl %}
+          <a href={{userUrl}}>Profile</a>
+        {% endwith %}
         <br>
         <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
       </p>
@@ -99,12 +98,11 @@
 <!-- Side navigation -->
 <nav class="nav-sidebar">
   <ul class="nav">
-    <!--toimispa {% with '/profile/'|add:user.username as userUrl %}
-          <li><a href={{userUrl}}>Profile</a></li>
-          {% endwith %}-->
+    {% with '/profile/'|add:user.username as userUrl %}
     <li>
-      <a href="{% url 'profile' %}">Profile</a>
+      <a href={{userUrl}}>Profile</a>
     </li>
+    {% endwith %}
     <li>
       <a href="{% url 'profiles' %}">Users</a>
     </li>

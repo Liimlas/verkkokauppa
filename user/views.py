@@ -44,7 +44,7 @@ def update_profile(request, pk):
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
-                    return HttpResponseRedirect('/profile/')
+                    return HttpResponseRedirect('/profile_updated/')
 
         return render(request, "update_profile.html", {
             'noodle': pk,
@@ -53,6 +53,11 @@ def update_profile(request, pk):
         })
     else:
         raise PermissionDenied
+
+
+@login_required
+def profile_updated(request):
+    return render(request, 'profile_updated.html')
 
 @login_required
 def viewUser(request, username):
