@@ -5,7 +5,7 @@
 <p>Edit game here!</p>
 
 {% for game in own_games %}
-{% with '/edit_games/'|add:game.id as manageurl %}
+{% with '/manage_games/'|add:game.id as manageurl %}
 
 <h3><a href={{ manageurl }}>{{ game.name }}</a></h3>
 

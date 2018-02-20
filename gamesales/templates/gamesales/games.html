@@ -8,7 +8,42 @@
 {% for game in games %}
 {% with '/games/'|add:game.id as gameurl %}
 
-<h3><a href={{ gameurl }}>{{ game.name }}</a></h3>
+<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-default  panel--styled">
+					<div class="panel-body">
+						<div class="col-md-12 panelTop">
+							<div class="col-md-4">
+								<img class="img-responsive" src="{% static 'images/Cute.jpg' %}" alt=""/>
+							</div>
+							<div class="col-md-8">
+								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
+								<p>Price:  {{ game.price }} €</p>
+
+							<div class="col-md-4 text-center" class="col-md-12 panelBottom">
+								<button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
+							</div>
+							
+						</div>
+
+
+							<div class="col-md-4">
+								<div class="stars">
+								 <div id="stars" class="starrr"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+
+
+
+
 
 
 
@@ -16,7 +51,6 @@
 
 
 
-<p>Price {{game.price}} </p>
 
 {% endfor %}
 
