@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm
+from gamesales.forms import ChangeGameForm
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -87,7 +90,27 @@ def edit(request, id):
 
     return render(request, 'edit_game.html', context)
 
+@csrf_exempt
+def edit_game(request):
+        if request.method == 'POST':
+            form = ChangeGameForm(request.POST, request.FILES)
+            context = {}
 
+            if form.is_valid():
+                changeGame = form.save(commit=False)
+                changeGame.developer = request.user
+                changeGame.saleprice = request.saleprice
+                changeGame.onsale = False
+                changeGame.soldcopies = 0
+                changeGame.publish_date = Game.publish_date
+
+                changeGame.save()
+
+                return redirect('index')
+        else:
+            form = ChangeGameForm()
+
+        return render(request, 'gamesales/managed_game.html', {'form': form})
 
 def model_form_upload(request):
     if request.method == 'POST':
