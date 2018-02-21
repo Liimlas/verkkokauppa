@@ -44,9 +44,9 @@ def update_profile(request, pk):
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
-                    return HttpResponseRedirect('/profile/')
+                    return render(request, 'profile_updated.html')
 
-        return render(request, "update_profile.html", {
+        return render(request, 'update_profile.html', {
             'noodle': pk,
             'noodle_form': user_form,
             'formset': formset,
