@@ -6,22 +6,48 @@ from django.utils import timezone
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from itertools import chain
 # Create your views here.
 
 
 def games(request):
     games = Game.objects.all()
-    context = {'games' : games}
+
+    ownedGames = []
+    boughtGames = BoughtGame.objects.filter(owner=request.user)
+
+    for purchase in boughtGames:
+        ownedGames.append(purchase.game)
+
+    for game in games:
+        if game.developer == request.user:
+            ownedGames.append(game)
+
+    context = {
+        'games' : games,
+        'ownedGames': ownedGames,
+        'bought': boughtGames
+    }
+
     return render(request, 'gamesales/games.html', context)
 
 def viewgame(request, id):
-    viewer = request.user
     context = {}
     context['not_found'] = True
+    alreadyOwned = False
+
     for game in Game.objects.all():
         if id == game.id:
+
+            ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
+
+            if ownedSet.count() != 0 or game.developer == request.user:
+                alreadyOwned = True
+
             context['gamefound'] = True
             context['game'] = game
+            context['alreadyOwned'] = alreadyOwned
+
     return render(request, 'gamesales/singlegame.html', context)
 
 

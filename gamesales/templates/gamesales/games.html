@@ -5,9 +5,9 @@
 
 
 <h1>Games!</h1>
+
 {% for game in games %}
 {% with '/games/'|add:game.id as gameurl %}
-
 <div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -21,16 +21,18 @@
 								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
 								<p>Price:  {{ game.price }} €</p>
 
+							{% if game not in ownedGames %}
 							<div class="col-md-4 text-center" class="col-md-12 panelBottom">
 								<button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
 							</div>
+							{% endif %}
 
 						</div>
 
 
 							<div class="col-md-4">
 								<div class="stars">
-								 <div id="stars" class="starrr"></div>
+								<div id="stars" class="starrr"></div>
 								</div>
 							</div>
 						</div>

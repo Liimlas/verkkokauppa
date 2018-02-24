@@ -8,14 +8,14 @@
 <h2>Price {{ game.price }}e </h2>
 <p>Developer {{ game.developer }} </p>
 
-
 {% with '/play/'|add:game.id as playurl %}
 <a href={{ playurl }}><button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button></a>
 {% endwith %}
+{% if not alreadyOwned %}
 {% with '/payment/'|add:game.id as paymenturl %}
 <a href={{ paymenturl }}><button class='btn btn-success' value='Click to buy the game!' onClick=''window.location='{ paymenturl }'>Buy</button></a>
 {% endwith %}
-
+{% endif %}
 
 {% else %}
 <h1 class="textRight">Peliä ei löytynyt!</h1>

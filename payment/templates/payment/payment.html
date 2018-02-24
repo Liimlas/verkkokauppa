@@ -2,6 +2,11 @@
 
 <h2>Buy game {{ game.name }} </h2>
 
+{% if alreadyOwned %}
+You already own this game!
+
+{% else %}
+
 <ul>
     <li>Game {{ game.name }}</li>
     <li>Price: {{ price }} </li>
@@ -22,4 +27,5 @@
     <br><a href={{ gameurl }}>Go back</a>
     {% endwith %}
 
+{% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from main.models import Game, BoughtGame
 from django.core.exceptions import ObjectDoesNotExist
 from hashlib import md5
-from main.models import BoughtGame
+from main.models import BoughtGame, Game
 from django.contrib.auth.models import User
 
 
@@ -11,6 +11,12 @@ def payment(request, gameid):
         game = Game.objects.get(id=gameid)
     except ObjectDoesNotExist:
         return redirect('error')
+
+    alreadyOwned = True
+    ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
+
+    if ownedSet.count() == 0 and game.developer != request.user:
+        alreadyOwned = False
 
     if game.onsale:
         amount = game.saleprice
@@ -29,6 +35,7 @@ def payment(request, gameid):
 
     context = {
         'game': game,
+        'alreadyOwned': alreadyOwned,
         'price': amount,
         'pid': pid,
         'sid': sid,
