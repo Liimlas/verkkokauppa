@@ -11,5 +11,5 @@ class AddGameForm(forms.ModelForm):
 class ChangeGameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('name', 'price', 'saleprice', 'link', 'image')
+        fields = ('name', 'price', 'link', 'image')
 

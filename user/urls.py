@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profiles/$', views.profiles, name='profiles'),
     url(r'^manage_games/$', views.manage_games, name='manage_games'),
+    #url(r'^manage_games/(?P<pk>\d+)/$', views.edit_game, name='manage_games'),
     url(r'^manage_games/([a-zA-Z0-9]+)/$', views.edit_game, name='manage_games'),
 ]
