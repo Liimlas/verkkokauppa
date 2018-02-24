@@ -8,11 +8,12 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm
-from gamesales.forms import ChangeGameForm, DeleteNewForm
+from gamesales.forms import ChangeGameForm, DeleteNewForm, AddGameForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from gamesales.views import generate
 
 
 @login_required
@@ -97,12 +98,38 @@ def delete_game(request):
 
     return render(request, 'delete_game.html')
 
+def addnewgame(request):
+    if request.method == 'POST':
+        form = ChangeGameForm(request.POST, request.FILES)
+        context= {}
+
+        if form.is_valid():
+            newGame = form.save(commit=False)
+            newGame.developer = request.user
+            newGame.saleprice = 0
+            newGame.onsale = False
+            newGame.soldcopies = 0
+            newGame.publish_date = timezone.now()
+
+            newID = generate()
+            newGame.id = newID
+            newGame.save()
+
+            return redirect('index')
+    else:
+        form = ChangeGameForm()
+
+
+    return render(request, 'managed_game.html', {'form': form})
+
+
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
     post2 = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
+        # form3 = AddGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
         if form.is_valid():
             gamedelete = request.POST.get('delete')
@@ -110,18 +137,12 @@ def edit_game(request, pk):
                 if form2.is_valid():
                     post.delete()
                     return HttpResponseRedirect('/delete_game/')
+            else:
+                addnewgame(request)
+                post.delete()
+                return HttpResponseRedirect('/managed_game/')
            #      New.objects.get(pk=id).delete()
 
-            post = form.save(commit=False)
-            post.saleprice = 0
-            post.onsale = False
-            post.soldcopies = 0
-            post.id = Game.id
-
-            post.developer = request.user
-            post.publish_date = timezone.now()
-            post.save()
-            return HttpResponseRedirect('/managed_game/')
     else:
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
