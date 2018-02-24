@@ -101,6 +101,10 @@ body {
     font: italic bold 12px/30px serif;
 }
 
+.gameSalePicture {
+  width: 100px;
+}
+
 /*Form stylings*/
 input[type=text], input[type=password] {
     width: 50%;

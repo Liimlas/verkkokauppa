@@ -1,25 +1,35 @@
-{% extends "base_gamesales.html" %}
-{% load staticfiles %}
+{% extends "base_gamesales.html" %} 
+{% load staticfiles %} 
 
+{% block content %} 
 
-{% block content %}
 {% if gamefound %}
-<h1>{{ game.name }}</h1>
-<h2>Price {{ game.price }}e </h2>
-<p>Developer {{ game.developer }} </p>
+<div class="media">
+    <img class="align-self-start mr-3" src="{{game.image.url}}" alt="{{game.name}}" width=150px height=150px>
+    <div class="media-body">
+        <h1>{{ game.name }}</h1>
+        <p>Price {{ game.price }}e<br>
+        Developer {{ game.developer }} </p>
+    </div>
+</div>
 
+{% if alreadyOwned %}
 {% with '/play/'|add:game.id as playurl %}
-<a href={{ playurl }}><button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button></a>
+<a href={{ playurl }}>
+    <button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button>
+</a>
 {% endwith %}
-{% if not alreadyOwned %}
+{% comment %}
+{% else %}
 {% with '/payment/'|add:game.id as paymenturl %}
-<a href={{ paymenturl }}><button class='btn btn-success' value='Click to buy the game!' onClick=''window.location='{ paymenturl }'>Buy</button></a>
+<a href={{ paymenturl }}>
+    <button class='btn btn-success' value='Click to buy the game!' onClick='' window.location='{ paymenturl }'>Buy</button>
+</a>
 {% endwith %}
+{% endcomment %}
 {% endif %}
-
 {% else %}
 <h1 class="textRight">Peliä ei löytynyt!</h1>
 <p class="textRight">Valitettavasti peliä ei tämän id:n alta löytynyt. Ole hyvä jä yritä uudelleen</p>
 {% endif %}
-
 {% endblock %}

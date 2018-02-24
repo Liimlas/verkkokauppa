@@ -7,25 +7,28 @@ You already own this game!
 
 {% else %}
 
-<ul>
-    <li>Game {{ game.name }}</li>
-    <li>Price: {{ price }} </li>
-</ul>
 
-<form action="http://payments.webcourse.niksula.hut.fi/pay/" method="POST">
-    <input type="hidden" name="pid" value="{{ pid }}" />
-    <input type="hidden" name="sid" value="{{ sid }}" />
-    {% with 'http://localhost:8000/payment/success/'|add:game.id as gameurl %}
-    <input type="hidden" name="success_url" value="{{ gameurl }}" />
-    {% endwith %}
-    <input type="hidden" name="cancel_url" value="{{ cancel_url }}" />
-    <input type="hidden" name="error_url" value="{{ error_url }}" />
-    <input type="hidden" name="checksum" value="{{ checksum }}" />
-    <input type="hidden" id="id_amount" name="amount" value={{ price }} />
-    <input type="submit" value="Buy for price {{ price }}" /><br>
-    {% with '/games/'|add:game.id as gameurl %}
-    <br><a href={{ gameurl }}>Go back</a>
-    {% endwith %}
+<div class="media">
+    <img class="align-self-start mr-3" src="{{game.image.url}}" alt="{{game.name}}" width=150px height=150px>
+    <div class="media-body">
+            <p>Game: {{ game.name }}<br>
+            Developer: {{game.developer.username}}<br>
+            Price: {{ price }} </p>
+
+        <form action="http://payments.webcourse.niksula.hut.fi/pay/" method="POST">
+            <input type="hidden" name="pid" value="{{ pid }}" />
+            <input type="hidden" name="sid" value="{{ sid }}" /> {% with 'http://localhost:8000/payment/success/'|add:game.id as gameurl %}
+            <input type="hidden" name="success_url" value="{{ gameurl }}" /> {% endwith %}
+            <input type="hidden" name="cancel_url" value="{{ cancel_url }}" />
+            <input type="hidden" name="error_url" value="{{ error_url }}" />
+            <input type="hidden" name="checksum" value="{{ checksum }}" />
+            <input type="hidden" name="amount" value={{ price }} />
+            <button type="submit" class="btn btn-success">Buy for price {{ price }}</button>
+            {% with '/games/'|add:game.id as gameurl %}
+            <a href={{ gameurl }}><button type="button" class="btn btn-secondary">Go back</button></a>
+            {% endwith %}
+    </div>
+</div>
 
 {% endif %}
 {% endblock %}
