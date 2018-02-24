@@ -92,14 +92,17 @@ def edit(request):
 
     return render(request, 'managed_game.html')
 
+def delete_game(request):
+
+
+    return render(request, 'delete_game.html')
+
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
-
-
         if form.is_valid():
             gamedelete = request.POST.get('delete')
             if gamedelete == 'yes':
@@ -112,7 +115,8 @@ def edit_game(request, pk):
             post.onsale = False
             post.soldcopies = 0
             post.id = Game.id
-
+            if post.delete == True:
+                Game.objects.get(pk=id).delete()
             post.developer = request.user
             post.publish_date = Game.publish_date
             post.save()
