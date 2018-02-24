@@ -100,6 +100,7 @@ def delete_game(request):
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
+    post2 = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
@@ -110,15 +111,15 @@ def edit_game(request, pk):
                     post.delete()
                     return HttpResponseRedirect('/delete_game/')
            #      New.objects.get(pk=id).delete()
+
             post = form.save(commit=False)
             post.saleprice = 0
             post.onsale = False
             post.soldcopies = 0
             post.id = Game.id
-            if post.delete == True:
-                Game.objects.get(pk=id).delete()
+
             post.developer = request.user
-            post.publish_date = Game.publish_date
+            post.publish_date = timezone.now()
             post.save()
             return HttpResponseRedirect('/managed_game/')
     else:
