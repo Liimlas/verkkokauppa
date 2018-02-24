@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^', include('gamesales.urls')),
     url(r'^', include('user.urls')),
     url(r'^', include('play.urls')),
+    url(r'^', include('payment.urls')),
 ]
 
 if settings.DEBUG:

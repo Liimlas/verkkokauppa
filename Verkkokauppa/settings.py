@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'main',
     'user',
     'play',
+    'payment',
 ]
 
 MIDDLEWARE_CLASSES = [

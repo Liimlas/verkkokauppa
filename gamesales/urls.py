@@ -7,4 +7,3 @@ urlpatterns = [
     url(r'^addGame/$', views.addGame, name='addGame'),
     url(r'^onSale/$', views.onSale, name='onSale'),
 ]
-
