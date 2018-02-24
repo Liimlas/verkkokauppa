@@ -12,6 +12,7 @@ from gamesales.forms import ChangeGameForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 
 @login_required
@@ -86,10 +87,8 @@ def manage_games(request):
 
     return render(request, 'manage_games.html', context)
 
-def edit(request, id):
-    context = {'id': id}
-
-    return render(request, 'edit_game.html', context)
+def edit(request):
+    return render(request, 'managed_game.html')
 
 @csrf_exempt
 def edit_game(request, pk):
@@ -103,58 +102,50 @@ def edit_game(request, pk):
             post.soldcopies = 0
             post.id = Game.id
             post.developer = request.user
-            post.publish_date = Game.publish_date
+            post.publish_date = Game.publish_date 
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            return HttpResponseRedirect('/managed_game/')
     else:
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
 
 
-    user = request.user
-    if request.method == 'POST':
-        form = ChangeGameForm(request.POST, request.FILES, instance=user)
-        context = {}
-
-        if form.is_valid():
-            ChangeGame = form.save(commit=False)
-            ChangeGame.developer = request.user
-            ChangeGame.saleprice = 0
-            ChangeGame.name = request.name
-            ChangeGame.price = 233
-            ChangeGame.onsale = False
-            ChangeGame.soldcopies = 0
-            ChangeGame.publish_date = Game.publish_date
 
 
-            ChangeGame.id = id
-            ChangeGame.save()
 
-            return redirect('index')
-    else:
-        form = ChangeGameForm()
 
-    return render(request, 'edit_game.html', {'form': form})
-""" if request.method == 'POST':
-        form = AddGameForm(request.POST, request.FILES)
-        context= {}
-
-        if form.is_valid():
-            newGame = form.save(commit=False)
-            newGame.developer = request.user
-            newGame.saleprice = 0
-            newGame.onsale = False
-            newGame.soldcopies = 0
-            newGame.publish_date = timezone.now()
-
-            newID = generate()
-            newGame.id = newID
-            newGame.save()
-
-            return redirect('index')
-    else:
-        form = AddGameForm()
 """
+update_profile(request, pk):
+    user = User.objects.get(pk=pk)
+    user_form = ProfileForm(instance=user)
+    context = { 'games': Game.objects.filter(developer=request.user) }
+
+    ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'is_developer', 'photo'))
+    formset = ProfileInlineFormset(instance=user)
+
+    if request.user.is_authenticated() and request.user.pk == user.pk:
+        if request.method == 'POST':
+            user_form = ProfileForm(request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormset(instance=user)
+
+            if user_form.is_valid():
+                created_user = user_form.save(commit=False)
+                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
+
+                if formset.is_valid():
+                    created_user.save()
+                    formset.save()
+                    return HttpResponseRedirect('/profile/')
+
+        return render(request, "update_profile.html", {
+            'noodle': pk,
+            'noodle_form': user_form,
+            'formset': formset,
+        })
+    else:
+        raise PermissionDenied
+    """
+
 
 def model_form_upload(request):
     if request.method == 'POST':
