@@ -6,14 +6,24 @@
 
 <h1>List of the games that you own:</h1>
 
+<div class="card-deck">
+
 {% for game in games %}
 
-{% with '/play/'|add:game.id as gameurl %}
-<p><a href={{ gameurl }}>{{ game.name }}</a></p>
-
-{% endwith %}
+<div class="card" style="max-width: 250px">
+    <img class="card-img-top" src="{{game.image.url}}" alt="Game Image">
+    <div class="card-body">
+        <h5 class="card-title">{{game.name}}</h5>
+        <p class="card-text">Highscore tähän?</p>
+    </div>
+    <div class="card-footer">
+        {% with '/play/'|add:game.id as gameurl %}
+        <a href="{{gameurl}}" class="btn btn-primary">Play</a>
+        {% endwith %}
+    </div>
+</div>
 {% endfor %}
-
+</div>
 {% else %}
 
 <h1>You are required to log in in order to play!</h1>
