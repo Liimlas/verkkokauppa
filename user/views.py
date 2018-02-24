@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm
-from gamesales.forms import ChangeGameForm
+from gamesales.forms import ChangeGameForm, DeleteNewForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
@@ -88,6 +88,8 @@ def manage_games(request):
     return render(request, 'manage_games.html', context)
 
 def edit(request):
+
+
     return render(request, 'managed_game.html')
 
 @csrf_exempt
@@ -95,14 +97,24 @@ def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
+        form2 = DeleteNewForm(request.POST, instance=post)
+
+
         if form.is_valid():
+            gamedelete = request.POST.get('delete')
+            if gamedelete == 'yes':
+                if form2.is_valid():
+                    post.delete()
+                    return HttpResponseRedirect('/delete_game/')
+           #      New.objects.get(pk=id).delete()
             post = form.save(commit=False)
             post.saleprice = 0
             post.onsale = False
             post.soldcopies = 0
             post.id = Game.id
+
             post.developer = request.user
-            post.publish_date = Game.publish_date 
+            post.publish_date = Game.publish_date
             post.save()
             return HttpResponseRedirect('/managed_game/')
     else:

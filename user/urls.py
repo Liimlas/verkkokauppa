@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^manage_games/([a-zA-Z0-9]+)/$', views.edit_game, name='manage_games'),
     #url(r'^update_game/(?P<pk>\d+)/$', views.edit_game, name='update_game'),
     url(r'^managed_game/$', views.edit, name='managed_game'),
+    url(r'^delete_game/$', views.edit, name='managed_game'),
 ]
