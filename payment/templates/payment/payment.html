@@ -10,7 +10,9 @@
 <form action="http://payments.webcourse.niksula.hut.fi/pay/" method="POST">
     <input type="hidden" name="pid" value="{{ pid }}" />
     <input type="hidden" name="sid" value="{{ sid }}" />
-    <input type="hidden" name="success_url" value="{{ success_url }}" />
+    {% with 'http://localhost:8000/payment/success/'|add:game.id as gameurl %}
+    <input type="hidden" name="success_url" value="{{ gameurl }}" />
+    {% endwith %}
     <input type="hidden" name="cancel_url" value="{{ cancel_url }}" />
     <input type="hidden" name="error_url" value="{{ error_url }}" />
     <input type="hidden" name="checksum" value="{{ checksum }}" />
