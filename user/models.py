@@ -8,6 +8,7 @@ class Profile(models.Model):
     is_developer = models.BooleanField(default=False)
     birth_date = models.DateField(null=True, blank=True, help_text="mm/dd/yyyy or yyyy-mm-dd")
     photo = models.ImageField(upload_to='user_pictures', default="", null=True, blank=True)
+    email_confirmed = models.BooleanField(default=False)
 
 #Automatically creates Profile-instance for every User-instance
 def create_profile(sender, **kwargs):
