@@ -108,7 +108,7 @@ def addnewgame(request):
             newGame = form.save(commit=False)
             newGame.developer = request.user
             if gamesale == 'yes':
-              
+                newGame.saleprice = (1-newGame.saleprice) * newGame.price
                 newGame.onsale = True
             else:
                 newGame.saleprice = 0
@@ -154,40 +154,6 @@ def edit_game(request, pk):
 
 
 
-
-
-
-"""
-update_profile(request, pk):
-    user = User.objects.get(pk=pk)
-    user_form = ProfileForm(instance=user)
-    context = { 'games': Game.objects.filter(developer=request.user) }
-
-    ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'is_developer', 'photo'))
-    formset = ProfileInlineFormset(instance=user)
-
-    if request.user.is_authenticated() and request.user.pk == user.pk:
-        if request.method == 'POST':
-            user_form = ProfileForm(request.POST, request.FILES, instance=user)
-            formset = ProfileInlineFormset(instance=user)
-
-            if user_form.is_valid():
-                created_user = user_form.save(commit=False)
-                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
-
-                if formset.is_valid():
-                    created_user.save()
-                    formset.save()
-                    return HttpResponseRedirect('/profile/')
-
-        return render(request, "update_profile.html", {
-            'noodle': pk,
-            'noodle_form': user_form,
-            'formset': formset,
-        })
-    else:
-        raise PermissionDenied
-    """
 
 
 def model_form_upload(request):
