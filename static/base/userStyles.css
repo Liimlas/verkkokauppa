@@ -1,0 +1,73 @@
+/*User image*/
+
+.profilePicture {
+	width: 150px;
+	height: 150px;
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.separator {
+	padding: 20px;
+	background-color: #fff;
+	width: 100%;
+}
+
+.profileBlock {
+	display: inline-block;
+	width: 100%;
+/*	background: linear-gradient(#23527C, #6384A2);*/
+	background: linear-gradient(#eee, #fff);
+}
+
+.profileBlock h1 {
+	font-family: Tahoma;
+	padding-left: 10px;
+	color: #666;
+    font-size: 30px;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+	display: block;
+	background-color: transparent;
+}
+
+.profileBlock h2 {
+	font-family: Tahoma;
+	padding-left: 10px;
+	color: #666;
+    font-size: 25px;
+    width: 100%;
+	display: block;
+	background-color: transparent;
+}
+
+.profileBlock p {
+	background-color: transparent;
+}
+
+.profileBlock a {
+	padding-left: 10px;
+}
+/*Title in profile table*/
+.profileTitle {
+	width: 20%;
+	padding: 5px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.userList {
+	padding: 5px;
+}
+
+/*Changes odd table rows to grey, mostly for profile*/
+tr:nth-child(even) {
+	background-color: #EEEEEE;
+}
+
+th {
+  vertical-align: top;
+}

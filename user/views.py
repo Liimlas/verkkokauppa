@@ -35,7 +35,7 @@ def update_profile(request, pk):
 
     #Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
     #and profile- fields defined below
-    ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'is_developer', 'photo'))
+    ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'photo'))
     formset = ProfileInlineFormset(instance=user)
 
     if request.user.is_authenticated() and request.user.pk == user.pk:
@@ -83,7 +83,9 @@ def signup(request):
             user.is_active = False
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            user.profile.is_developer = form.cleaned_data.get('is_developer')
             user.save()
+            user.profile.save()
             current_site = get_current_site(request)
             subject = 'Activate your account'
             message = render_to_string('verification/account_activation_email.html', {

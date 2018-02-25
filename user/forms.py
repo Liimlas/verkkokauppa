@@ -2,13 +2,12 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm, EmailField
-from django.utils.translation import ugettext_lazy as _
-
+from .models import Profile
 
 #extends django UserCreationForm with an email field
 class UserCreationForm(UserCreationForm):
-    email = EmailField(
-        label=_("Email address"), required=True, help_text=_("Required."))
+    email = forms.EmailField(required=True)
+    is_developer = forms.BooleanField(required=False)
 
     class Meta:
         model = User
