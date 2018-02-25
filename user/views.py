@@ -82,7 +82,7 @@ def signup(request):
             user.is_active = False
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            #user = authenticate(username=username, password=raw_password)
             user.save()
             current_site = get_current_site(request)
             subject = 'Activate your account'

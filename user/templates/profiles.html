@@ -7,6 +7,7 @@
 
 <table width="100%">
 {% for profile in profiles %}
+{% if not profile.is_superuser %}
 <tr class="userList">
 
   <th width="70px">
@@ -20,6 +21,7 @@
     <a href={{ userUrl }}>{{profile.username}}</a></td>
     {% endwith %}</th>
 </tr>
+{% endif %}
 {% endfor %}
 </table>
 
