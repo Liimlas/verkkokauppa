@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
   {% block title %}
   <title>Web Shop | JavaScript Games Online</title>
   {% endblock %}
-  <meta charset="utf-8"> {% load static %}
+  <meta charset="utf-8">
+
+  {% load static %}
   <link rel="stylesheet" href="{% static 'base/style.css' %}" />
-  <link rel="stylesheet" gref="{% static 'base/formstyles.css' %}" />
-  <!--<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
+  <link rel="stylesheet" href="{% static 'base/formstyles.css' %}" />
 
   <script type="text/javascript" src="gamesales/script.js"></script>
-  <!--Quattrocento- font -->
+
+
   <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
 
   <!--Bootstrap stuff -->
@@ -104,19 +104,19 @@
   <ul class="nav">
     {% with '/profile/'|add:user.username as userUrl %}
     <li>
-      <a href={{userUrl}}>Profile</a>
+      <a href={{ userUrl }}>Profile</a>
     </li>
     {% endwith %}
     <li>
       <a href="{% url 'profiles' %}">Users</a>
     </li>
+    {% if user.is_authenticated and user.profile.is_developer %}
     <li>
       <a href="{% url 'addGame' %}">Add game</a>
     </li>
     <li>
       <a href="{% url 'manage_games' %}">Manage games</a>
     </li>
-    {% if user.is_authenticated and user.profile.is_developer %}
     {% endif %}
   </ul>
 </nav>

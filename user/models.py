@@ -14,8 +14,6 @@ def create_profile(sender, **kwargs):
     if kwargs["created"]:
         user_profile = Profile(user=user, photo="")
         user_profile.save()
+
 post_save.connect(create_profile, sender=User)
 
-
-
-# Create your models here.
