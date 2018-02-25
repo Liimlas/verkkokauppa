@@ -136,3 +136,7 @@ input[type=text], input[type=password] {
 tr:nth-child(odd) {
 	background-color: #EEEEEE;
 }
+/*gamesale*/
+.sale{
+color: red;
+}

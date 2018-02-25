@@ -108,7 +108,7 @@ def addnewgame(request):
             newGame = form.save(commit=False)
             newGame.developer = request.user
             if gamesale == 'yes':
-                newGame.saleprice = 0
+              
                 newGame.onsale = True
             else:
                 newGame.saleprice = 0
