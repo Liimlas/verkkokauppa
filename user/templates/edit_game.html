@@ -7,10 +7,14 @@
 <form method="POST" enctype="multipart/form-data">
     {%csrf_token %}
     {{ form.as_p }}
+    <p>Game for sale:<br>
+  Yes<input type="radio" name="sale" value="yes">/
+            No<input type="radio" name="sale" value="no"></p>
 
-        Delete Game:<br>
+        <p>Delete Game:<br>
   Yes<input type="radio" name="delete" value="yes">/
-        No<input type="radio" name="delete" value="no">
+            No<input type="radio" name="delete" value="no"></p>
+
 
     <button type="submit">Change</button>
 </form>

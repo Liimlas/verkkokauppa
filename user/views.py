@@ -101,13 +101,18 @@ def delete_game(request):
 def addnewgame(request):
     if request.method == 'POST':
         form = ChangeGameForm(request.POST, request.FILES)
+        gamesale = request.POST.get('sale')
         context= {}
 
         if form.is_valid():
             newGame = form.save(commit=False)
             newGame.developer = request.user
-            newGame.saleprice = 0
-            newGame.onsale = False
+            if gamesale == 'yes':
+                newGame.saleprice = 0
+                newGame.onsale = True
+            else:
+                newGame.saleprice = 0
+                newGame.onsale = False
             newGame.soldcopies = 0
             newGame.publish_date = timezone.now()
 
