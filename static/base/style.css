@@ -100,6 +100,7 @@ body {
 
 .gamesalee{
     font: italic bold 12px/30px serif;
+
 }
 
 /*Form stylings*/
@@ -139,4 +140,7 @@ tr:nth-child(odd) {
 /*gamesale*/
 .sale{
 color: red;
+}
+.oldprice{
+text-decoration: line-through;
 }
