@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.contrib import auth
 from main.models import Game, BoughtGame
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def play(request):
     owned_games = []
 

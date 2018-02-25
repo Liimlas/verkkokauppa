@@ -12,11 +12,12 @@ def payment(request, gameid):
     try:
         game = Game.objects.get(id=gameid)
     except ObjectDoesNotExist:
+        #if game doesn't exist for some reason, redirect to error
         return redirect('error')
 
+    #needed for differenciating between showing buy and play buttons
     alreadyOwned = True
     ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
-
     if ownedSet.count() == 0 and game.developer != request.user:
         alreadyOwned = False
 
@@ -58,6 +59,7 @@ def success(request, gameid):
     user = request.user
     boughtGame = Game.objects.get(id=gameid)
 
+    #makes sure you can't buy the same game more than once
     oldPurchase = BoughtGame.objects.filter(owner=user, game=boughtGame)
     if oldPurchase.count() != 0:
         return redirect('games')

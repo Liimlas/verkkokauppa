@@ -15,6 +15,7 @@ def games(request):
 
     ownedGames = []
     boughtGames = []
+    #Needed for knowing whether to show buy- button or not (doesn't shot it if you already own the game)
     if request.user.is_authenticated:
         boughtGames = BoughtGame.objects.filter(owner=request.user)
 
@@ -41,6 +42,7 @@ def viewgame(request, id):
     for game in Game.objects.all():
         if id == game.id:
 
+            #checks if you are signed in and already own the game, and decides which button play/buy to show
             if request.user.is_authenticated:
                 ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
 
@@ -80,7 +82,6 @@ def generate():
 
 
 def addGame(request):
-
     if request.method == 'POST':
         form = AddGameForm(request.POST, request.FILES)
         context= {}
@@ -102,6 +103,7 @@ def addGame(request):
         form = AddGameForm()
 
     return render(request, 'gamesales/addGame.html', {'form': form})
+
 
 def onSale(request):
     games = Game.objects.all()

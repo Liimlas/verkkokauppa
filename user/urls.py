@@ -7,7 +7,6 @@ urlpatterns = [
     url(r'^profile/update_profile/(?P<pk>\d+)/$',
         views.update_profile,
         name='update_profile'),
-    #url(r'^profile_updated/$', views.profile_updated, name='profile_updated'),
     url(r'^upload/$', views.model_form_upload, name='upload'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profiles/$', views.profiles, name='profiles'),

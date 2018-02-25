@@ -1,46 +1,5 @@
-body {
-  padding:20px;
-  margin: 20px;
-}
-/*Header stuff */
-/*Main navigation*/
-.navigationdiv {
-	display: inline-block;
-	width: auto;
-	margin: auto;
-}
 
-.navigationdiv a p {
-	margin: 10px 15px 15px 15px;
-	font-family: Quattrocento;
-	font-size: 50px;
-	text-align: center;
-}
-
-.navigationdiv a:hover {
-	text-decoration: none;
-}
-
-/*User-info-login-thing*/
-.headerRight {
-  float: right;
-  clear:right;
-  padding-right: 20px;
-  padding-top: 20px;
-  color: #000000;
-  text-align: right;
-}
-
-.headerRightText {
-  float:left;
-  padding-right: 10px;
-}
-
-.headerRight img{
-  float:right;
-  height: 70px;
-  width: 70px;
-}
+/*Random styles that didn't warrant their ownr CSS file */
 
 /*Side navigation*/
 .nav-sidebar {
@@ -64,39 +23,7 @@ body {
   font-size: 16px;
 }
 
-/* Main content */
-.content {
-  float:right;
-  width: 80%;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-	font-family: Verdana;
-}
-
-.content h1 {
-  font-family: Quattrocento;
-  font-size: 30px;
-  width: 100%;
-  border-bottom: 1px dashed #676767;
-  display: block;
-}
-
-.content h2 {
-	font-family: Quattrocento;
-	font-size: 26px;
-}
-
-.content p {
-  background-color: #EEEEEE;
-  padding: 10px;
-}
-
-.content li {
-	list-style-type: none;
-	padding:5
-}
-
+/*pls vaihtakaa tän nimi*/
 .gamesalee{
     font: italic bold 12px/30px serif;
 }
@@ -111,8 +38,7 @@ input[type=text], input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    box-sizing: border-box;
-}
+    box-sizing: border-box;}
 
 /*User image*/
 .profilePicture {

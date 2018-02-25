@@ -1,0 +1,33 @@
+/* Main content, headers, lists etc */
+
+.content {
+  float: right;
+  width: 80%;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: Verdana;
+}
+
+.content h1 {
+  font-family: Quattrocento;
+  font-size: 30px;
+  width: 100%;
+  border-bottom: 1px dashed #676767;
+  display: block;
+}
+
+.content h2 {
+  font-family: Quattrocento;
+  font-size: 26px;
+}
+
+.content p {
+  background-color: #eeeeee;
+  padding: 10px;
+}
+
+.content li {
+  list-style-type: none;
+  padding: 5;
+}

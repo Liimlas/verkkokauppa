@@ -29,6 +29,8 @@ def update_profile(request, pk):
     user_form = ProfileForm(instance=user)
     context = { 'games': Game.objects.filter(developer=request.user) }
 
+    #Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
+    #and profile- fields defined below
     ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'is_developer', 'photo'))
     formset = ProfileInlineFormset(instance=user)
 
@@ -41,6 +43,7 @@ def update_profile(request, pk):
                 created_user = user_form.save(commit=False)
                 formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
 
+                #if creation is valid, updates both instances
                 if formset.is_valid():
                     created_user.save()
                     formset.save()
@@ -66,6 +69,7 @@ def viewUser(request, username):
             context['games'] = Game.objects.filter(developer=user)
     return render(request, 'view_user.html', context)
 
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -80,6 +84,7 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup/signup.html', {'form': form})
 
+
 def manage_games(request):
     context = {'own_games': Game.objects.filter(developer = request.user)}
 
@@ -87,7 +92,6 @@ def manage_games(request):
 
 def edit(request, id):
     context = {'id': id}
-
     return render(request, 'edit_game.html', context)
 
 @csrf_exempt
@@ -125,5 +129,3 @@ def model_form_upload(request):
     return render(request, 'model_form_upload.html', {
         'form': form
     })
-
-# Create your views here.

@@ -1,0 +1,41 @@
+
+/*Header stuff */
+
+/*Main navigation*/
+.navigationdiv {
+	display: inline-block;
+	width: auto;
+	margin: auto;
+}
+
+.navigationdiv a p {
+	margin: 10px 15px 15px 15px;
+	font-family: Quattrocento;
+	font-size: 50px;
+	text-align: center;
+}
+
+.navigationdiv a:hover {
+	text-decoration: none;
+}
+
+/*User-info-login-thing*/
+.headerRight {
+  float: right;
+  clear:right;
+  padding-right: 20px;
+  padding-top: 20px;
+  color: #000000;
+  text-align: right;
+}
+
+.headerRightText {
+  float:left;
+  padding-right: 10px;
+}
+
+.headerRight img{
+  float:right;
+  height: 70px;
+  width: 70px;
+}
