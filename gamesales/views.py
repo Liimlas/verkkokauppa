@@ -14,14 +14,16 @@ def games(request):
     games = Game.objects.all()
 
     ownedGames = []
-    boughtGames = BoughtGame.objects.filter(owner=request.user)
+    boughtGames = []
+    if request.user.is_authenticated:
+        boughtGames = BoughtGame.objects.filter(owner=request.user)
 
-    for purchase in boughtGames:
-        ownedGames.append(purchase.game)
+        for purchase in boughtGames:
+            ownedGames.append(purchase.game)
 
-    for game in games:
-        if game.developer == request.user:
-            ownedGames.append(game)
+        for game in games:
+            if game.developer == request.user:
+                ownedGames.append(game)
 
     context = {
         'games' : games,
@@ -39,10 +41,11 @@ def viewgame(request, id):
     for game in Game.objects.all():
         if id == game.id:
 
-            ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
+            if request.user.is_authenticated:
+                ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
 
-            if ownedSet.count() != 0 or game.developer == request.user:
-                alreadyOwned = True
+                if ownedSet.count() != 0 or game.developer == request.user:
+                    alreadyOwned = True
 
             context['gamefound'] = True
             context['game'] = game

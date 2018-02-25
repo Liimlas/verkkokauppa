@@ -4,8 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from hashlib import md5
 from main.models import BoughtGame, Game
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def payment(request, gameid):
     try:
         game = Game.objects.get(id=gameid)
@@ -46,16 +48,26 @@ def payment(request, gameid):
         }
     return render(request, 'payment/payment.html', context)
 
+
+@login_required
 def error(request):
     return render(request, 'payment/payment_error.html')
 
+@login_required
 def success(request, gameid):
     user = request.user
     boughtGame = Game.objects.get(id=gameid)
+
+    oldPurchase = BoughtGame.objects.filter(owner=user, game=boughtGame)
+    if oldPurchase.count() != 0:
+        return redirect('games')
+
     newPurchase = BoughtGame(owner=user, game=boughtGame)
     newPurchase.save()
     context = {'game': boughtGame}
     return render(request, 'payment/payment_success.html', context)
 
+
+@login_required
 def cancel(request):
     return render(request, 'payment/payment_cancel.html')

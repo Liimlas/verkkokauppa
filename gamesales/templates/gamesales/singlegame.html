@@ -19,14 +19,12 @@
     <button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button>
 </a>
 {% endwith %}
-{% comment %}
 {% else %}
 {% with '/payment/'|add:game.id as paymenturl %}
 <a href={{ paymenturl }}>
     <button class='btn btn-success' value='Click to buy the game!' onClick='' window.location='{ paymenturl }'>Buy</button>
 </a>
 {% endwith %}
-{% endcomment %}
 {% endif %}
 {% else %}
 <h1 class="textRight">Peliä ei löytynyt!</h1>
