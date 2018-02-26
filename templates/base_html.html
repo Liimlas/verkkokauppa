@@ -12,9 +12,7 @@
   <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}" />
   <link rel="stylesheet" href="{% static 'base/userStyles.css' %}" />
   <link rel="stylesheet" href="{% static 'base/formStyles.css' %}" />
-  <!--<link rel="stylesheet" href="{% static 'gamesales/script.js' %}" media="screen" />-->
 
-  <script type="text/javascript" src="gamesales/script.js"></script>
   <!--Quattrocento- font -->
   <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
 
@@ -34,34 +32,37 @@
 
 </head>
 
+<body>
+
 <!--Header containing main navigation and cool user-info-login-thing -->
-<div id="header">
+<div id="headegitr">
 
   {% block header %}
-  <div class='navigationdiv'>
-    <a href="{% url 'index' %}">
-      <p>Home</p>
-    </a>
-  </div>
-  <div class='navigationdiv'>
-    <ul>
-      <a data-toggle="dropdown" href="{% url 'games' %}">
-        <p>Games</p>
+  <div id="headNavContainer"></div>
+    <div class='navigationdiv'>
+      <a href="{% url 'index' %}">
+        <p>Home</p>
       </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'games' %}">All</a>
-        <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
-        <a class="dropdown-item" href="#">New</a>
-      </div>
-    </ul>
-  </div>
-
-  <div class='navigationdiv'>
-    <ul>
-      <a href="{% url 'play' %}">
-        <p>Play</p>
-      </a>
-    </ul>
+    </div>
+    <div class='navigationdiv'>
+      <ul>
+        <a data-toggle="dropdown" href="{% url 'games' %}">
+          <p>Games</p>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'games' %}">All</a>
+          <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
+          <a class="dropdown-item" href="#">New</a>
+        </div>
+      </ul>
+    </div>
+    <div class='navigationdiv'>
+      <ul>
+        <a href="{% url 'play' %}">
+          <p>Play</p>
+        </a>
+      </ul>
+    </div>
   </div>
 
   <!-- Cool user-info-login-thing -->
