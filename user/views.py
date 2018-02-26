@@ -193,9 +193,6 @@ def edit_game(request, pk):
                 else:
                     newGame.saleprice = 0
                     newGame.onsale = False
-
-                newGame.saleprice = 0
-                newGame.onsale = False
                 newGame.soldcopies = 0
                 newGame.publish_date = timezone.now()
 

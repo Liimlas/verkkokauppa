@@ -21,7 +21,7 @@
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">
 							<div class="col-md-4">
-								<img class="img-responsive" src="{% static 'images/Cute.jpg' %}" alt=""/>
+								<img class="img-responsive" src="{{game.image.url}}" alt=""/>
 							</div>
 							<div class="col-md-8">
 								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
@@ -64,8 +64,6 @@
 
 
 {% endblock %}
-
-
 
 
 
