@@ -1,15 +1,25 @@
 
 /*Header stuff */
 
+#header {
+  min-width: 100rem;
+  height: 10rem;
+}
+
+#headNavContainer {
+  height: 10 rem;
+  min-width: 20rem;
+}
+
 /*Main navigation*/
 .navigationdiv {
 	display: inline-block;
-	width: auto;
+	/* width: auto; */
 	margin: auto;
 }
 
 .navigationdiv a p {
-	margin: 10px 15px 15px 15px;
+	margin: 0.1em 0 0.2em 0.4em;
 	font-family: Quattrocento;
 	font-size: 50px;
 	text-align: center;
@@ -23,10 +33,11 @@
 .headerRight {
   float: right;
   clear:right;
-  padding-right: 20px;
-  padding-top: 20px;
+  padding: 1em 1em 1em 1em;
   color: #000000;
   text-align: right;
+  min-width: 10em;
+  height: 10rem;
 }
 
 .headerRightText {

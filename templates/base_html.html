@@ -38,30 +38,31 @@
 <div id="header">
 
   {% block header %}
-  <div class='navigationdiv'>
-    <a href="{% url 'index' %}">
-      <p>Home</p>
-    </a>
-  </div>
-  <div class='navigationdiv'>
-    <ul>
-      <a data-toggle="dropdown" href="{% url 'games' %}">
-        <p>Games</p>
+  <div id="headNavContainer"></div>
+    <div class='navigationdiv'>
+      <a href="{% url 'index' %}">
+        <p>Home</p>
       </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'games' %}">All</a>
-        <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
-        <a class="dropdown-item" href="#">New</a>
-      </div>
-    </ul>
-  </div>
-
-  <div class='navigationdiv'>
-    <ul>
-      <a href="{% url 'play' %}">
-        <p>Play</p>
-      </a>
-    </ul>
+    </div>
+    <div class='navigationdiv'>
+      <ul>
+        <a data-toggle="dropdown" href="{% url 'games' %}">
+          <p>Games</p>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'games' %}">All</a>
+          <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
+          <a class="dropdown-item" href="#">New</a>
+        </div>
+      </ul>
+    </div>
+    <div class='navigationdiv'>
+      <ul>
+        <a href="{% url 'play' %}">
+          <p>Play</p>
+        </a>
+      </ul>
+    </div>
   </div>
 
   <!-- Cool user-info-login-thing -->
