@@ -1,7 +1,6 @@
 {% extends "base_play.html" %}
 {% block content %}
 
-{% block gameframe %}
 {% if not game %}
 
 <h1>The game does not either exists, or you have not bought it!</h1>
@@ -11,11 +10,10 @@
 <p>{{ game.name }}</p>
 {% with game.link as gameurl %}
 
-<iframe style="width: 1200px; height: 800px;" src={{ gameurl }}>
+<iframe width='1200px' height='800px' src={{gameurl}} allowfullscreen>
 
 </iframe>
 
 {% endwith %}
 {% endif %}
-{% endblock %}
 {% endblock %}

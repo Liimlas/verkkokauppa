@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def play(request):
+
     owned_games = []
 
     if request.user.is_authenticated:

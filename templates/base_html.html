@@ -6,7 +6,11 @@
   {% block title %}
   <title>Web Shop | JavaScript Games Online</title>
   {% endblock %}
-  <meta charset="utf-8"> {% load static %}
+  <meta charset="utf-8" http-equiv="X-Frame-Options" content="allow">
+
+
+
+  {% load static %}
   <link rel="stylesheet" href="{% static 'base/style.css' %}" />
   <link rel="stylesheet" href="{% static 'base/contentStyles.css' %}" />
   <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}" />
@@ -33,7 +37,7 @@
   <!-- Bootstrap stuff ends -->
 
 </head>
-
+<body>
 <!--Header containing main navigation and cool user-info-login-thing -->
 <div id="header">
 
