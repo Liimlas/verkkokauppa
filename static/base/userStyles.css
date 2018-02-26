@@ -64,7 +64,7 @@
 }
 
 /*Changes odd table rows to grey, mostly for profile*/
-tr:nth-child(even) {
+tr:nth-child(odd) {
 	background-color: #EEEEEE;
 }
 
