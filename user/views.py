@@ -8,13 +8,18 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm, UserCreationForm
-from gamesales.forms import ChangeGameForm
+from gamesales.forms import ChangeGameForm, DeleteNewForm, AddGameForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from gamesales.views import generate
+
+
 
 
 @login_required
@@ -126,33 +131,86 @@ def manage_games(request):
 
     return render(request, 'manage_games.html', context)
 
-def edit(request, id):
-    context = {'id': id}
-    return render(request, 'edit_game.html', context)
+def edit(request):
 
-@csrf_exempt
-def edit_game(request, id):
+
+    return render(request, 'managed_game.html')
+
+def delete_game(request):
+
+
+    return render(request, 'delete_game.html')
+
+def addnewgame(request):
     if request.method == 'POST':
-        form = ChangeGameForm(request.POST, request.FILES)
-        context = {}
+        form = AddGameForm(request.POST, request.FILES)
+        context= {}
 
         if form.is_valid():
             newGame = form.save(commit=False)
             newGame.developer = request.user
-            newGame.saleprice = request.saleprice
+            newGame.saleprice = 0
             newGame.onsale = False
             newGame.soldcopies = 0
-            newGame.publish_date = Game.publish_date
+            newGame.publish_date = timezone.now()
 
-
-            newGame.id = id
+            newID = generate()
+            newGame.id = newID
             newGame.save()
 
             return redirect('index')
     else:
-        form = ChangeGameForm()
+        form = AddGameForm()
 
-    return render(request, 'gamesales/addGame.html', {'form': form})
+    return render(request, 'edit_game.html', {'form': form})
+
+
+@csrf_exempt
+def edit_game(request, pk):
+    post = get_object_or_404(Game, pk=pk)
+    post2 = get_object_or_404(Game, pk=pk)
+    if request.method == "POST":
+        form = ChangeGameForm(request.POST, instance=post)
+        # form3 = AddGameForm(request.POST, instance=post)
+        form2 = DeleteNewForm(request.POST, instance=post)
+        if form.is_valid():
+            gamedelete = request.POST.get('delete')
+            gamesale = request.POST.get('sale')
+            if gamedelete == 'yes':
+                if form2.is_valid():
+                    post.delete()
+                    return HttpResponseRedirect('/delete_game/')
+            else:
+                post.delete()
+                newGame = form.save(commit=False)
+                newGame.developer = request.user
+
+                context = {}
+
+                if gamesale == 'yes':
+                    newGame.saleprice = ( 1 - newGame.saleprice) * newGame.price
+                    newGame.onsale = True
+                else:
+                    newGame.saleprice = 0
+                    newGame.onsale = False
+
+                newGame.saleprice = 0
+                newGame.onsale = False
+                newGame.soldcopies = 0
+                newGame.publish_date = timezone.now()
+
+                newID = generate()
+                newGame.id = newID
+                newGame.save()
+
+                return HttpResponseRedirect('/managed_game/')
+           #      New.objects.get(pk=id).delete()
+
+    else:
+        form = ChangeGameForm(instance=post)
+    return render(request, 'edit_game.html', {'form': form})
+
+
 
 def model_form_upload(request):
     if request.method == 'POST':
