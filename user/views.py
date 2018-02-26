@@ -188,13 +188,13 @@ def edit_game(request, pk):
                 context = {}
 
                 if gamesale == 'yes':
-                    newGame.saleprice = ( 1 - newGame.saleprice) * newGame.price
+                    newGame.saleprice = (( 1 - newGame.saleprice) * newGame.price)
                     newGame.onsale = True
                 else:
                     newGame.saleprice = 0
                     newGame.onsale = False
                 newGame.soldcopies = 0
-                newGame.publish_date = timezone.now()
+
 
                 newID = generate()
                 newGame.id = newID
