@@ -188,7 +188,7 @@ def edit_game(request, pk):
                 context = {}
 
                 if gamesale == 'yes':
-                    newGame.saleprice = (( 1 - newGame.saleprice) * newGame.price)
+                    newGame.saleprice = format(( 1 - newGame.saleprice) * newGame.price,'.2f')
                     newGame.onsale = True
                 else:
                     newGame.saleprice = 0
