@@ -136,34 +136,9 @@ def edit(request):
 
     return render(request, 'managed_game.html')
 
+
 def delete_game(request):
-
-
     return render(request, 'delete_game.html')
-
-def addnewgame(request):
-    if request.method == 'POST':
-        form = AddGameForm(request.POST, request.FILES)
-        context= {}
-
-        if form.is_valid():
-            newGame = form.save(commit=False)
-            newGame.developer = request.user
-            newGame.saleprice = 0
-            newGame.onsale = False
-            newGame.soldcopies = 0
-            newGame.publish_date = timezone.now()
-
-            newID = generate()
-            newGame.id = newID
-            newGame.save()
-
-            return redirect('index')
-    else:
-        form = AddGameForm()
-
-    return render(request, 'edit_game.html', {'form': form})
-
 
 @csrf_exempt
 def edit_game(request, pk):
@@ -176,6 +151,7 @@ def edit_game(request, pk):
         if form.is_valid():
             gamedelete = request.POST.get('delete')
             gamesale = request.POST.get('sale')
+            # if developer wants delete game
             if gamedelete == 'yes':
                 if form2.is_valid():
                     post.delete()
@@ -187,8 +163,11 @@ def edit_game(request, pk):
 
                 context = {}
 
+                # radio button check that if game is on sale
+                # -> onsale is true and gamesale has two decimal
                 if gamesale == 'yes':
-                    newGame.saleprice = format(( 1 - newGame.saleprice) * newGame.price,'.2f')
+                    newGame.saleprice = format(( 1 - newGame.saleprice) *
+                                               newGame.price,'.2f')
                     newGame.onsale = True
                 else:
                     newGame.saleprice = 0
