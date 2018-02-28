@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm, UserCreationForm
-from gamesales.forms import ChangeGameForm, DeleteNewForm, AddGameForm
+from gamesales.forms import ChangeGameForm, DeleteNewForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
@@ -132,8 +132,6 @@ def manage_games(request):
     return render(request, 'manage_games.html', context)
 
 def edit(request):
-
-
     return render(request, 'managed_game.html')
 
 
@@ -164,7 +162,7 @@ def edit_game(request, pk):
 
                 # radio button check that if game is on sale
                 # -> onsale is true and gamesale has two decimal
-                if gamesale == 'yes':
+                if gamesale == 'yes' and newGame.saleprice != 0:
                     newGame.saleprice = format(( 1 - newGame.saleprice) *
                                                newGame.price,'.2f')
                     newGame.onsale = True
