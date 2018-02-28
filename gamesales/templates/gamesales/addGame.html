@@ -3,22 +3,6 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<!-- <form method="post" action="/addGame/">
-    Name of the game:<br>
-        <input type="text" name="name" required>
-    <br>
-    Price:<br>
-        <input type="float" name="price" min="0.0" required><br>
-    Link:<br>
-        <input type="text" name="link" required>
-    <br>
-    Game image: <input type="file" name="pic" id="pic"><br>
-    Permission to use photo:
-        Yes <input type="radio" name="usePhoto" value="yes">  /
-        No <input type="radio" name="usePhoto" value="no">
-    <br>
-    <input type="submit" value="Add"><br>
-</form> -->
 <form method="POST" enctype="multipart/form-data" action="/addGame/">
     {%csrf_token %}
     {{ form.as_p }}
@@ -45,7 +29,4 @@
 {% endblock %}
 
 
-
-  <!--Quantity (between 1 and 5):
-  <input type="number" name="quantity" min="1" max="5"><br>-->
 

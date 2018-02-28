@@ -80,6 +80,9 @@ def generate():
         else:
             return id
 
+def added_game(request):
+    return render(request, 'gamesales/showdata.html')
+
 
 def addGame(request):
     if request.method == 'POST':
@@ -98,7 +101,7 @@ def addGame(request):
             newGame.id = newID
             newGame.save()
 
-            return redirect('index')
+            return HttpResponseRedirect('/addedGame/')
     else:
         form = AddGameForm()
 
