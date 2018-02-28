@@ -180,8 +180,7 @@ def edit_game(request, pk):
            #      New.objects.get(pk=id).delete()
 
     else:
-        
-        #z = (1-x)*y -> (z/y)-1 = -x -> x = -(z/y)+1
+        # this do that there is right sale procent value
         if post.onsale == False:
             post.saleprice = 0.0
         else:
