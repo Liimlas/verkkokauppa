@@ -146,7 +146,6 @@ def edit_game(request, pk):
     post2 = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
-        # form3 = AddGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
         if form.is_valid():
             gamedelete = request.POST.get('delete')
@@ -183,8 +182,13 @@ def edit_game(request, pk):
            #      New.objects.get(pk=id).delete()
 
     else:
+        post.saleprice =  -(post.saleprice / post.price)+1
+
+        #z = (1-x)*y -> (z/y)-1 = -x -> x = -(z/y)+1
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
+
+
 
 
 
