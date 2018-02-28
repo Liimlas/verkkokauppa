@@ -3,7 +3,7 @@
 {% block content %}
 <!-- gamesales/forms.py has ChangeGameForm what we are using here -->
 <p>Change the game here!</p>
-
+<a href="{% url 'manage_games' %}"><button>&#8592; Back </button></a>
 <form method="POST" enctype="multipart/form-data">
     {%csrf_token %}
     {{ form.as_p }}
