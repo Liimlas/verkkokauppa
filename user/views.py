@@ -182,9 +182,12 @@ def edit_game(request, pk):
            #      New.objects.get(pk=id).delete()
 
     else:
-        post.saleprice =  format(-(post.saleprice / post.price)+1,'.2f')
-
         #z = (1-x)*y -> (z/y)-1 = -x -> x = -(z/y)+1
+        if post.onsale == False:
+            post.saleprice = 0.0
+        else:
+            post.saleprice =  format(-(post.saleprice / post.price)+1,'.2f')
+
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
 
