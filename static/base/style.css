@@ -1,6 +1,10 @@
 
 /*Random styles that didn't warrant their ownr CSS file */
 
+.body {
+  width: 100%;
+}
+
 /*Side navigation*/
 .nav-sidebar {
   box-sizing: border-box;
