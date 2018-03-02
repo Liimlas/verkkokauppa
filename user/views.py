@@ -154,27 +154,27 @@ def edit_game(request, pk):
                     post.delete()
                     return HttpResponseRedirect('/delete_game/')
             else:
-                post.delete()
-                newGame = form.save(commit=False)
-                newGame.developer = request.user
+
+                post = form.save(commit=False)
+                post.developer = request.user
 
                 context = {}
 
                 # radio button check that if game is on sale
                 # -> onsale is true and gamesale has two decimal
-                if gamesale == 'yes' and newGame.saleprice != 0:
-                    newGame.saleprice = format(( 1 - newGame.saleprice) *
-                                               newGame.price,'.2f')
-                    newGame.onsale = True
+                if gamesale == 'yes' and post.saleprice != 0:
+                    post.saleprice = format(( 1 - post.saleprice) *
+                                               post.price,'.2f')
+                    post.onsale = True
                 else:
-                    newGame.saleprice = 0
-                    newGame.onsale = False
-                newGame.soldcopies = 0
+                    post.saleprice = 0
+                    post.onsale = False
+                post.soldcopies = 0
 
 
-                newID = generate()
-                newGame.id = newID
-                newGame.save()
+
+
+                post.save()
 
                 return HttpResponseRedirect('/managed_game/')
            #      New.objects.get(pk=id).delete()
