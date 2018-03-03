@@ -6,7 +6,8 @@
   {% block title %}
   <title>Web Shop | JavaScript Games Online</title>
   {% endblock %}
-  <meta charset="utf-8"> {% load static %}
+  <meta charset="utf-8"> 
+  {% load static %}
   <link rel="stylesheet" href="{% static 'base/style.css' %}" />
   <link rel="stylesheet" href="{% static 'base/contentStyles.css' %}" />
   <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}" />
@@ -70,7 +71,17 @@
     {% if user.is_authenticated %}
     {% if user.profile.photo != "" %}
     <img src="{{user.profile.photo.url}}" alt="User"/> {% else %}
-    <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %} {% else %}
+    <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %}
+        <div class="headerRightText">
+          <p>Hello {{ user.username }}!
+            <br> {% with '/profile/'|add:user.username as userUrl %}
+            <a href={{userUrl}}>Profile</a>
+            {% endwith %}
+            <br>
+            <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
+          </p>
+        </div>
+    {% else %}
     <div class="headerRightText">
       <p>
         <a href="{% url 'login' %}">Login</a>
@@ -80,15 +91,6 @@
       </p>
     </div>
     {% endif %}
-    <div class="headerRightText">
-      <p>Hello {{ user.username }}!
-        <br> {% with '/profile/'|add:user.username as userUrl %}
-        <a href={{userUrl}}>Profile</a>
-        {% endwith %}
-        <br>
-        <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
-      </p>
-    </div>
   </div>
   <!-- User info ends-->
   {% endblock %}
