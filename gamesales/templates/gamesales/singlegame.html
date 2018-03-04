@@ -35,9 +35,9 @@
 <br>
 
 {% if zeroBought %}
-    <h1> {{ game.soldcopies }} at the moment</h1>
+    <h2> No one has bought yet!</h2>
 {% elif oneBought %}
-    <h1>The game has bought {{ game.soldcopies }} time</h1>
+    <h1>The game has been bought {{ game.soldcopies }} time</h1>
         <h4> The date is:</h4>
 {% else %}
     <h1>The game has bought {{ game.soldcopies }} times</h1>
@@ -45,10 +45,11 @@
 {% endif %}
 {% for date in sold %}
 {% if date in numbers %}
-, sold: {{ date }}
+sold: {{ date }}
 <br>
 {% else %}
-{{ date }}
+<br>
+    {{ date }}
 {% endif %}
 {% endfor %}
 
