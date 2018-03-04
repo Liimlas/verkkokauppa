@@ -72,3 +72,10 @@ tr:nth-child(odd) {
 th {
   vertical-align: top;
 }
+/*gamesale*/
+.sale{
+color: red;
+}
+.oldprice{
+text-decoration: line-through;
+}

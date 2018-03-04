@@ -8,13 +8,14 @@ from django.contrib.auth.models import User
 from main.models import Game
 from .models import Profile
 from .forms import ProfileForm, UserCreationForm
-from gamesales.forms import ChangeGameForm
+from gamesales.forms import ChangeGameForm, DeleteNewForm
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -126,33 +127,58 @@ def manage_games(request):
 
     return render(request, 'manage_games.html', context)
 
-def edit(request, id):
-    context = {'id': id}
-    return render(request, 'edit_game.html', context)
+# own page that change game is now done
+def edit(request):
+    return render(request, 'managed_game.html')
+
+# own page that game is deleted
+def delete_game(request):
+    return render(request, 'delete_game.html')
 
 @csrf_exempt
-def edit_game(request, id):
-    if request.method == 'POST':
-        form = ChangeGameForm(request.POST, request.FILES)
-        context = {}
-
+def edit_game(request, pk):
+    post = get_object_or_404(Game, pk=pk)
+    post2 = get_object_or_404(Game, pk=pk)
+    if request.method == "POST":
+        form = ChangeGameForm(request.POST, instance=post)
+        form2 = DeleteNewForm(request.POST, instance=post)
         if form.is_valid():
-            newGame = form.save(commit=False)
-            newGame.developer = request.user
-            newGame.saleprice = request.saleprice
-            newGame.onsale = False
-            newGame.soldcopies = 0
-            newGame.publish_date = Game.publish_date
+            gamedelete = request.POST.get('delete')
+            gamesale = request.POST.get('sale')
+            # if developer wants delete game
+            if gamedelete == 'yes':
+                if form2.is_valid():
+                    post.delete()
+                    return HttpResponseRedirect('/delete_game/')
+            else:
+                post = form.save(commit=False)
+                post.developer = request.user
+                context = {}
 
+                # radio button check that if game is on sale
+                # -> onsale is true and gamesale has two decimal
+                if gamesale == 'yes' and post.saleprice != 0:
+                    post.saleprice = format(( 1 - post.saleprice) *
+                                               post.price,'.2f')
+                    post.onsale = True
+                else:
+                    post.saleprice = 0
+                    post.onsale = False
+                post.soldcopies = 0
+                post.save()
 
-            newGame.id = id
-            newGame.save()
+                return HttpResponseRedirect('/managed_game/')
 
-            return redirect('index')
     else:
-        form = ChangeGameForm()
+        # this do that there is right sale procent value
+        if post.onsale == False:
+            post.saleprice = 0.0
+        else:
+            post.saleprice =  format(-(post.saleprice / post.price)+1,'.2f')
 
-    return render(request, 'gamesales/addGame.html', {'form': form})
+        form = ChangeGameForm(instance=post)
+    return render(request, 'edit_game.html', {'form': form})
+
 
 def model_form_upload(request):
     if request.method == 'POST':

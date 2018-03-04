@@ -10,7 +10,18 @@
         <div class="{% cycle 'carousel-item active' 'carousel-item' 'carousel-item' %}">
             <a href={{ gameurl }}><img src="{{new.image.url}}" alt="Cover Image" height="100px" width="100px" /></a>
             <p>{{ new.name }}</p>
-            <p>Price: {{ new.price }}€</p>
+            {% if new.onsale %}
+            <div class="gamesalee">
+                <div class="oldprice" >
+                    <p>Price {{new.price}} €</p>
+                </div>
+                    <div class="sale">
+                        <p>Sale price {{ new.saleprice }} € </p>
+                    </div>
+            </div>
+            {% else %}
+                <p>Price:  {{ new.price }} €</p>
+            {% endif %}
         </div>
         {% endwith %}
         {% endfor %}
@@ -43,7 +54,9 @@
 <br>
 {% for game in games %}
 {% with 'games/'|add:game.id as gameurl %}
-<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, myydyt kopiot {{ game.soldcopies }} ja pelin hinta {{ game.price }}€</p>
+<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, myydyt kopiot {{ game.soldcopies }} ja pelin hinta {% if game.onsale %} {{game.saleprice}} {% else %}{{ game.price }} {% endif%}€</p>
 {% endwith %}
 {% endfor %}
 {% endblock %}
+
+

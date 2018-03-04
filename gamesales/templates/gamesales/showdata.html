@@ -1,15 +1,9 @@
 {% extends "base_gamesales.html" %}
 
 {% block content %}
-
+<!-- When developer has added some game successfully. -->
 
 <h1>Successful added!</h1>
-<ul>
-    <li>Name of the game: {{ name }}</li>
-    <li>Developer: {{ developer }}</li>
-    <li>Price: {{ price }} e</li>
-    <li>Link: {{ link }}</li>
-    <!--<img src="{{ post.image.url }}" alt="img" class="img-responsive img-rounded">-->
-</ul>
+<a href="{% url 'addGame' %}"><button>&#8592; Back </button></a>
 
 {% endblock %}

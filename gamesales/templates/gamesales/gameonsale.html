@@ -1,4 +1,4 @@
-{% extends "base_gamesales.html" %}
+{% extends "base_html.html" %}
 {% load staticfiles %}
 
 {% block content %}
@@ -14,11 +14,48 @@
 {% for game in games %}
 {% if game.onsale %}
 {% with '/games/'|add:game.id as gameurl %}
-<h3><a href={{ gameurl }}>{{ game.name }}</a></h3>
+<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-default  panel--styled">
+					<div class="panel-body">
+						<div class="col-md-12 panelTop">
+							<div class="col-md-4">
+								<img class="img-responsive" src="{{game.image.url}}" alt=""/>
+							</div>
+							<div class="col-md-8">
+								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
 
-<div class="gamesalee">
-<p>Price {{game.price}} </p>
-</div>
+                            <div class="gamesalee">
+                              <div class="oldprice">
+                                  <p>Price {{game.price}} €</p>
+                              </div>
+                                <div class="sale">
+                                     <p>Sale price {{ game.saleprice }} € </p>
+                                </div>
+                            </div>
+
+							<div class="col-md-4 text-center" class="col-md-12 panelBottom">
+								<button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
+							</div>
+
+						</div>
+
+
+							<div class="col-md-4">
+								<div class="stars">
+								 <div id="stars" class="starrr"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+
+
+
 
 {% endwith %}
 {% endif %}

@@ -8,8 +8,22 @@
     <img class="align-self-start mr-3" src="{{game.image.url}}" alt="{{game.name}}" width=150px height=150px>
     <div class="media-body">
         <h1>{{ game.name }}</h1>
-        <p>Price {{ game.price }}e<br>
-        Developer {{ game.developer }} </p>
+
+        {% if game.onsale %}
+            <div class="gamesalee">
+                <div class="oldprice" >
+                    <p>Price {{game.price}} € </p>
+                </div>
+                    <div class="sale">
+                      <p>  Sale price {{ game.saleprice }}€ </p>
+                    </div>
+
+            </div>
+        {% else %}
+        <p>Price:  {{ game.price }} € </p>
+        {% endif %}
+
+        <p>Developer {{ game.developer }} </p>
     </div>
 </div>
 

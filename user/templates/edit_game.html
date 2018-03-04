@@ -1,18 +1,25 @@
-{% extends "base_user.html" %}
+{% extends "base_html.html" %}
 
 {% block content %}
-
-<p>täällä muutetaan sitä peliä</p>
-
+<!-- gamesales/forms.py has ChangeGameForm what we are using here -->
+<p>Change the game here!</p>
+<!-- back button to the page where is developer's own games
+    and possible to change those -->
+<a href="{% url 'manage_games' %}"><button>&#8592; Back </button></a>
 <form method="POST" enctype="multipart/form-data">
     {%csrf_token %}
     {{ form.as_p }}
+    <p>Game for sale:<br>
+        Yes<input type="radio" name="sale" value="yes">/
+        No<input type="radio" name="sale" value="no"></p>
+    <p>Delete Game:<br>
+        Yes<input type="radio" name="delete" value="yes">/
+        No<input type="radio" name="delete" value="no"></p>
     <button type="submit">Change</button>
 </form>
 
-
-
 {% endblock %}
+
 
 
 

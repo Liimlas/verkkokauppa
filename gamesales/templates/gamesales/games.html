@@ -20,7 +20,18 @@
 							</div>
 							<div class="col-md-8">
 								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
+								{% if game.onsale %}
+								  <div class="gamesalee">
+                              <div class="oldprice" >
+                                  <p>Price {{game.price}} €</p>
+                              </div>
+                                <div class="sale">
+                                     <p>Sale price {{ game.saleprice }} € </p>
+                                </div>
+                            </div>
+								{% else %}
 								<p>Price:  {{ game.price }} €</p>
+								{% endif %}
 
 							{% if game not in ownedGames %}
 							{% with '/payment/'|add:game.id as paymenturl %}
