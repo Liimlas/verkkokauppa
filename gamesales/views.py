@@ -39,6 +39,7 @@ def games(request):
 def viewgame(request, id):
     context = {}
     dates = []
+    numbers = []
     context['not_found'] = True
     alreadyOwned = False
 
@@ -71,9 +72,6 @@ def viewgame(request, id):
                                 dates.append(number)
                                 many += 1
                                 index += 1
-                               # removeNumber = index - 1
-
-
 
                             else:
                                 dates.append(gamedate.date)
@@ -90,8 +88,10 @@ def viewgame(request, id):
 
                                     index -= 1
                                 dates.append(num)
+                                numbers.append(num)
                             else:
                                 index -= 1
+
 
 
 
@@ -100,6 +100,7 @@ def viewgame(request, id):
             context['game'] = game
             context['alreadyOwned'] = alreadyOwned
 
+    context['numbers'] = numbers
     context['sold'] = dates
     if len(dates) == 0:
         context['zeroBought'] = True

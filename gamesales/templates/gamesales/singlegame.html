@@ -44,8 +44,12 @@
         <h4> The dates are: </h4>
 {% endif %}
 {% for date in sold %}
-{{ date }}
+{% if date in numbers %}
+, sold: {{ date }}
 <br>
+{% else %}
+{{ date }}
+{% endif %}
 {% endfor %}
 
 
