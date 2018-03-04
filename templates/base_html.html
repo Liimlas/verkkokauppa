@@ -6,7 +6,8 @@
   {% block title %}
   <title>Web Shop | JavaScript Games Online</title>
   {% endblock %}
-  <meta charset="utf-8"> {% load static %}
+  <meta charset="utf-8"> 
+  {% load static %}
   <link rel="stylesheet" href="{% static 'base/style.css' %}" />
   <link rel="stylesheet" href="{% static 'base/contentStyles.css' %}" />
   <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}" />
@@ -35,10 +36,10 @@
 <body>
 
 <!--Header containing main navigation and cool user-info-login-thing -->
-<div id="headegitr">
+<section id="header">
 
   {% block header %}
-  <div id="headNavContainer"></div>
+  <div id="headNavContainer">
     <div class='navigationdiv'>
       <a href="{% url 'index' %}">
         <p>Home</p>
@@ -68,19 +69,19 @@
   <!-- Cool user-info-login-thing -->
   <div class="headerRight">
     {% if user.is_authenticated %}
-    <div class="headerRightText">
-      <p>Hello {{ user.username }}!
-        <br>
-        {% with '/profile/'|add:user.username as userUrl %}
-          <a href={{userUrl}}>Profile</a>
-        {% endwith %}
-        <br>
-        <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
-      </p>
-    </div>
     {% if user.profile.photo != "" %}
-    <img src="{{user.profile.photo.url}}" /> {% else %}
-    <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %} {% else %}
+    <img src="{{user.profile.photo.url}}" alt="User"/> {% else %}
+    <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %}
+        <div class="headerRightText">
+          <p>Hello {{ user.username }}!
+            <br> {% with '/profile/'|add:user.username as userUrl %}
+            <a href={{userUrl}}>Profile</a>
+            {% endwith %}
+            <br>
+            <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
+          </p>
+        </div>
+    {% else %}
     <div class="headerRightText">
       <p>
         <a href="{% url 'login' %}">Login</a>
@@ -93,7 +94,8 @@
   </div>
   <!-- User info ends-->
   {% endblock %}
-</div>
+
+</section>
 <!-- Header ends -->
 
 <!-- Cool carousel-picture thingie -->
@@ -102,6 +104,7 @@
   {% block pelimainos %} {% endblock %}
 </div>
 
+<section class="mainContentContainer">
 
 <!-- Side navigation -->
 {% block sidenav %}
@@ -128,7 +131,7 @@
 <div class="content">
   {% block content %}{% endblock %}
 </div>
-
+</section>
 </body>
 
 </html>

@@ -1,15 +1,31 @@
 
 /*Header stuff */
 
+#header {
+  width: 100%;
+  min-width: 86rem;
+  height: 10rem;
+  margin:auto;
+}
+
+#headNavContainer {
+  height: 10rem;
+  min-width: 60rem;
+  width: 70%;
+  box-sizing: border-box;
+  float: left;
+}
+
 /*Main navigation*/
 .navigationdiv {
 	display: inline-block;
-	width: auto;
-	margin: auto;
+	/* width: auto; */
+  margin: auto;
+  height: 100%;
 }
 
 .navigationdiv a p {
-	margin: 10px 15px 15px 15px;
+	margin: 0.1em 0 0.2em 0.4em;
 	font-family: Quattrocento;
 	font-size: 50px;
 	text-align: center;
@@ -22,20 +38,24 @@
 /*User-info-login-thing*/
 .headerRight {
   float: right;
-  clear:right;
-  padding-right: 20px;
-  padding-top: 20px;
+  padding: 1em 1em 1em 1em;
   color: #000000;
   text-align: right;
+  width: 20%;
+  min-width: 24rem;
+  height: 10rem;
+  box-sizing: border-box;
 }
 
 .headerRightText {
-  float:left;
-  padding-right: 10px;
+  float:right;
+  padding-right: 1em;
+  min-width: 10em;
+  box-sizing: border-box;
 }
 
 .headerRight img{
-  float:right;
-  height: 70px;
-  width: 70px;
+  float: right;
+  height: 5em;
+  width: 5em;
 }
