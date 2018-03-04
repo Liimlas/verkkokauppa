@@ -45,6 +45,7 @@ def viewgame(request, id):
 
     for game in Game.objects.all():
         number = 1
+        index = 0
         if id == game.id:
 
             # checks if you are signed in and already own the game,
@@ -58,8 +59,12 @@ def viewgame(request, id):
                     if game.developer == request.user:
 
                         for gamedate in gameDate:
+                            if dates[index] is not gamedate.date:
                                 dates.append(gamedate.date)
-
+                                index += 1
+                            else:
+                                dates.append(number +1)
+                                index += 1
 
 
             context['gamefound'] = True
