@@ -15,7 +15,8 @@ def games(request):
 
     ownedGames = []
     boughtGames = []
-    #Needed for knowing whether to show buy- button or not (doesn't shot it if you already own the game)
+    # Needed for knowing whether to show buy- button or not
+    # (doesn't shot it if you already own the game)
     if request.user.is_authenticated:
         boughtGames = BoughtGame.objects.filter(owner=request.user)
 
@@ -42,12 +43,18 @@ def viewgame(request, id):
     for game in Game.objects.all():
         if id == game.id:
 
-            #checks if you are signed in and already own the game, and decides which button play/buy to show
+            # checks if you are signed in and already own the game,
+            # and decides which button play/buy to show
             if request.user.is_authenticated:
-                ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
+                ownedSet = BoughtGame.objects.filter(owner=request.user,
+                                                     game=game)
 
                 if ownedSet.count() != 0 or game.developer == request.user:
                     alreadyOwned = True
+
+                if game.developer == request.user:
+                    context['developer'] = True
+
 
             context['gamefound'] = True
             context['game'] = game

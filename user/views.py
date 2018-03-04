@@ -170,10 +170,6 @@ def edit_game(request, pk):
                     post.saleprice = 0
                     post.onsale = False
                 post.soldcopies = 0
-
-
-
-
                 post.save()
 
                 return HttpResponseRedirect('/managed_game/')
@@ -184,7 +180,7 @@ def edit_game(request, pk):
         if post.onsale == False:
             post.saleprice = 0.0
         else:
-            post.saleprice =  format(-(post.saleprice / post.price)+1,'.2f')
+            post.saleprice = format(-(post.saleprice / post.price)+1,'.2f')
 
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})

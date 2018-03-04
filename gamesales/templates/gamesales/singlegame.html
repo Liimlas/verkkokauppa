@@ -23,7 +23,7 @@
         <p>Price:  {{ game.price }} € </p>
         {% endif %}
 
-        <p>Developer {{ game.developer }} </p>
+        <p>Developer: {{ game.developer }} </p>
     </div>
 </div>
 
@@ -32,6 +32,15 @@
 <a href={{ playurl }}>
     <button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button>
 </a>
+<br>
+    {% if developer %}
+    <h1>The has bought {{ game.soldcopies }} times</h1>
+<br>
+
+
+
+
+    {% endif %}
 {% endwith %}
 {% else %}
 {% with '/payment/'|add:game.id as paymenturl %}
