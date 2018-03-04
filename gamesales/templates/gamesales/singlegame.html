@@ -34,18 +34,19 @@
 </a>
 <br>
 
+{% if zeroBought %}
+    <h1> {{ game.soldcopies }} at the moment</h1>
+{% elif oneBought %}
+    <h1>The game has bought {{ game.soldcopies }} time</h1>
+        <h4> The date is:</h4>
+{% else %}
     <h1>The game has bought {{ game.soldcopies }} times</h1>
-<br>
-<a>The dates are: </a>
+        <h4> The dates are: </h4>
+{% endif %}
 {% for date in sold %}
-<br>
 {{ date }}
+<br>
 {% endfor %}
-
-
-
-
-
 
 
 {% endwith %}

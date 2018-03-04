@@ -67,6 +67,10 @@ def viewgame(request, id):
             context['alreadyOwned'] = alreadyOwned
 
     context['sold'] = dates
+    if len(dates) == 0:
+        context['zeroBought'] = True
+    elif len(dates) == 1:
+        context['oneBought'] = True
     return render(request, 'gamesales/singlegame.html', context)
 
 
