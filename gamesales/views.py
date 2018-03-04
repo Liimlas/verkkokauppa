@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from itertools import chain
+import re
 # Create your views here.
 
 
@@ -45,6 +46,7 @@ def viewgame(request, id):
 
     for game in Game.objects.all():
         number = 1
+        many = 1
         index = 0
         if id == game.id:
 
@@ -59,12 +61,39 @@ def viewgame(request, id):
                     if game.developer == request.user:
 
                         for gamedate in gameDate:
-                            if dates[index] is not gamedate.date:
+                            if index == 0:
                                 dates.append(gamedate.date)
                                 index += 1
-                            else:
-                                dates.append(number +1)
+                            elif index == 0:
+                                dates.append(gamedate.date)
                                 index += 1
+                            elif dates[index-many] == gamedate.date:
+                                dates.append(number)
+                                many += 1
+                                index += 1
+                               # removeNumber = index - 1
+
+
+
+                            else:
+                                dates.append(gamedate.date)
+                                index += 1
+
+
+                        index -= 1
+                        while(index > 0):
+                            if(dates[index] == 1):
+                                num = 1
+                                while(dates[index] == 1):
+                                    num += 1
+                                    dates.pop(index)
+
+                                    index -= 1
+                                dates.append(num)
+                            else:
+                                index -= 1
+
+
 
 
             context['gamefound'] = True
