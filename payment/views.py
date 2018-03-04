@@ -5,6 +5,7 @@ from hashlib import md5
 from main.models import BoughtGame, Game
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 
 @login_required
@@ -69,9 +70,11 @@ def success(request, gameid):
     boughtGame.soldcopies += 1
     boughtGame.save()
 
+
     newPurchase = BoughtGame(owner=user, game=boughtGame)
+    newPurchase.date = timezone.now()
     newPurchase.save()
-    context = {'game': boughtGame}
+    context = {'game': boughtGame, 'sold': newPurchase.date}
     return render(request, 'payment/payment_success.html', context)
 
 

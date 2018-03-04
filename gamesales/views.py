@@ -37,29 +37,36 @@ def games(request):
 
 def viewgame(request, id):
     context = {}
+    dates = []
     context['not_found'] = True
     alreadyOwned = False
 
+
+
     for game in Game.objects.all():
+        number = 1
         if id == game.id:
 
             # checks if you are signed in and already own the game,
             # and decides which button play/buy to show
             if request.user.is_authenticated:
-                ownedSet = BoughtGame.objects.filter(owner=request.user,
-                                                     game=game)
+                ownedSet = BoughtGame.objects.filter(owner=request.user,game=game)
+                gameDate = BoughtGame.objects.filter(game=game)
 
                 if ownedSet.count() != 0 or game.developer == request.user:
                     alreadyOwned = True
+                    if game.developer == request.user:
 
-                if game.developer == request.user:
-                    context['developer'] = True
+                        for gamedate in gameDate:
+                                dates.append(gamedate.date)
+
 
 
             context['gamefound'] = True
             context['game'] = game
             context['alreadyOwned'] = alreadyOwned
 
+    context['sold'] = dates
     return render(request, 'gamesales/singlegame.html', context)
 
 

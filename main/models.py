@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
 from django.utils import timezone
+import datetime
 
 
 # Create your models here.
@@ -24,6 +25,6 @@ class Game(models.Model):
 class BoughtGame(models.Model):
     owner = models.ForeignKey(User)
     game = models.ForeignKey(Game)
-
+    date = models.DateField(auto_now=True)
 
 

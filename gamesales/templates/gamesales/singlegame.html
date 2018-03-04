@@ -33,14 +33,21 @@
     <button class='btn btn-success' value='Click to play the game' onclick='window.location={ playurl }'>Play!</button>
 </a>
 <br>
-    {% if developer %}
-    <h1>The has bought {{ game.soldcopies }} times</h1>
+
+    <h1>The game has bought {{ game.soldcopies }} times</h1>
 <br>
+<a>The dates are: </a>
+{% for date in sold %}
+<br>
+{{ date }}
+{% endfor %}
 
 
 
 
-    {% endif %}
+
+
+
 {% endwith %}
 {% else %}
 {% with '/payment/'|add:game.id as paymenturl %}
