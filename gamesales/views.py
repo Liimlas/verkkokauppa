@@ -65,29 +65,24 @@ def viewgame(request, id):
                             if index == 0:
                                 dates.append(gamedate.date)
                                 index += 1
-                            elif dates[index-many] == gamedate.date:
-                                dates.append(number)
+                                many = 1
+                            elif dates[index - many] == gamedate.date:
+                                # dates.append(number)
                                 many += 1
                                 index += 1
+                                dates.append(number)
 
                             else:
                                 dates.append(gamedate.date)
                                 index += 1
+                                many = 1
+
+                            for i in range(1,many):
+                                dates.pop(index -i)
+                            dates.append(many)
+                            numbers.append(many)
 
 
-                        index -= 1
-                        while(index > 0):
-                            if(dates[index] == 1):
-                                num = 1
-                                while(dates[index] == 1):
-                                    num += 1
-                                    dates.pop(index)
-
-                                    index -= 1
-                                dates.append(num)
-                                numbers.append(num)
-                            else:
-                                index -= 1
 
 
 
