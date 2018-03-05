@@ -44,6 +44,12 @@
 	background-color: transparent;
 }
 
+.profileBlock h3 {
+	font-family: Quattrocento;
+	font-size: 1.6em;
+	padding-left: 0.5em;
+}
+
 .profileBlock p {
 	background-color: transparent;
 }

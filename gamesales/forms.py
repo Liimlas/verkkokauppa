@@ -11,7 +11,7 @@ class AddGameForm(forms.ModelForm):
 class ChangeGameForm(forms.ModelForm):
     class Meta:
         model = Game
-        fields = ('name', 'price', 'link', 'image', 'saleprice')
+        fields = ('name', 'price', 'link', 'infotext', 'ageRestriction', 'image', 'saleprice')
 
 
 class DeleteNewForm(forms.ModelForm):
