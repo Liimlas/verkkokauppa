@@ -19,9 +19,6 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from gamesales.views import generate
 
-
-
-
 @login_required
 def profile(request):
     context = { 'games': Game.objects.filter(developer=request.user) }
@@ -128,12 +125,10 @@ def activate(request, uidb64, token):
 
 def manage_games(request):
     context = {'own_games': Game.objects.filter(developer = request.user)}
-
     return render(request, 'manage_games.html', context)
 
 def edit(request):
     return render(request, 'managed_game.html')
-
 
 def delete_game(request):
     return render(request, 'delete_game.html')
