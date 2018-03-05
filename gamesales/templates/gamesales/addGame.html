@@ -4,9 +4,11 @@
 
 {% if user.is_authenticated %}
 <form method="POST" enctype="multipart/form-data" action="/addGame/">
+    <div class="prettyForm">
     {%csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_ul }}
     <button type="submit">Add</button>
+    </div>
 </form>
 {% else %}
     <p>Login first!</p>
