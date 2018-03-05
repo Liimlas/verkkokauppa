@@ -20,13 +20,14 @@
 							</div>
 							<div class="col-md-8">
 								<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
+								<p>Ages {{ game.ageRestriction }} and up</p>
 								{% if game.onsale %}
-								  <div class="gamesalee">
-                              <div class="oldprice" >
-                                  <p>Price {{game.price}} €</p>
-                              </div>
+									<div class="gamesalee">
+                             		<div class="oldprice" >
+                                		<p>Price {{game.price}} €</p>
+                              		</div>
                                 <div class="sale">
-                                     <p>Sale price {{ game.saleprice }} € </p>
+                                    <p>Sale price {{ game.saleprice }} € </p>
                                 </div>
                             </div>
 								{% else %}

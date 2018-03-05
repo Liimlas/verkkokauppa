@@ -1,11 +1,11 @@
-{% extends "base_html.html" %}
+{% extends "base_gamesales.html" %}
 {% load staticfiles %}
 
 {% block content %}
 
 <div class="gamesalee">
 
-<h1> See the best sale here! </h1>
+<h1> See the best sales here! </h1>
 
 </div>
 
@@ -35,9 +35,15 @@
                                 </div>
                             </div>
 
-							<div class="col-md-4 text-center" class="col-md-12 panelBottom">
-								<button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
-							</div>
+								 {% if game not in ownedGames %} {% with '/payment/'|add:game.id as paymenturl %}
+								<div class="col-md-12 panelBottom">
+									<a href={{paymenturl }}>
+										<button class="btn btn-success btn-lg btn-add-to-cart">
+											<span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+									</a>
+									{% endwith %}
+								</div>
+								{% endif %}
 
 						</div>
 

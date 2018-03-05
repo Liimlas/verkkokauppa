@@ -17,6 +17,8 @@ class Game(models.Model):
     link = models.CharField(default='', blank=False, max_length=200)
     publish_date = models.DateTimeField(blank=True, null=True)
     image = models.ImageField(upload_to='game_pictures', default="")
+    infotext = models.TextField(blank=True, max_length=500)
+    ageRestriction = models.PositiveSmallIntegerField(blank=True, default=0)
 
     def publish(self):
         self.publish_date = timezone.now()
