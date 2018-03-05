@@ -46,7 +46,6 @@ def viewgame(request, id):
 
 
     for game in Game.objects.all():
-
         many = 1
         index = 0
 
@@ -62,29 +61,25 @@ def viewgame(request, id):
                     alreadyOwned = True
                     if game.developer == request.user:
 
+                        # check that same date is not twice and
+                        #  get that number, how many sold in that day
                         for gamedate in gameDate:
                             if index == 0:
-                                print("first days: " + str(gamedate))
                                 dates.append(gamedate.date)
                                 index += 1
                                 many = 1
                             elif dates[index - 1] == gamedate.date:
                                 many += 1
-                                print("lissää")
-
-
 
                             else:
-                                print("else days: " + str(gamedate))
                                 dates.append(many)
                                 numbers.append(many)
                                 dates.append(gamedate.date)
                                 index += 2
                                 many = 1
 
-                        if many >= 1:
-                            numbers.append(many)
-                            dates.append(many)
+                        numbers.append(many)
+                        dates.append(many)
 
 
 
@@ -94,9 +89,13 @@ def viewgame(request, id):
             context['game'] = game
             context['alreadyOwned'] = alreadyOwned
 
-
+    # 'numbers' is that singlegame.html get to know which are the number and
+    #  which are dates
     context['numbers'] = numbers
+
+    # 'sold' has all the dates and number how many sold in that day
     context['sold'] = dates
+    # make the right text, we want to know if there is only 0 or 1 bought
     if len(dates) == 0:
         context['zeroBought'] = True
     elif len(dates) == 1:
@@ -112,8 +111,8 @@ def list_of_ids():
     return ids
 
 
-#def addGame(request):
-#   return render(request, 'gamesales/addGame.html')
+# ganerate() does the id to the game with random randrange which take
+#  some index of the 'letters' list and make it 19 times.
 def generate():
     letters = list("abcdefghijklmnopqrstuvwxyzABCDEFGHILJKLMNOPQRSTUVWXYZ0123456789")
     letter_list_size = len(letters)
@@ -155,7 +154,8 @@ def addGame(request):
 
     return render(request, 'gamesales/addGame.html', {'form': form})
 
-
+# method onSale takes all the games and in the gameonsale.html check if there
+#  are on sale
 def onSale(request):
     games = Game.objects.all()
     context = {'games': games}

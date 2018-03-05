@@ -35,8 +35,8 @@ def update_profile(request, pk):
     user_form = ProfileForm(instance=user)
     context = { 'games': Game.objects.filter(developer=request.user) }
 
-    #Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
-    #and profile- fields defined below
+    # Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
+    # and profile- fields defined below
     ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'photo'))
     formset = ProfileInlineFormset(instance=user)
 
@@ -77,7 +77,7 @@ def viewUser(request, username):
 
 
 def signup(request):
-    #doesn't actually authenticate the user, but sends verification email to console
+    # doesn't actually authenticate the user, but sends verification email to console
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -105,7 +105,7 @@ def signup(request):
 def activation_sent(request):
     return render(request, 'verification/activation_sent.html')
 
-#activates the user when s/he clicks the link send to them via email
+# activates the user when s/he clicks the link send to them via email
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -113,7 +113,7 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    #if link is correct, activates user and logs in
+    # if link is correct, activates user and logs in
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
