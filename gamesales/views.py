@@ -65,9 +65,6 @@ def viewgame(request, id):
                             if index == 0:
                                 dates.append(gamedate.date)
                                 index += 1
-                            elif index == 0:
-                                dates.append(gamedate.date)
-                                index += 1
                             elif dates[index-many] == gamedate.date:
                                 dates.append(number)
                                 many += 1
@@ -99,6 +96,7 @@ def viewgame(request, id):
             context['gamefound'] = True
             context['game'] = game
             context['alreadyOwned'] = alreadyOwned
+
 
     context['numbers'] = numbers
     context['sold'] = dates
