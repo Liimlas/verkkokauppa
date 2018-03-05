@@ -46,9 +46,10 @@ def viewgame(request, id):
 
 
     for game in Game.objects.all():
-        number = 1
+
         many = 1
         index = 0
+
         if id == game.id:
 
             # checks if you are signed in and already own the game,
@@ -63,26 +64,27 @@ def viewgame(request, id):
 
                         for gamedate in gameDate:
                             if index == 0:
+                                print("first days: " + str(gamedate))
                                 dates.append(gamedate.date)
                                 index += 1
                                 many = 1
-                            elif dates[index - many] == gamedate.date:
-                                # dates.append(number)
+                            elif dates[index - 1] == gamedate.date:
                                 many += 1
-                                index += 1
-                                dates.append(number)
+                                print("lissää")
+
+
 
                             else:
+                                print("else days: " + str(gamedate))
+                                dates.append(many)
+                                numbers.append(many)
                                 dates.append(gamedate.date)
-                                index += 1
+                                index += 2
                                 many = 1
 
-                            for i in range(1,many):
-                                dates.pop(index -i)
-                            dates.append(many)
+                        if many >= 1:
                             numbers.append(many)
-
-
+                            dates.append(many)
 
 
 
