@@ -72,6 +72,16 @@ tr:nth-child(odd) {
 th {
   vertical-align: top;
 }
+
+.profileBlock li {
+	padding: 0;
+	list-style-type: none;
+}
+
+.profileBlock li a{
+	padding: 0;
+}
+
 /*gamesale*/
 .sale{
 color: red;
