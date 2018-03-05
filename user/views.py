@@ -136,7 +136,6 @@ def delete_game(request):
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
-    post2 = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
@@ -148,15 +147,14 @@ def edit_game(request, pk):
                 if form2.is_valid():
                     post.delete()
                     return HttpResponseRedirect('/delete_game/')
+            # else the game will be changed at some point
             else:
-
                 post = form.save(commit=False)
                 post.developer = request.user
 
-                context = {}
-
                 # radio button check that if game is on sale
-                # -> onsale is true and gamesale has two decimal
+                # -> onsale is true and gamesale has two decimal and
+                # saleprice is now the now price which is not between 0 and 1.
                 if gamesale == 'yes' and post.saleprice != 0:
                     post.saleprice = format(( 1 - post.saleprice) *
                                                post.price,'.2f')
@@ -166,15 +164,13 @@ def edit_game(request, pk):
                     post.onsale = False
                 post.soldcopies = 0
                 post.save()
-
                 return HttpResponseRedirect('/managed_game/')
-           #      New.objects.get(pk=id).delete()
-
     else:
-        #z = (1-x)*y -> (z/y)-1 = -x -> x = -(z/y)+1
+        # make that saleprice is 0 if it is not on sale
         if post.onsale == False:
             post.saleprice = 0.0
         else:
+            # make that saleprice is between 0 and 1 again
             post.saleprice = format(-(post.saleprice / post.price)+1,'.2f')
 
         form = ChangeGameForm(instance=post)
