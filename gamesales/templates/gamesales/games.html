@@ -1,12 +1,8 @@
-{% extends "base_gamesales.html" %}
+{% extends "base_html.html" %}
 {% load staticfiles %}
 
 {% block content %}
-
-
 <h1>Games!</h1>
-
-
 {% for game in games %}
 {% with '/games/'|add:game.id as gameurl %}
 <div class="container">
@@ -39,15 +35,11 @@
 							<div class="col-md-12 panelBottom">
 								<a href={{paymenturl }}>
 									<button class="btn btn-success btn-lg btn-add-to-cart">
-										<span class="glyphicon glyphicon-shopping-cart"></span> Buy</button></a>
+										<span class="glyphicon glyphicon-shopping-cart"></span>Buy</button></a>
 							{% endwith %}
 							</div>
 							{% endif %}
-
-
 						</div>
-
-
 							<div class="col-md-4">
 								<div class="stars">
 								<div id="stars" class="starrr"></div>
@@ -59,19 +51,6 @@
 			</div>
 		</div>
     </div>
-
-
-
-
-
-
-
-
 {% endwith %}
-
-
-
-
 {% endfor %}
-
 {% endblock %}

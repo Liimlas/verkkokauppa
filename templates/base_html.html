@@ -2,133 +2,119 @@
 <html>
 
 <head>
+    <title>Web Shop | JavaScript Games Online</title>
+    <meta charset="utf-8">
 
-  {% block title %}
-  <title>Web Shop | JavaScript Games Online</title>
-  {% endblock %}
-  <meta charset="utf-8"> {% load static %}
-  <link rel="stylesheet" href="{% static 'base/style.css' %}" />
-  <link rel="stylesheet" href="{% static 'base/contentStyles.css' %}" />
-  <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}" />
-  <link rel="stylesheet" href="{% static 'base/userStyles.css' %}" />
-  <link rel="stylesheet" href="{% static 'base/formStyles.css' %}" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'base/contentStyles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'base/headerStyles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'base/userStyles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'base/formStyles.css' %}"/>
+    <!--Quattrocento- font -->
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
+    <!--Bootstrap stuff -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <!--Quattrocento- font -->
-  <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:700i" rel="stylesheet">
-
-  <!--Bootstrap stuff -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <link rel="shortcut icon" type="image/png" href="https://png.icons8.com/color/50/000000/yoda.png">
-  <!-- Bootstrap stuff ends -->
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="https://png.icons8.com/color/50/000000/yoda.png">
+    <!-- Bootstrap stuff ends -->
 </head>
 
 <body>
 
 <!--Header containing main navigation and cool user-info-login-thing -->
-<div id="headegitr">
-
-  {% block header %}
-  <div id="headNavContainer"></div>
+<div id="header">
+    {% block header %}
+    <!--<div id='headNavContainer'></div>-->
     <div class='navigationdiv'>
-      <a href="{% url 'index' %}">
-        <p>Home</p>
-      </a>
+        <a href="{% url 'index' %}">
+            <p>Home</p>
+        </a>
     </div>
     <div class='navigationdiv'>
-      <ul>
-        <a data-toggle="dropdown" href="{% url 'games' %}">
-          <p>Games</p>
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'games' %}">All</a>
-          <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
-          <a class="dropdown-item" href="#">New</a>
+        <ul>
+            <a data-toggle="dropdown" href="{% url 'games' %}">
+                <p>Games</p>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'games' %}">All</a>
+                <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
+                <a class="dropdown-item" href="#">New</a>
+            </div>
+        </ul>
+    </div>
+    <div class='navigationdiv'>
+        <ul>
+            <a href="{% url 'play' %}">
+                <p>Play</p>
+            </a>
+        </ul>
+    </div>
+
+    <div class="headerRight">
+        {% if user.is_authenticated %}
+        <div class="headerRightText">
+            <p>Hello {{ user.username }}!
+                <br>
+                {% with '/profile/'|add:user.username as userUrl %}
+                <a href={{userUrl}}>Profile</a>
+                {% endwith %}
+                <br>
+                <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
+            </p>
         </div>
-      </ul>
+        {% if user.profile.photo != "" %}
+        <img src="{{user.profile.photo.url}}"/> {% else %}
+        <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %} {% else %}
+        <div class="headerRightText">
+            <p>
+                <a href="{% url 'login' %}">Login</a>
+                <br>
+                <a href="{% url 'signup' %}">Sign up</a>
+                <br>
+            </p>
+        </div>
+        {% endif %}
     </div>
-    <div class='navigationdiv'>
-      <ul>
-        <a href="{% url 'play' %}">
-          <p>Play</p>
-        </a>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Cool user-info-login-thing -->
-  <div class="headerRight">
-    {% if user.is_authenticated %}
-    <div class="headerRightText">
-      <p>Hello {{ user.username }}!
-        <br>
-        {% with '/profile/'|add:user.username as userUrl %}
-          <a href={{userUrl}}>Profile</a>
-        {% endwith %}
-        <br>
-        <a href="{%url 'logout' %}?next={{request.path}}">Logout</a>
-      </p>
-    </div>
-    {% if user.profile.photo != "" %}
-    <img src="{{user.profile.photo.url}}" /> {% else %}
-    <img src="{% static 'media/def_userpic.jpg' %}" alt="User"> {% endif %} {% else %}
-    <div class="headerRightText">
-      <p>
-        <a href="{% url 'login' %}">Login</a>
-        <br>
-        <a href="{% url 'signup' %}">Sign up</a>
-        <br>
-      </p>
-    </div>
-    {% endif %}
-  </div>
-  <!-- User info ends-->
-  {% endblock %}
 </div>
-<!-- Header ends -->
+
+{% endblock %}
 
 <!-- Cool carousel-picture thingie -->
-<div class="jumbotron text-center">
-  <h2>Newest games!</h2>
-  {% block pelimainos %} {% endblock %}
-</div>
+
+{% block pelimainos %}
+{% endblock %}
 
 
 <!-- Side navigation -->
 {% block sidenav %}
 <nav class="nav-sidebar">
-  <ul class="nav">
-    {% if user.is_authenticated %}
-    <li>
-      <a href="{% url 'logout' %}">Logout</a>
-    </li>
-    {% else %}
-    <li>
-      <a href="{% url 'login' %}">Log in</a>
-    </li>
-    <li>
-      <a href="{% url 'signup' %}">Sign up</a>
-    </li>
-    {% endif %}
-  </ul>
+    <ul class="nav">
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'login' %}">Log in</a>
+        </li>
+        <li>
+            <a href="{% url 'signup' %}">Sign up</a>
+        </li>
+        {% endif %}
+    </ul>
 </nav>
-
 {% endblock %}
-
 <!-- Main content -->
 <div class="content">
-  {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </div>
-
 </body>
-
 </html>

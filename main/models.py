@@ -29,4 +29,9 @@ class BoughtGame(models.Model):
     game = models.ForeignKey(Game)
     date = models.DateField(auto_now=True)
 
+class Highscore(models.Model):
+    player = models.ForeignKey(User)
+    game = models.ForeignKey(Game)
+    score = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+
 
