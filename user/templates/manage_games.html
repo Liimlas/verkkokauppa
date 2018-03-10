@@ -2,12 +2,12 @@
 
 {% block content %}
 <!-- Developer can choose the game what (s)he wants to change/delete -->
-<p>Edit game here!</p>
+<h1>Your games</h1>
 
 {% for game in own_games %}
 {% with '/manage_games/'|add:game.id as manageurl %}
 
-<h3><a href={{ manageurl }}>{{ game.name }}</a></h3>
+<h4><a href={{ manageurl }}>{{ game.name }}</a></h4>
 
 
 {% endwith %}
