@@ -16,12 +16,10 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.shortcuts import get_object_or_404
-<<<<<<< HEAD
 
-=======
 from django.utils import timezone
 from gamesales.views import generate
->>>>>>> Managee
+
 
 @login_required
 def profile(request):
@@ -135,10 +133,8 @@ def manage_games(request):
 def edit(request):
     return render(request, 'managed_game.html')
 
-<<<<<<< HEAD
+
 # own page that game is deleted
-=======
->>>>>>> Managee
 def delete_game(request):
     return render(request, 'delete_game.html')
 
@@ -160,10 +156,9 @@ def edit_game(request, pk):
             else:
                 post = form.save(commit=False)
                 post.developer = request.user
-<<<<<<< HEAD
+
                 context = {}
-=======
->>>>>>> Managee
+
 
                 # radio button check that if game is on sale
                 # -> onsale is true and gamesale has two decimal and
@@ -178,14 +173,10 @@ def edit_game(request, pk):
                 post.soldcopies = 0
                 post.save()
                 return HttpResponseRedirect('/managed_game/')
-<<<<<<< HEAD
 
     else:
-        # this do that there is right sale procent value
-=======
-    else:
         # make that saleprice is 0 if it is not on sale
->>>>>>> Managee
+
         if post.onsale == False:
             post.saleprice = 0.0
         else:
