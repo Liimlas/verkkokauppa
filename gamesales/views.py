@@ -43,8 +43,6 @@ def viewgame(request, id):
     context['not_found'] = True
     alreadyOwned = False
 
-
-
     for game in Game.objects.all():
         many = 1
         index = 0
@@ -80,10 +78,6 @@ def viewgame(request, id):
 
                         numbers.append(many)
                         dates.append(many)
-
-
-
-
 
             context['gamefound'] = True
             context['game'] = game
