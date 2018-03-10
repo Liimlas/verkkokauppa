@@ -50,11 +50,14 @@
 
 
 {% block content %}
-<h1>Uusimmat pelit:</h1>
+<h1>Newest games:</h1>
 <br>
 {% for game in games %}
 {% with 'games/'|add:game.id as gameurl %}
-<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, sold: {{ game.soldcopies }} , game price: {% if game.onsale %} {{game.saleprice}} {% else %}{{ game.price }} {% endif%}€</p>
+<p> <a href={{ gameurl }}>{{ game.name }}</a>, <br>
+    Price: {% if game.onsale %} {{game.saleprice}} {% else %}{{ game.price }} {% endif%}€<br>
+    Developer: {{game.developer}}<br>
+    Sold: {{ game.soldcopies }} </p>
 {% endwith %}
 {% endfor %}
 {% endblock %}
