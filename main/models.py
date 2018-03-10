@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
 from django.utils import timezone
+import datetime
 
 
 # Create your models here.
@@ -16,6 +17,8 @@ class Game(models.Model):
     link = models.CharField(default='', blank=False, max_length=200)
     publish_date = models.DateTimeField(blank=True, null=True)
     image = models.ImageField(upload_to='game_pictures', default="")
+    infotext = models.TextField(blank=True, max_length=500)
+    ageRestriction = models.PositiveSmallIntegerField(blank=True, default=0)
 
     def publish(self):
         self.publish_date = timezone.now()
@@ -24,6 +27,6 @@ class Game(models.Model):
 class BoughtGame(models.Model):
     owner = models.ForeignKey(User)
     game = models.ForeignKey(Game)
-
+    date = models.DateField(auto_now=True)
 
 

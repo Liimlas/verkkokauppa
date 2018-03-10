@@ -54,7 +54,7 @@
 <br>
 {% for game in games %}
 {% with 'games/'|add:game.id as gameurl %}
-<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, myydyt kopiot {{ game.soldcopies }} ja pelin hinta {% if game.onsale %} {{game.saleprice}} {% else %}{{ game.price }} {% endif%}€</p>
+<p>Pelin nimi <a href={{ gameurl }}>{{ game.name }}</a>, sold: {{ game.soldcopies }} , game price: {% if game.onsale %} {{game.saleprice}} {% else %}{{ game.price }} {% endif%}€</p>
 {% endwith %}
 {% endfor %}
 {% endblock %}

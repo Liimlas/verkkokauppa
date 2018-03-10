@@ -16,7 +16,12 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.shortcuts import get_object_or_404
+<<<<<<< HEAD
 
+=======
+from django.utils import timezone
+from gamesales.views import generate
+>>>>>>> Managee
 
 @login_required
 def profile(request):
@@ -34,8 +39,8 @@ def update_profile(request, pk):
     user_form = ProfileForm(instance=user)
     context = { 'games': Game.objects.filter(developer=request.user) }
 
-    #Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
-    #and profile- fields defined below
+    # Updates both profile- and user-instances witht the same form, takes user-fields defined in ProfileForm in forms.py
+    # and profile- fields defined below
     ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('birth_date', 'bio', 'photo'))
     formset = ProfileInlineFormset(instance=user)
 
@@ -76,7 +81,7 @@ def viewUser(request, username):
 
 
 def signup(request):
-    #doesn't actually authenticate the user, but sends verification email to console
+    # doesn't actually authenticate the user, but sends verification email to console
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -104,7 +109,7 @@ def signup(request):
 def activation_sent(request):
     return render(request, 'verification/activation_sent.html')
 
-#activates the user when s/he clicks the link send to them via email
+# activates the user when s/he clicks the link send to them via email
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -112,7 +117,7 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    #if link is correct, activates user and logs in
+    # if link is correct, activates user and logs in
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
@@ -124,21 +129,22 @@ def activate(request, uidb64, token):
 
 def manage_games(request):
     context = {'own_games': Game.objects.filter(developer = request.user)}
-
     return render(request, 'manage_games.html', context)
 
 # own page that change game is now done
 def edit(request):
     return render(request, 'managed_game.html')
 
+<<<<<<< HEAD
 # own page that game is deleted
+=======
+>>>>>>> Managee
 def delete_game(request):
     return render(request, 'delete_game.html')
 
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
-    post2 = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
         form = ChangeGameForm(request.POST, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
@@ -150,13 +156,18 @@ def edit_game(request, pk):
                 if form2.is_valid():
                     post.delete()
                     return HttpResponseRedirect('/delete_game/')
+            # else the game will be changed at some point
             else:
                 post = form.save(commit=False)
                 post.developer = request.user
+<<<<<<< HEAD
                 context = {}
+=======
+>>>>>>> Managee
 
                 # radio button check that if game is on sale
-                # -> onsale is true and gamesale has two decimal
+                # -> onsale is true and gamesale has two decimal and
+                # saleprice is now the now price which is not between 0 and 1.
                 if gamesale == 'yes' and post.saleprice != 0:
                     post.saleprice = format(( 1 - post.saleprice) *
                                                post.price,'.2f')
@@ -166,15 +177,20 @@ def edit_game(request, pk):
                     post.onsale = False
                 post.soldcopies = 0
                 post.save()
-
                 return HttpResponseRedirect('/managed_game/')
+<<<<<<< HEAD
 
     else:
         # this do that there is right sale procent value
+=======
+    else:
+        # make that saleprice is 0 if it is not on sale
+>>>>>>> Managee
         if post.onsale == False:
             post.saleprice = 0.0
         else:
-            post.saleprice =  format(-(post.saleprice / post.price)+1,'.2f')
+            # make that saleprice is between 0 and 1 again
+            post.saleprice = format(-(post.saleprice / post.price)+1,'.2f')
 
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
