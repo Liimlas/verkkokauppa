@@ -6,3 +6,32 @@ input[type=text], input[type=password], input[type=email] {
     display: inline-block;
     box-sizing: border-box;
 }
+
+.prettyForm li {
+    padding: 0.5em;
+}
+
+.prettyForm label {
+    font-family: Tahoma;
+    display: block;
+}
+
+.prettyForm .helptext {
+    font-family: Tahoma;
+    display: block;
+    color: #BEBEBE;
+}
+
+.prettyForm li input{
+    box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 0.6em;
+    margin:0px;
+    outline: none;  
+}
+
+/*Hides the weird delete-button that didn't do anything*/
+#id_profile-0-DELETE {
+    display: none;
+}
+label[for="id_profile-0-DELETE"] { display: none }

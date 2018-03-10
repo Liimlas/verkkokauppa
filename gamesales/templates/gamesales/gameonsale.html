@@ -3,11 +3,11 @@
 
 {% block content %}
 
-<div class="gamesalee">
+<div class="gamesale">
+
 
 <h1> See the best sales here! </h1>
 
-</div>
 
 <!-- get also all the sale games-->
 
@@ -38,24 +38,7 @@
 
 							<div class="col-md-4 text-center" class="col-md-12 panelBottom">
 								<button class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
-=======
-	<div class="row">
-		<div class="col-md-8">
-			<div class="panel panel-default  panel--styled">
-				<div class="panel-body">
-					<div class="col-md-12 panelTop">
-						<div class="col-md-4">
-							<img class="img-responsive" src="{{game.image.url}}" alt=""/>
-						</div>
-						<div class="col-md-8">
-							<h2><a href={{ gameurl }}>{{ game.name }}</a></h2>
-						<div class="gamesalee">
-							<div class="oldprice" >
-							  	<p>Price {{game.price}} €</p>
-						  	</div>
-							<div class="sale">
-								<p>Sale price {{ game.saleprice }} € </p>
->>>>>>> Managee
+
 							</div>
 						</div>
 						{% if game not in ownedGames %} {% with '/payment/'|add:game.id as paymenturl %}

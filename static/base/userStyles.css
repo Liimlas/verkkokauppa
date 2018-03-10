@@ -1,17 +1,17 @@
 /*User image*/
 
 .profilePicture {
-	width: 150px;
-	height: 150px;
+	width: 10em;
+	height: 10em;
 	margin-left:auto;
 	margin-right:auto;
 	display: block;
-	margin-top:20px;
-	margin-bottom:20px;
+	margin-top:1em;
+	margin-bottom:1em;
 }
 
 .separator {
-	padding: 20px;
+	padding: 1.2em;
 	background-color: #fff;
 	width: 100%;
 }
@@ -25,9 +25,9 @@
 
 .profileBlock h1 {
 	font-family: Tahoma;
-	padding-left: 10px;
+	padding-left: 0.5em;
 	color: #666;
-    font-size: 30px;
+    font-size: 2.1em;
     width: 100%;
     border-bottom: 1px solid #fff;
 	display: block;
@@ -36,9 +36,9 @@
 
 .profileBlock h2 {
 	font-family: Tahoma;
-	padding-left: 10px;
+	padding-left: 0.5em;
 	color: #666;
-    font-size: 25px;
+    font-size: 1.7em;
     width: 100%;
 	display: block;
 	background-color: transparent;
@@ -55,18 +55,19 @@
 }
 
 .profileBlock a {
-	padding-left: 10px;
+	padding-left: 1em;
 }
 /*Title in profile table*/
 .profileTitle {
 	width: 20%;
-	padding: 5px;
-	padding-left: 10px;
+	padding: 0.4em;
+	padding-left: 1em;
+	color: #000;
 	text-transform: uppercase;
 }
 
 .userList {
-	padding: 5px;
+	padding: 0.5em;
 }
 
 /*Changes odd table rows to grey, mostly for profile*/
@@ -77,6 +78,16 @@ tr:nth-child(odd) {
 th {
   vertical-align: top;
 }
+
+.profileBlock li {
+	padding: 0;
+	list-style-type: none;
+}
+
+.profileBlock li a{
+	padding: 0;
+}
+
 /*gamesale*/
 .sale{
 color: red;

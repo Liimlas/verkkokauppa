@@ -194,16 +194,3 @@ def edit_game(request, pk):
 
         form = ChangeGameForm(instance=post)
     return render(request, 'edit_game.html', {'form': form})
-
-
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = ImageForm()
-    return render(request, 'model_form_upload.html', {
-        'form': form
-    })

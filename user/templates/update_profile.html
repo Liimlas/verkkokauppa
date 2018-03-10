@@ -3,10 +3,12 @@
 {% block content %}
 <h2>Edit profile</h2>
 <form method="post" action="." enctype="multipart/form-data">
-{% csrf_token %}{{ noodle_form.as_p }}
-<br>
+{% csrf_token %}
+<div class="prettyForm">
+{{ noodle_form.as_ul }}
 {{ formset.management_form }}
-{{ formset.as_p }}
+{{ formset.as_ul }}
 <button type="submit">Confirm</button>
+</div>
 </form>
 {% endblock %}
