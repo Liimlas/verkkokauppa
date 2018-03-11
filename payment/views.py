@@ -73,7 +73,7 @@ def success(request, gameid):
 
 
     newPurchase = BoughtGame(owner=user, game=boughtGame)
-    newPurchase.date = timezone.now()
+    newPurchase.date = timezone.now() + timedelta(1)
     newPurchase.save()
     context = {'game': boughtGame, 'sold': newPurchase.date}
     return render(request, 'payment/payment_success.html', context)
