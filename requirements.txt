@@ -6,3 +6,4 @@ psycopg2==2.7.3.2
 pytz==2017.3
 static3==0.7.0
 whitenoise==3.3.1
+Pillow==3.2.0
