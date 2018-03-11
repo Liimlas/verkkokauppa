@@ -135,7 +135,7 @@ Our aim is to progress every week, and have a steady workflow.
 
 
 
-###Report###
+### Report ###
 
 We immplemented all the required features. 
 
@@ -160,11 +160,25 @@ We deserve 200 points for this.
 
 
 
-###Who did and what now###
+### Who did and what now ###
 
 Lasse: 
-..* Lot of heroku problem solving
-..* game list- views and game views, game-id-generator, highscores and other game service interaction
-Elisa: Authentication and all the user- related things, payment and buying game, some over all CSS, adding pictures for users and games, lots of small stuff around the block
-Sofia: Developer functionalities, adding games and updating game info, bought game statistics, some CSS, game-id-generator 
+* Lots of heroku problem solving
+* game list- views and game views
+* game-id-generator
+* highscores and other game service interaction
+
+Elisa: 
+* Authentication and all the user- related things
+* payment and buying game
+* some overall CSS
+* adding pictures for users and games
+* lots of other small stuff around the block
+
+Sofia:
+* Developer functionalities
+* adding games and updating game info
+* bought game statistics
+* some CSS
+* game-id-generator 
 
