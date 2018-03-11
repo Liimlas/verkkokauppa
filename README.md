@@ -145,7 +145,7 @@ We think this deserves full 200 ponts because we implemented everything that was
 
 **Basic player functionalities**: Users can buy games that they don't already own or have developed. User can only buy each game once. Users can play games that they have bought or developed.
 If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.
-For this we deserve 200 points.
+For this we deserve 300 points.
 
 **Game/service interaction**:
 
