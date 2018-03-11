@@ -28,12 +28,13 @@ def payment(request, gameid):
     else:
         amount = game.price
 
+    webstore_host = request.META['HTTP_HOST']
 
     sid = 'SteamWsdAikaLoppuuSOS'
     secret_key = '14d8e062330c3ed6e565d43141ce4999'
-    success_url = 'http://localhost:8000/payment/success/'
-    cancel_url = 'http://localhost:8000/payment/cancel/'
-    error_url = 'http://localhost:8000/payment/error/'
+    success_url = str('http://' + webstore_host + '/payment/success/')
+    cancel_url = str('http://' + webstore_host + '/payment/cancel/')
+    error_url = str('http://' + webstore_host + '/payment/error/')
     pid = 'HienoOstosTosiHienoa'
     checksumstr = "pid={}&sid={}&amount={}&token={}".format(pid, sid, amount, secret_key)
     m = md5(checksumstr.encode("ascii"))
