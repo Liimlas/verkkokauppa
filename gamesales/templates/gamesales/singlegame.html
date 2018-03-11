@@ -59,16 +59,15 @@
             <h3> Dates: </h3>
     {% endif %}
 
-
+<p>
     {% for date in sold %}
-    <ul>
         {% if date in numbers %}
-            sold: {{ date }}
+            sold: {{ date }}<br>
         {% else %}
             {{ date }}
         {% endif %}
-    </ul>
     {% endfor %}
+</p>
     </span>
     {% endif %}
 
