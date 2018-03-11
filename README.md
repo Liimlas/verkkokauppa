@@ -135,7 +135,7 @@ Our aim is to progress every week, and have a steady workflow.
 
 
 
-### Report ###
+###Report###
 
 We immplemented all the required features. 
 
@@ -146,7 +146,7 @@ We think this deserves full 200 ponts because we implemented everything that was
 **Basic player functionalities**: Users can buy games that they don't already own or have developed. User can only buy each game once. Users can play games that they have bought or developed.
 If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.
 
-**Game service interaction**:
+**Game/service interaction**:
 
 **Quality of work**: We tried making the service as intuitive to use as possible. We also added possibility to add pctures to both users and games, and own profile pages. On the code side we commented a lot of harder to understand code and extended base_html in a way that
 didn't force us to copy same html everywhere. We also tried slicing our project to smaller apps n a way that made sense to us. We tried to do most of the logic-work in views instead
@@ -160,6 +160,11 @@ We deserve 200 points for this.
 
 
 
+###Who did and what now###
 
-
+Lasse: 
+..* Lot of heroku problem solving
+..* game list- views and game views, game-id-generator, highscores and other game service interaction
+Elisa: Authentication and all the user- related things, payment and buying game, some over all CSS, adding pictures for users and games, lots of small stuff around the block
+Sofia: Developer functionalities, adding games and updating game info, bought game statistics, some CSS, game-id-generator 
 
