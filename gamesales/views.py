@@ -44,7 +44,7 @@ def viewgame(request, id):
     alreadyOwned = False
 
     for game in Game.objects.all():
-        many = 1
+        many = 0
         index = 0
 
         if id == game.id:
@@ -61,20 +61,23 @@ def viewgame(request, id):
 
                         # check that same date is not twice and
                         #  get that number, how many sold in that day
-                        for gamedate in gameDate:
-                            if index == 0:
-                                dates.append(gamedate.date)
-                                index += 1
-                                many = 1
-                            elif dates[index - 1] == gamedate.date:
-                                many += 1
+                        if gameDate is not ():
+                            many = 1
+                            for gamedate in gameDate:
 
-                            else:
-                                dates.append(many)
-                                numbers.append(many)
-                                dates.append(gamedate.date)
-                                index += 2
-                                many = 1
+                                if index == 0:
+                                    dates.append(gamedate.date)
+                                    index += 1
+                                    many = 1
+                                elif dates[index - 1] == gamedate.date:
+                                    many += 1
+
+                                else:
+                                    dates.append(many)
+                                    numbers.append(many)
+                                    dates.append(gamedate.date)
+                                    index += 2
+                                    many = 1
 
                         numbers.append(many)
                         dates.append(many)
