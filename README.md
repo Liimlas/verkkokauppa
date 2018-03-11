@@ -187,3 +187,13 @@ Sofia:
 ### Heroku ###
 
 Linkki: https://evening-stream-68210.herokuapp.com/
+
+Example users:
+
+Developer:
+    username: DevaaJane
+    password: salasana
+    
+Gamer:
+    username: GamerKalle
+    password: salasana
