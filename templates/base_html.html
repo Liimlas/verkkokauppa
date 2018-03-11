@@ -51,9 +51,11 @@
           <p>Games</p>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'games' %}">All</a>
+          <a class="dropdown-item" href="{% url 'games' %}">All games</a>
           <a class="dropdown-item" href="{% url 'onSale' %}">On sale</a>
-          <a class="dropdown-item" href="#">New</a>
+          {% if user.is_authenticated and user.profile.is_developer %}
+          <a class="dropdown-item" href="{% url 'addGame' %}">Add game</a>
+          {% endif %}
         </div>
       </ul>
     </div>

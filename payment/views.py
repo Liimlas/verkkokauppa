@@ -19,6 +19,7 @@ def payment(request, gameid):
     # needed for differenciating between showing buy and play buttons
     alreadyOwned = True
     ownedSet = BoughtGame.objects.filter(owner=request.user, game=game)
+
     if ownedSet.count() == 0 and game.developer != request.user:
         alreadyOwned = False
 
