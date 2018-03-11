@@ -145,13 +145,14 @@ We think this deserves full 200 ponts because we implemented everything that was
 
 **Basic player functionalities**: Users can buy games that they don't already own or have developed. User can only buy each game once. Users can play games that they have bought or developed.
 If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.
+For this we deserve 200 points.
 
 **Game/service interaction**:
 
 **Quality of work**: We tried making the service as intuitive to use as possible. We also added possibility to add pctures to both users and games, and own profile pages. On the code side we commented a lot of harder to understand code and extended base_html in a way that
 didn't force us to copy same html everywhere. We also tried slicing our project to smaller apps n a way that made sense to us. We tried to do most of the logic-work in views instead
 of templates. 
-We believe we deserve 85 points for this.
+We believe we deserve 100 points for this.
 
 **Non-functional requrements**:
 We made a good project plan.
@@ -182,3 +183,7 @@ Sofia:
 * some CSS
 * game-id-generator 
 
+
+### Heroku ###
+
+Linkki: https://evening-stream-68210.herokuapp.com/
