@@ -142,7 +142,7 @@ def delete_game(request):
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
     if request.method == "POST":
-        form = ChangeGameForm(request.POST, instance=post)
+        form = ChangeGameForm(request.POST, request.FILES, instance=post)
         form2 = DeleteNewForm(request.POST, instance=post)
         if form.is_valid():
             gamedelete = request.POST.get('delete')
@@ -159,7 +159,6 @@ def edit_game(request, pk):
 
                 context = {}
 
-
                 # radio button check that if game is on sale
                 # -> onsale is true and gamesale has two decimal and
                 # saleprice is now the now price which is not between 0 and 1.
@@ -170,7 +169,8 @@ def edit_game(request, pk):
                 else:
                     post.saleprice = 0
                     post.onsale = False
-                post.soldcopies = 0
+
+
                 post.save()
                 return HttpResponseRedirect('/managed_game/')
 
