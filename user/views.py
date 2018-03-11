@@ -125,19 +125,23 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'account_activation_invalid.html')
 
+@login_required
 def manage_games(request):
     context = {'own_games': Game.objects.filter(developer = request.user)}
     return render(request, 'manage_games.html', context)
 
 # own page that change game is now done
+@login_required
 def edit(request):
     return render(request, 'managed_game.html')
 
 
 # own page that game is deleted
+@login_required
 def delete_game(request):
     return render(request, 'delete_game.html')
 
+@login_required
 @csrf_exempt
 def edit_game(request, pk):
     post = get_object_or_404(Game, pk=pk)
