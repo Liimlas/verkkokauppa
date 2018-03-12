@@ -74,6 +74,21 @@
 {% endif %}
 </span>
 
+<div class="separator"></div>
+<span class="profileBlock">
+<h2>Highscores</h2>
+
+{%for score in scores %}
+<ul>
+  <li>{{ score.game.name }}: {{ score.score }}</li>
+</ul>
+{% endfor %}
+
+
+
+</span>
+
+
 {% else %}
 Unfortunately we couldn't find the user you were looking for :(
 {% endif %}

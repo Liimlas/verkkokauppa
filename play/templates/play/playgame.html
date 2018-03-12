@@ -23,6 +23,7 @@
 
 
 {% else %}
+<a href="{% url 'play' %}"><button>&#8592; Go back</button></a>
 <h2>{{ game.name }}</h2>
 {% with game.link as gameurl %}
 

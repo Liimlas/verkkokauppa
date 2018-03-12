@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.models import User
-from main.models import Game
+from main.models import Game, HighScore
 from .models import Profile
 from .forms import ProfileForm, UserCreationForm
 from gamesales.forms import ChangeGameForm, DeleteNewForm
@@ -70,11 +70,28 @@ def viewUser(request, username):
     viewer = request.user
     context = {}
     context['not_found'] = True
+
+    #helper function for sorting highscores high to low
+    def getScore(highscore):
+        return highscore.score
+
     for user in User.objects.all():
         if username == user.username:
+            allScores = list(HighScore.objects.filter(scorer=user))
+            allScores.sort(key=getScore, reverse=True)
+            checkedGames = []
+            scores = []
+
+            #only add games to scores once
+            for score in allScores:
+                if score.game not in checkedGames:
+                    scores.append(score)
+                    checkedGames.append(score.game)
+
             context['userfound'] = True
             context['viewUser'] = user
             context['games'] = Game.objects.filter(developer=user)
+            context['scores'] = scores
     return render(request, 'view_user.html', context)
 
 

@@ -147,7 +147,9 @@ We think this deserves full 200 ponts because we implemented everything that was
 If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.  
 For this we deserve 300 points.
 
-**Game/service interaction**:
+**Game/service interaction**:  
+Users can submit their high scores and best 10 get displayed under the game.  
+We think we deserve 150 points for this.
 
 **Quality of work**: We tried making the service as intuitive to use as possible. We also added possibility to add pctures to both users and games, and own profile pages. On the code side we commented a lot of harder to understand code and extended base_html in a way that
 didn't force us to copy same html everywhere. We also tried slicing our project to smaller apps n a way that made sense to us. We tried to do most of the logic-work in views instead
