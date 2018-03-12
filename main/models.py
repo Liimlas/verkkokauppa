@@ -29,4 +29,7 @@ class BoughtGame(models.Model):
     game = models.ForeignKey(Game)
     date = models.DateField(auto_now=True)
 
-
+class HighScore(models.Model):
+    scorer = models.ForeignKey(User)
+    game = models.ForeignKey(Game)
+    score = models.FloatField(default=0)

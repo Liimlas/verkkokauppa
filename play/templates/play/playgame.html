@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+
+
     <title>
         {% if not game %}
         Game not found!
@@ -8,15 +11,9 @@
         {{ game.name }}
         {% endif %}
     </title>
+
     {% load static %}
-    <link rel="stylesheet" href="{% static 'play/styles.css' %}" />
-    <meta charset="utf-8">
-    <script>
-        
-
-    </script>
-
-
+    <link rel="stylesheet" href="{% static 'base/playStyles.css' %}" type="text/css"/>
 </head>
 <body>
 {% if not game %}
@@ -25,12 +22,79 @@
 
 
 {% else %}
-<p>{{ game.name }}</p>
+<h2>{{ game.name }}</h2>
 {% with game.link as gameurl %}
 
-<iframe style="width: 1200px; height: 800px;" src={{ gameurl }}>
+<iframe src={{ gameurl }} id="iframe" frameborder="0">
 
 </iframe>
+
+<hr style="width: 80%; margin-top: 10%">
+<div id="highscore">
+    <h2>Highscores</h2>
+    <hr>
+    <div id="hsinner">
+    {% if not highscores %}
+    <h3>There's no highscores for this game!</h3>
+    {% else %}
+        <ol>
+    {% for score in highscores %}
+    <li>Player: {{ score.scorer }} with {{ score.score }} points!</li>
+    {% endfor %}
+        </ol>
+    {% endif %}
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    window.onmessage = function(event){
+        var msg = event['data'];
+        if(event['origin'] != '{{ gameurl }}') {
+            if(msg['messageType'] == "SETTING") {
+                document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
+                document.getElementById("iframe").style.height = msg['options']['height'].toString() + "px";
+            }
+            else if(msg['messageType'] == "SCORE") {
+                var score = msg['score'];
+                var game_id = '{{ game.id }}'
+                post(score, game_id);
+            }
+            else if(msg['messageType'] == "SAVE") {
+
+            }
+        }
+    };
+
+
+    function post_error() {
+
+    }
+
+    function post(score, game_id) {
+        var form = document.createElement("form");
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', 'save_scores/');
+
+        var i = document.createElement('input');
+        i.setAttribute('type', 'number');
+        i.setAttribute('name', 'score');
+        i.setAttribute('value', score);
+
+        var j = document.createElement('input');
+        j.setAttribute('type', 'text');
+        j.setAttribute('name', 'game_id');
+        j.setAttribute('value', game_id);
+
+        form.appendChild(i);
+        form.appendChild(j);
+        document.body.appendChild(form);
+        form.submit();
+    };
+
+</script>
+
 
 {% endwith %}
 {% endif %}
