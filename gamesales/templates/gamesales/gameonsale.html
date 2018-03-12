@@ -9,7 +9,7 @@
 <h1> Games on sale </h1>
 
 
-<!-- get also all the sale games-->
+<!--all the sale games-->
 
 {% for game in games %}
 {% if game.onsale %}
@@ -40,6 +40,7 @@
 
 							</div>
 						</div>
+						<!-- user can buy game if (s)he is not owner yet-->
 						{% if game not in ownedGames %} {% with '/payment/'|add:game.id as paymenturl %}
 						<div class="col-md-12 panelBottom">
 							<a href={{paymenturl }}>

@@ -19,6 +19,7 @@
 {% if not game %}
 
 <h1>The game does not either exists, or you have not bought it!</h1>
+<a href="{% url 'play' %}"><button>&#8592; Go back? </button></a>
 
 
 {% else %}

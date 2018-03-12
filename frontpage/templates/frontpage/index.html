@@ -12,12 +12,9 @@
             <p>{{ new.name }}</p>
             {% if new.onsale %}
             <div class="gamesalee">
-                <div class="oldprice" >
-                    <p>Price {{new.price}} €</p>
+                <div class="sale">
+                    <p>Price now only {{ new.saleprice }} € </p>
                 </div>
-                    <div class="sale">
-                        <p>Sale price {{ new.saleprice }} € </p>
-                    </div>
             </div>
             {% else %}
                 <p>Price:  {{ new.price }} €</p>

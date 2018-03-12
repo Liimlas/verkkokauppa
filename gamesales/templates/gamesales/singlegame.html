@@ -2,7 +2,8 @@
 {% load staticfiles %}
 
 {% block content %}
-
+ <!-- This is single game page, when user have click some game to show
+ more informations-->
 {% if gamefound %}
 <h1>{{ game.name }}</h1>
     <div class="media">
@@ -10,6 +11,7 @@
         <div class="media-body">
             <p>Ages {{game.ageRestriction}} and up</p>
 
+            <!-- when game is on sale. There is sale price otherwise price-->
             {% if game.onsale %}
                 <div class="gamesalee">
                     <p>
@@ -43,12 +45,15 @@
         </div>
     </div>
 
+    <!-- Game info text-->
     <h2>About the game</h2>
         <span class="profileBlock"><p>{{ game.infotext }}</p></span>
 
+    <!-- user is game developer (s)he see soldcopies and the dates-->
     {% if game.developer == user %}
         <h2>Sales</h2>
     <span class="profileBlock">
+        <!-- if zero bought there is different text, also with one bought and many-->
         {% if zeroBought %}
             <p>No one has bought this game yet!</p>
         {% elif oneBought %}
@@ -60,6 +65,7 @@
     {% endif %}
 
 <p>
+    <!-- The date and number of sold games in that day are in same line-->
     {% for date in sold %}
         {% if date in numbers %}
             sold: {{ date }}<br>
@@ -72,7 +78,7 @@
     {% endif %}
 
 {% else %}
-    <h1 class="textRight">Peliä ei löytynyt!</h1>
-    <p class="textRight">Valitettavasti peliä ei tämän id:n alta löytynyt. Ole hyvä jä yritä uudelleen</p>
+    <h1 class="textRight">The game was not found!</h1>
+    <p class="textRight">Unfortunately, there is no game with that id. Please try again or <a href="{% url 'games' %}"> go back to see all games? </a></p>
 {% endif %}
 {% endblock %}
