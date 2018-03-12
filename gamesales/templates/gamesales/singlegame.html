@@ -15,8 +15,11 @@
             {% if game.onsale %}
                 <div class="gamesalee">
                     <p>
+                    <span class="oldprice">
+                        Price {{game.price}} €
+                    </span>
                     <span class="sale">
-                        Now only {{ game.saleprice }}€
+                        Sale price {{ game.saleprice }}€
                     </span>
                     </p>
                 </div>
