@@ -84,7 +84,7 @@ def save_state(request):
         game_state = request.POST.get('game_state', '')
         game_id = request.POST.get('game_id', '')
         found_game = Game.objects.get(id=game_id)
-        redir = '/play/ ' + game_id + '/'
+        redir = '/play/' + game_id + '/'
 
         game_states = GameState.objects.all()
         game_states = game_states.filter(player=request.user)
