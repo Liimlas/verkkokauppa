@@ -76,6 +76,6 @@
 
 {% else %}
     <h1 class="textRight">The game was not found!</h1>
-    <p class="textRight">Unfortunately, there is no game with that id. Please try again</p>
+    <p class="textRight">Unfortunately, there is no game with that id. Please try again or <a href="{% url 'games' %}"> go back to see all games? </a></p>
 {% endif %}
 {% endblock %}
