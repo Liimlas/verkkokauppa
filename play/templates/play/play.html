@@ -17,8 +17,11 @@
         <p class="card-text">Highscore tähän?</p> -->
     </div>
     <div class="card-footer">
+        
         {% with '/play/'|add:game.id as gameurl %}
-        <a href="{{gameurl}}" class="btn btn-primary">Play</a>
+        <a href="{{gameurl}}"
+            class="btn btn-primary"
+            onclick="window.open(this.href, '{{game.name}}', 'width=1000, height=700, left=24, top=24, scrollbars, resizable'); return false;">Play</a>
         {% endwith %}
     </div>
 </div>
