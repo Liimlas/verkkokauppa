@@ -137,26 +137,26 @@ Our aim is to progress every week, and have a steady workflow.
 
 ### Report ###
 
-We immplemented all the required features. 
-
+We immplemented all the required features.   
+  
 **Authentication**: User can register as either a developer or a regular gamer. E-mail- verfication s required for completing the registration process. In case user forgets
-his or her password, they can reset it via email also. Both e-mails works on console. User can log in and out. 
+his or her password, they can reset it via email also. Both e-mails works on console. User can log in and out.   
 We think this deserves full 200 ponts because we implemented everything that was required and verification methods.
 
 **Basic player functionalities**: Users can buy games that they don't already own or have developed. User can only buy each game once. Users can play games that they have bought or developed.
-If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.
+If person who isn't logged in tries to play games they are redirected to log in. f player who hasn't bought the game tries to play it, they will be redirected to buyng screen.  
 For this we deserve 300 points.
 
 **Game/service interaction**:
 
 **Quality of work**: We tried making the service as intuitive to use as possible. We also added possibility to add pctures to both users and games, and own profile pages. On the code side we commented a lot of harder to understand code and extended base_html in a way that
 didn't force us to copy same html everywhere. We also tried slicing our project to smaller apps n a way that made sense to us. We tried to do most of the logic-work in views instead
-of templates. 
+of templates.   
 We believe we deserve 100 points for this.
 
 **Non-functional requrements**:
-We made a good project plan.
-We divided our tasks, and have oftern worked together and helped each other to solve problems while implementng them. 
+We made a good project plan.  
+We divided our tasks, and have oftern worked together and helped each other to solve problems while implementng them.   
 We deserve 200 points for this.
 
 
@@ -171,8 +171,8 @@ Lasse:
 
 Elisa: 
 * Authentication and all the user- related things
-* payment and buying game
-* some overall CSS
+* payment and buying games
+* CSS
 * adding pictures for users and games
 * lots of other small stuff around the block
 
@@ -187,3 +187,13 @@ Sofia:
 ### Heroku ###
 
 Linkki: https://evening-stream-68210.herokuapp.com/
+
+**Example users**:  
+  
+Developer:  
+    username: DevaaJane  
+    password: salasana  
+    
+Gamer:  
+    username: GamerKalle  
+    password: salasana
