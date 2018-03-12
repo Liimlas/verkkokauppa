@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import auth
-from main.models import Game, BoughtGame, HighScore
+from main.models import Game, BoughtGame, HighScore, GameState
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -42,7 +42,6 @@ def playgame(request, gameid):
         bought_games = []
 
         for bought_game in BoughtGame.objects.all():
-            print("Hei")
             if bought_game.owner == request.user:
                 bought_games.append(bought_game.game)
 
@@ -68,11 +67,35 @@ def save_scores(request):
         found_game = Game.objects.get(id=game_id)
         redir = '/play/' + game_id + '/'
         if game_score <= 0:
-            return redirect('/play/')
+            return redirect(redir)
         else:
             a = HighScore.objects.create(scorer=request.user, game=found_game, score=game_score)
             a.save()
             return redirect(redir)
 
+    else:
+        return redirect('/play/')
+
+
+@login_required
+@csrf_exempt
+def save_state(request):
+    if request.method == "POST":
+        game_state = request.POST.get('game_state', '')
+        game_id = request.POST.get('game_id', '')
+        found_game = Game.objects.get(id=game_id)
+        redir = '/play/ ' + game_id + '/'
+
+        game_states = GameState.objects.all()
+        game_states = game_states.filter(player=request.user)
+        game_states = game_states.filter(game=found_game)
+
+        if not game_states:
+            new_state = GameState.objects.create(player=request.user, game=found_game, game_state=game_state)
+            new_state.save()
+            return redirect(redir)
+        else:
+            game_states[0].game_state = game_state
+            return redirect(redir)
     else:
         return redirect('/play/')

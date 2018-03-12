@@ -28,7 +28,6 @@
 <iframe src={{ gameurl }} id="iframe" frameborder="0">
 
 </iframe>
-
 <hr style="width: 80%; margin-top: 10%">
 <div id="highscore">
     <h2>Highscores</h2>
@@ -51,6 +50,8 @@
 
     window.onmessage = function(event){
         var msg = event['data'];
+        var game_id = '{{ game.id }}'
+
         if(event['origin'] != '{{ gameurl }}') {
             if(msg['messageType'] == "SETTING") {
                 document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
@@ -58,19 +59,38 @@
             }
             else if(msg['messageType'] == "SCORE") {
                 var score = msg['score'];
-                var game_id = '{{ game.id }}'
                 post(score, game_id);
             }
             else if(msg['messageType'] == "SAVE") {
-
+                game_state = JSON.stringify(msg['gameState']);
+                save_state(game_state, game_id);
             }
         }
     };
 
 
-    function post_error() {
+    function save_state(game_state, game_id) {
+        var form = document.createElement("form");
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', 'save_state/');
+
+        var i = document.createElement('input');
+        i.setAttribute('type', 'text');
+        i.setAttribute('name', 'game_state');
+        i.setAttribute('value', game_state);
+
+        var j = document.createElement('input');
+        j.setAttribute('type', 'text');
+        j.setAttribute('name', 'game_id');
+        j.setAttribute('value', game_id);
+
+        form.appendChild(i);
+        form.appendChild(j);
+        document.body.appendChild(form);
+        form.submit();
 
     }
+
 
     function post(score, game_id) {
         var form = document.createElement("form");

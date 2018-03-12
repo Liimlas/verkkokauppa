@@ -33,3 +33,8 @@ class HighScore(models.Model):
     scorer = models.ForeignKey(User)
     game = models.ForeignKey(Game)
     score = models.FloatField(default=0)
+
+class GameState(models.Model):
+    game = models.ForeignKey(Game)
+    player = models.ForeignKey(User)
+    game_state = models.TextField(default="")
