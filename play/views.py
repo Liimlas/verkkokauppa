@@ -4,6 +4,7 @@ from main.models import Game, BoughtGame, HighScore, GameState
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from .forms import *
 
 
@@ -99,3 +100,33 @@ def save_state(request):
             return redirect(redir)
     else:
         return redirect('/play/')
+
+
+@login_required
+@csrf_exempt
+def load_state(request):
+    if not request.method == "POST":
+        redirect('/play/')
+
+
+    a = GameState.objects.all()
+    game_id = request.POST.get('game_id', '')
+    origin = request.POST   .get('origin', '')
+    found_game = Game.objects.get(id=game_id)
+
+
+    highscores = []
+    for score in HighScore.objects.filter(game=found_game):
+        highscores.append(score)
+
+    highscores.sort(key=lambda x: x.score, reverse=True)
+
+    a = a.filter(game=found_game)
+    a = a.filter(player=request.user)
+
+    if len(a) < 1:
+
+        return render(request, 'play/playgame.html', {'game': found_game, 'origin' : origin, 'highscores': highscores[:10]})
+    else:
+        message = a[0].game_state
+        return render(request, 'play/playgame.html', {'game': found_game, 'loaded' : True, 'message' : message, 'origin' : origin, 'highscores': highscores[:10]})

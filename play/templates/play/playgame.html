@@ -46,28 +46,70 @@
     {% endif %}
     </div>
 </div>
+
+{% block info %}
+
+{% endblock %}
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+    var iframeWin = document.getElementById('iframe').contentWindow;
+
+    {% if loaded %}
+
+    message = '{{ message }}';
+    origin = '{{ origin }}';
+    window.alert(message);
+    window.alert(origin);
+    iframeWin.postMessage(message, origin);
+    {% endif %}
+
 
     window.onmessage = function(event){
         var msg = event['data'];
         var game_id = '{{ game.id }}'
 
-        if(event['origin'] != '{{ gameurl }}') {
-            if(msg['messageType'] == "SETTING") {
-                document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
-                document.getElementById("iframe").style.height = msg['options']['height'].toString() + "px";
-            }
-            else if(msg['messageType'] == "SCORE") {
-                var score = msg['score'];
-                post(score, game_id);
-            }
-            else if(msg['messageType'] == "SAVE") {
-                game_state = JSON.stringify(msg['gameState']);
-                save_state(game_state, game_id);
-            }
+
+        if(msg['messageType'] == "SETTING") {
+            document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
+            document.getElementById("iframe").style.height = msg['options']['height'].toString() + "px";
         }
+        else if(msg['messageType'] == "SCORE") {
+            var score = msg['score'];
+            post(score, game_id);
+        }
+        else if(msg['messageType'] == "SAVE") {
+            game_state = JSON.stringify(msg['gameState']);
+            save_state(game_state, game_id);
+        }
+        else if(msg['messageType'] == "LOAD_REQUEST") {
+            var message = load_request(game_id, event['origin']);
+        }
+    };
+
+
+    function load_request(game_id, origin) {
+        var form = document.createElement("form");
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', 'load_state/');
+
+        var j = document.createElement('input');
+        var i = document.createElement('input');
+        i.setAttribute('type', 'text');
+        i.setAttribute('name', 'origin');
+        i.setAttribute('value', origin);
+
+        j.setAttribute('type', 'text');
+        j.setAttribute('name', 'game_id');
+        j.setAttribute('value', game_id);
+
+
+        form.appendChild(j);
+        form.appendChild(i);
+        document.body.appendChild(form);
+        form.submit();
     };
 
 
@@ -90,8 +132,7 @@
         form.appendChild(j);
         document.body.appendChild(form);
         form.submit();
-
-    }
+    };
 
 
     function post(score, game_id) {
