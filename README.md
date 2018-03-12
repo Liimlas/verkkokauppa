@@ -171,8 +171,8 @@ Lasse:
 
 Elisa: 
 * Authentication and all the user- related things
-* payment and buying game
-* some overall CSS
+* payment and buying games
+* CSS
 * adding pictures for users and games
 * lots of other small stuff around the block
 
