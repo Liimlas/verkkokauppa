@@ -1,0 +1,49 @@
+#iframe {
+    display: block;
+    margin: 0 auto;
+    border: 6px solid rgba(210, 210, 210, 0.9);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+body {
+    background: rgba(240, 240, 240, 0.8);
+}
+
+div h2 {
+    height: 10%;
+    color: rgb(30, 30, 30);
+    width: 80%;
+    margin: 2% auto;
+    text-align: center;
+}
+
+div p {
+    width: 80%;
+}
+hr {
+    width: 80%;
+}
+
+#highscore {
+    display: block;
+    margin: 5% auto;
+    width: 80%;
+    height: auto;
+    border: 6px solid rgba(150, 150, 150, 0.3);
+    border-radius: 10px;
+}
+
+li {
+    color: rgba(20, 20, 20, 0.8);
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#hsinner {
+    margin: 0 auto 30px auto;
+    width: 80%;
+}
