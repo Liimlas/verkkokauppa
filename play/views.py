@@ -118,20 +118,24 @@ def load_state(request):
         if not filtered_game_states:
             message = {
                 "messageType": "ERROR",
-                "info": "Could not find saved state for this user!"
+                "info": "Could not find saved state for this user!",
+                "Message" : "Could not find saved state for this user!"
             }
             return JsonResponse(message)
 
         else:
             message = {
                 "messageType": "LOAD",
-                "gameState" : json.loads(filtered_game_states.game_state)
+                "gameState" : json.loads(filtered_game_states.game_state),
+                "Message" : "Succesfully loaded the data"
             }
             return JsonResponse(message)
     except:
         message = {
             "messageType": "ERROR",
-            "info": "Could not load the game info!"
+            "info": "Could not load the game info!",
+            "Message": "Could not load the game info!"
+
         }
 
         return JsonResponse(message)

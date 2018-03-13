@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="{% static 'base/playStyles.css' %}" type="text/css"/>
 </head>
 <body>
+
+
+
+
+
+
+
 {% if not game %}
 
 <h1>The game does not either exists, or you have not bought it!</h1>
@@ -23,6 +30,7 @@
 
 
 {% else %}
+
 <a href="{% url 'play' %}"><button>&#8592; Go back</button></a>
 <h2>{{ game.name }}</h2>
 {% with game.link as gameurl %}
@@ -30,7 +38,19 @@
 <iframe src={{ gameurl }} id="iframe" frameborder="0">
 
 </iframe>
-
+<h2 id="msg">Enjoy playing<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+    
+    </body>
+    </html></h2>
 <hr style="width: 80%; margin-top: 5%">
 <div id="highscore">
     <h2>Highscores</h2>
@@ -49,46 +69,47 @@
 </div>
 
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
-    $( document ).ready(function() {
-
     var iframeWin = document.getElementById('iframe').contentWindow;
+
+    $( window ).ready(function() {
+        $("body").fadeIn(2000);
+    });
 
     window.onmessage = function(event){
         var msg = event['data'];
         var game_id = '{{ game.id }}'
 
         if(msg['messageType'] == "SETTING") {
-            document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
-            document.getElementById("iframe").style.height = msg['options']['height'].toString() + "px";
+            $("#iframe").height(msg['options']['height']);
+            $("#iframe").width(msg['options']['width']);
         }
         else if(msg['messageType'] == "SCORE") {
             var score = msg['score'];
             $.post("/play/" + game_id + "/save_scores/", {"game_id" : game_id, "score" : score }, function(data) {
-                window.alert(data['Message']);
+                $( "#msg" ).text(data['Message']);
             });
         }
         else if(msg['messageType'] == "SAVE") {
             var game_state = JSON.stringify(msg['gameState']);
             $.post("/play/" + game_id + "/save_state/", {"game_id": game_id, "game_state" : game_state}, function(data) {
-                window.alert(data['Message']);
+                $( "#msg" ).text(data['Message']);
             });
         }
         else if(msg['messageType'] == "LOAD_REQUEST") {
             $.get("/play/" + game_id + "/load_state/", { "game_id" : game_id }, function(data) {
                 iframeWin.postMessage(data, "*");
-                alert("Loaded state!");
+                $( "#msg" ).text(data['Message']);
             });
         }
     };
-    });
 
 </script>
+
+
 
 
 {% endwith %}

@@ -54,3 +54,12 @@ li {
     margin: 0 auto 30px auto;
     width: 80%;
 }
+
+body {
+    display: none;
+}
+#msg {
+    margin: 2% auto 1% auto;
+    text-align: center;
+    text-color: rgb(30, 30, 30);
+}
