@@ -30,7 +30,8 @@
 <iframe src={{ gameurl }} id="iframe" frameborder="0">
 
 </iframe>
-<hr style="width: 80%; margin-top: 10%">
+
+<hr style="width: 80%; margin-top: 5%">
 <div id="highscore">
     <h2>Highscores</h2>
     <hr>
@@ -47,30 +48,20 @@
     </div>
 </div>
 
-{% block info %}
 
-{% endblock %}
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+
+    $( document ).ready(function() {
+
     var iframeWin = document.getElementById('iframe').contentWindow;
-
-    {% if loaded %}
-
-    message = '{{ message }}';
-    origin = '{{ origin }}';
-    window.alert(message);
-    window.alert(origin);
-    iframeWin.postMessage(message, origin);
-    {% endif %}
-
 
     window.onmessage = function(event){
         var msg = event['data'];
         var game_id = '{{ game.id }}'
-
 
         if(msg['messageType'] == "SETTING") {
             document.getElementById("iframe").style.width = msg['options']['width'].toString() + "px";
@@ -78,83 +69,24 @@
         }
         else if(msg['messageType'] == "SCORE") {
             var score = msg['score'];
-            post(score, game_id);
+            $.post("/play/" + game_id + "/save_scores/", {"game_id" : game_id, "score" : score }, function(data) {
+                window.alert(data['Message']);
+            });
         }
         else if(msg['messageType'] == "SAVE") {
-            game_state = JSON.stringify(msg['gameState']);
-            save_state(game_state, game_id);
+            var game_state = JSON.stringify(msg['gameState']);
+            $.post("/play/" + game_id + "/save_state/", {"game_id": game_id, "game_state" : game_state}, function(data) {
+                window.alert(data['Message']);
+            });
         }
         else if(msg['messageType'] == "LOAD_REQUEST") {
-            var message = load_request(game_id, event['origin']);
+            $.get("/play/" + game_id + "/load_state/", { "game_id" : game_id }, function(data) {
+                iframeWin.postMessage(data, "*");
+                alert("Loaded state!");
+            });
         }
     };
-
-
-    function load_request(game_id, origin) {
-        var form = document.createElement("form");
-        form.setAttribute('method', 'POST');
-        form.setAttribute('action', 'load_state/');
-
-        var j = document.createElement('input');
-        var i = document.createElement('input');
-        i.setAttribute('type', 'text');
-        i.setAttribute('name', 'origin');
-        i.setAttribute('value', origin);
-
-        j.setAttribute('type', 'text');
-        j.setAttribute('name', 'game_id');
-        j.setAttribute('value', game_id);
-
-
-        form.appendChild(j);
-        form.appendChild(i);
-        document.body.appendChild(form);
-        form.submit();
-    };
-
-
-    function save_state(game_state, game_id) {
-        var form = document.createElement("form");
-        form.setAttribute('method', 'POST');
-        form.setAttribute('action', 'save_state/');
-
-        var i = document.createElement('input');
-        i.setAttribute('type', 'text');
-        i.setAttribute('name', 'game_state');
-        i.setAttribute('value', game_state);
-
-        var j = document.createElement('input');
-        j.setAttribute('type', 'text');
-        j.setAttribute('name', 'game_id');
-        j.setAttribute('value', game_id);
-
-        form.appendChild(i);
-        form.appendChild(j);
-        document.body.appendChild(form);
-        form.submit();
-    };
-
-
-    function post(score, game_id) {
-        var form = document.createElement("form");
-        form.setAttribute('method', 'POST');
-        form.setAttribute('action', 'save_scores/');
-
-        var i = document.createElement('input');
-        i.setAttribute('type', 'number');
-        i.setAttribute('name', 'score');
-        i.setAttribute('value', score);
-
-        var j = document.createElement('input');
-        j.setAttribute('type', 'text');
-        j.setAttribute('name', 'game_id');
-        j.setAttribute('value', game_id);
-
-        form.appendChild(i);
-        form.appendChild(j);
-        document.body.appendChild(form);
-        form.submit();
-    };
+    });
 
 </script>
 

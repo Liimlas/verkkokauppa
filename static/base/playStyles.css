@@ -28,6 +28,13 @@ hr {
     width: 80%;
 }
 
+#statediv {
+    background: blue;
+    width: 80%;
+    display: block;
+    margin: 5% auto 5% auto;
+}
+
 #highscore {
     display: block;
     margin: 5% auto;

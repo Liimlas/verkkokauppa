@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .forms import *
+import json
 
 
 
@@ -62,71 +63,75 @@ def playgame(request, gameid):
 @login_required
 @csrf_exempt
 def save_scores(request):
-    if request.method == "POST":
-        game_score = float(request.POST.get('score', ''))
-        game_id = request.POST.get('game_id', '')
-        found_game = Game.objects.get(id=game_id)
-        redir = '/play/' + game_id + '/'
-        if game_score <= 0:
-            return redirect(redir)
-        else:
-            a = HighScore.objects.create(scorer=request.user, game=found_game, score=game_score)
-            a.save()
-            return redirect(redir)
+    try:
+        game_id = request.POST.get('game_id')
+        score = float(request.POST.get('score'))
+        game_by_id = Game.objects.get(id=game_id)
 
-    else:
-        return redirect('/play/')
+        if score <= 0:
+            return JsonResponse({"Message" : "You have to have more than 0 points to save the highscores!"})
 
+        new_score = HighScore.objects.create(scorer=request.user, score=score, game=game_by_id)
+        new_score.save()
+
+        message = "Added a new highscore of " + str(score) + " points!"
+        return JsonResponse({"Message": message})
+    except:
+        return JsonResponse({"Message" : "Could not save highscores, something went wrong!"})
 
 @login_required
 @csrf_exempt
 def save_state(request):
-    if request.method == "POST":
-        game_state = request.POST.get('game_state', '')
-        game_id = request.POST.get('game_id', '')
-        found_game = Game.objects.get(id=game_id)
-        redir = '/play/' + game_id + '/'
+    try:
+        game_id = request.POST.get('game_id')
+        game_state = request.POST.get('game_state')
+        game_by_id = Game.objects.get(id=game_id)
 
-        game_states = GameState.objects.all()
-        game_states = game_states.filter(player=request.user)
-        game_states = game_states.filter(game=found_game)
+        state = GameState.objects.filter(player=request.user).filter(game=game_by_id)
 
-        if not game_states:
-            new_state = GameState.objects.create(player=request.user, game=found_game, game_state=game_state)
+        if not state:
+            new_state = GameState.objects.create(player=request.user, game=game_by_id, game_state=game_state)
             new_state.save()
-            return redirect(redir)
+            return JsonResponse({"Message" : "Successfully created a new state!"})
+
         else:
-            game_states[0].game_state = game_state
-            return redirect(redir)
-    else:
-        return redirect('/play/')
+            modified_state = state[0]
+            modified_state.game_state = game_state
+            modified_state.save()
+            return JsonResponse({"Message" : "Successfully saved new state"})
+
+    except:
+        return JsonResponse({"Message" : "Something went wrong, could not save the data!"})
 
 
 @login_required
 @csrf_exempt
 def load_state(request):
-    if not request.method == "POST":
-        redirect('/play/')
+    try:
+        a = GameState.objects.all()
 
+        game_id = request.GET.get('game_id')
+        game_by_id = Game.objects.get(id=game_id)
 
-    a = GameState.objects.all()
-    game_id = request.POST.get('game_id', '')
-    origin = request.POST   .get('origin', '')
-    found_game = Game.objects.get(id=game_id)
+        filtered_game_states = a.filter(player=request.user).filter(game=game_by_id)[0]
 
+        if not filtered_game_states:
+            message = {
+                "messageType": "ERROR",
+                "info": "Could not find saved state for this user!"
+            }
+            return JsonResponse(message)
 
-    highscores = []
-    for score in HighScore.objects.filter(game=found_game):
-        highscores.append(score)
+        else:
+            message = {
+                "messageType": "LOAD",
+                "gameState" : json.loads(filtered_game_states.game_state)
+            }
+            return JsonResponse(message)
+    except:
+        message = {
+            "messageType": "ERROR",
+            "info": "Could not load the game info!"
+        }
 
-    highscores.sort(key=lambda x: x.score, reverse=True)
-
-    a = a.filter(game=found_game)
-    a = a.filter(player=request.user)
-
-    if len(a) < 1:
-
-        return render(request, 'play/playgame.html', {'game': found_game, 'origin' : origin, 'highscores': highscores[:10]})
-    else:
-        message = a[0].game_state
-        return render(request, 'play/playgame.html', {'game': found_game, 'loaded' : True, 'message' : message, 'origin' : origin, 'highscores': highscores[:10]})
+        return JsonResponse(message)
