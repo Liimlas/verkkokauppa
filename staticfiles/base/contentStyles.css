@@ -1,0 +1,37 @@
+/* Main content, headers, lists etc */
+
+.mainContentContainer {
+  min-width: 86rem;
+}
+
+.content {
+  width: 80%;
+  min-width: 71rem;
+  margin-left: 20%;
+  box-sizing: border-box;
+  padding: 0px 1em 1em 1em;
+  font-family: Verdana;
+}
+
+.content h1 {
+  font-family: Quattrocento;
+  font-size: 2.3em;
+  width: 100%;
+  border-bottom: 1px dashed #676767;
+  display: block;
+}
+
+.content h2 {
+  font-family: Quattrocento;
+  font-size: 1.9em;
+}
+
+.content p {
+  background-color: #eeeeee;
+  padding: 0.7em;
+}
+
+.content li {
+  list-style-type: none;
+  padding: 1em;
+}

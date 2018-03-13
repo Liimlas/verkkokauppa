@@ -1,0 +1,42 @@
+
+/*Random styles that didn't warrant their ownr CSS file */
+
+.body {
+  width: 100%;
+}
+
+/*Side navigation*/
+.nav-sidebar {
+  box-sizing: border-box;
+  float: left;
+  width:20%;
+  text-align: center;
+  min-width: 15rem;
+}
+
+.nav-sidebar ul {
+  display: table-row;
+  width:100%;
+  display: inline-block;
+}
+
+.nav-sidebar ul li {
+  list-style-type: none;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+
+/*pls vaihtakaa tän nimi*/
+.gamesalee{
+    font: italic bold 12px/30px serif;
+}
+
+.gameSalePicture {
+  width: 100px;
+}
+.style_page{
+width: 100%;
+
+}
