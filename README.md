@@ -1,9 +1,9 @@
 # WebShop - Project plan #
  
 #### Participants: ###
-* Lasse Liimatta - 592929 
-* Elisa Naskali - 593371 
-* Sofia Kimpimäki - 586883 
+* Lasse Liimatta  
+* Elisa Naskali 
+* Sofia Kimpimäki 
  
 
 
